@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LiveVideoPlayerActivity">
+
+<!--    <com.bambuser.broadcaster.SurfaceViewWithAutoAR-->
+<!--        android:id="@+id/VideoSurfaceView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+
+<RelativeLayout
+    android:id="@+id/PlayerContentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/msgBarBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/textMsgEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="99"
+                android:imeOptions="actionDone|flagNoEnterAction"
+                android:background="@android:color/transparent"
+                android:hint="Type a message"
+                android:maxLines="2" />
+
+
+            <ImageButton
+                android:id="@+id/sendBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="8dp"
+                android:background="#00000000"
+                android:padding="8dp"
+                android:src="@drawable/ic_send_black_24dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:gravity="right"
+        android:weightSum="100">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/querySuggestionList"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="99"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/keypadBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="24dp">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_background"
+                android:padding="8dp"
+                android:src="@drawable/ic_keyboard_black_24dp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

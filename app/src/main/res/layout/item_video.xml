@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8sp"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/videoView"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="#000"
+            android:clickable="true"
+            android:keepScreenOn="true"
+            app:bar_height="2dp"
+            app:fastforward_increment="10000"
+            app:played_color="@color/colorAccent"
+            app:rewind_increment="10000"
+            app:scrubber_color="@color/colorAccent"
+            app:show_buffering="always"
+            app:use_controller="true"/>
+
+    </androidx.cardview.widget.CardView>

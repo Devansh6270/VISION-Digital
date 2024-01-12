@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    android:orientation="vertical"
+    tools:context=".activities.AnalyticsActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/dashboardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingTop="@dimen/dimen_12dp"
+        android:background="@drawable/toolbar_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:elevation="8dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/ic_back"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            />
+
+        <ImageView
+            android:id="@+id/downloadAnalyticsImgBtn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:src="@drawable/download" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/notStartedYetText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Not Started Yet !"
+        android:visibility="gone"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        style="@style/SpaceGroteskBold">
+
+    </TextView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/animation_viewAnalytics"
+        app:lottie_rawRes="@raw/no_data_found"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/dashboardToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewAnalytics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:paddingBottom="@dimen/dimen_24dp">
+
+
+        <LinearLayout
+            android:id="@+id/card_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="@color/white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"
+                    android:src="@drawable/user_profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Hello Ankur!"
+                    android:textColor="#DE000000"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-2dp"
+                    android:text="Let's See how's your studies going on"
+                    android:textColor="#707070"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    style="@style/SpaceGroteskLight"
+                    app:layout_constraintEnd_toEndOf="@id/user_name"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/user_name"
+                    app:layout_constraintTop_toBottomOf="@id/user_name">
+
+                </TextView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="90dp"
+            android:layout_height="98dp"
+            android:layout_marginEnd="@dimen/dimen_12dp"
+            android:layout_marginBottom="@dimen/dimen_4dp"
+            android:src="@drawable/image_eva_black"
+            app:layout_constraintBottom_toBottomOf="@+id/card_1"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:src="@drawable/bg_eva_bottom"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="@color/white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_1"
+            app:layout_constraintBottom_toTopOf="@id/downloadCard3">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_1"
+            app:layout_constraintBottom_toTopOf="@id/downloadCard3">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#01CF76"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/image_accuracy" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="2dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/accuracy_attempted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:gravity="center"
+                                android:text="70%"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                style="@style/SpaceGroteskBold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:gravity="center"
+                                android:text="Course"
+                                android:maxLines="1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                style="@style/SpaceGroteskLight"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Accuracy"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#01CF76"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/book_check" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="2dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/tv_completion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginEnd="2dp"
+                                android:gravity="center"
+                                android:text="80%"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                style="@style/SpaceGroteskBold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:gravity="center"
+                                android:text="Course"
+                                android:maxLines="1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                style="@style/SpaceGroteskLight"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Completion"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            style="@style/SpaceGroteskBold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/downloadCard3"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="#D9D9D9"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Certificate"
+                    android:gravity="center"
+                    style="@style/SpaceGroteskBold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/downloadBtn"
+                    android:layout_marginStart="8dp"
+                    android:elevation="8dp"
+                    android:gravity="center"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/download_btn_grey" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/strong_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/downloadCard3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/strong_chapterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Strong Chapters"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/strong_chap_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/SpaceGroteskLight"
+                    android:layout_marginHorizontal="@dimen/dimen_16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Hurray! The following are your strengths and you did well
+in the below topics. Just keep revising"
+                    android:textColor="#DE000000"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/strong_chapterText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/strong_chapterText"
+                    app:layout_constraintTop_toBottomOf="@id/strong_chapterText">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/strong_chap_desc">
+
+
+                    <ImageView
+                        android:id="@+id/bicepImageView"
+                        android:layout_width="140dp"
+                        android:layout_height="195dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/image_strong" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bicepImageView">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/strong_chap_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/onEdge_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/strong_cardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/onEdge_chapterText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="On the Edge"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/onedge_chap_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_16dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Hey ! Focus on these chapters to cross the boundary for success."
+                    android:textColor="#DE000000"
+                    android:textSize="14sp"
+                    style="@style/SpaceGroteskLight"
+                    app:layout_constraintEnd_toEndOf="@id/onEdge_chapterText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/onEdge_chapterText"
+                    app:layout_constraintTop_toBottomOf="@id/onEdge_chapterText">
+
+                </TextView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/onedge_chap_desc">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bicepImageView">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/onedge_chap_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="195dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="0dp"
+                        android:padding="10dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/image_on_edge" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/weak_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/onEdge_cardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/weak_chapterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Weak Chapters"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/weak_chap_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Hey! You should finish the below topics to stand out of the crowd.
+Learn more &amp; focus on your weaknesses"
+                    android:textColor="#DE000000"
+                    android:textSize="14sp"
+                    style="@style/SpaceGroteskLight"
+                    app:layout_constraintEnd_toEndOf="@id/weak_chapterText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/weak_chapterText"
+                    app:layout_constraintTop_toBottomOf="@id/weak_chapterText">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/weak_chap_desc">
+
+                    <ImageView
+                        android:id="@+id/readingImageView"
+                        android:layout_width="140dp"
+                        android:layout_height="195dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="0dp"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/image_weak" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="245dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/readingImageView">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/weak_chap_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weak_cardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/curiosity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Curiosity"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/curiosity_desc"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="The more you ask, The more you learn."
+                    android:textColor="#FF3333"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    style="@style/SpaceGroteskLight"
+                    app:layout_constraintEnd_toEndOf="@id/curiosity_title"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/curiosity_title"
+                    app:layout_constraintTop_toBottomOf="@id/curiosity_title">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/curiosity_desc"
+                    app:layout_constraintVertical_bias="0.119">
+
+                    <TextView
+                        android:id="@+id/curiosity_desc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Doubts in your mind appears with a pause.
+You learn concepts when you are curious to
+ask your doubts."
+                        android:textColor="#707070"
+                        android:textSize="14sp"
+                        style="@style/SpaceGroteskLight" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:scaleType="centerCrop"
+                            android:layout_margin="8dp"
+                            android:padding="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/curiosity1" />
+
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="48dp"
+                            android:text="Points"
+                            android:textColor="#DE000000"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView6"
+                            app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                        <TextView
+                            android:id="@+id/tv_curiosity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60"
+                            android:textColor="#DE000000"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            style="@style/SpaceGroteskBold"
+                            app:layout_constraintEnd_toEndOf="@+id/textView21"
+                            app:layout_constraintStart_toStartOf="@+id/textView21"
+                            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/red_arrow" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Oops! You asked less."
+                            android:textColor="#707070"
+                            android:textSize="14sp"
+                            app:fontFamily="@font/space_grotesk_bold"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_curiosity"
+                            app:layout_constraintStart_toStartOf="@+id/tv_curiosity"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_curiosity" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card7"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card6">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/concentration_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Concentration"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/concentration_desc"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Let's see how focused you are while learning."
+                    android:textColor="#FF3333"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    style="@style/SpaceGroteskLight"
+                    app:layout_constraintEnd_toEndOf="@id/concentration_title"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/concentration_title"
+                    app:layout_constraintTop_toBottomOf="@id/concentration_title" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/concentration_desc"
+                    app:layout_constraintVertical_bias="0.119">
+
+                    <TextView
+                        android:id="@+id/concen_desc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="-2dp"
+                        android:text="I smile with a green face when you focus and understand
+the concepts."
+                        android:textColor="#707070"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/space_grotesk_light" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.orbitalsonic.waterwave.WaterWaveView
+                            android:id="@+id/waterWave"
+                            android:layout_width="150dp"
+                            android:layout_height="160dp"
+                            app:animatorEnable="true"
+                            app:behideColor="@color/pie_chart_red"
+                            app:borderColor="#000000"
+                            app:borderWidthSize="1dp"
+                            app:frontColor="#E41B4D"
+                            android:layout_marginStart="@dimen/dimen_24dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:max="100"
+                            app:progress="30"
+                            android:soundEffectsEnabled="true"
+                            app:shapePadding="10dp"
+                            app:shapeType="circle"
+                            app:strong="100"
+                            app:textColor="#018786"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:textHidden="false" />
+
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Percent"
+                            android:textColor="#DE000000"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/waterWave"
+                            app:layout_constraintTop_toTopOf="@+id/waterWave" />
+
+                        <TextView
+                            android:id="@+id/concentration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60"
+                            android:textColor="#DE000000"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/dimen_6dp"
+                            style="@style/SpaceGroteskBold"
+                            app:layout_constraintEnd_toEndOf="@+id/textView19"
+                            app:layout_constraintStart_toStartOf="@+id/textView19"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+
+                        <ImageView
+                            android:id="@+id/concentrationGreenArrowImg"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginStart="@dimen/dimen_6dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/concentration"
+                            app:layout_constraintEnd_toEndOf="@+id/textView19"
+                            app:layout_constraintStart_toEndOf="@+id/concentration"
+                            app:layout_constraintTop_toTopOf="@+id/concentration"
+                            app:layout_constraintVertical_bias="0.571"
+                            app:srcCompat="@drawable/icon_up_arrow_green" />
+
+                        <ImageView
+                            android:id="@+id/concentrationRedArrowImg"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="@dimen/dimen_8dp"
+                            android:layout_marginBottom="@dimen/dimen_4dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/concentration"
+                            app:layout_constraintStart_toEndOf="@+id/concentration"
+                            app:layout_constraintTop_toTopOf="@+id/concentration"
+                            app:layout_constraintVertical_bias="0.571"
+                            app:srcCompat="@drawable/red_arrow" />
+
+                        <TextView
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:inputType="textMultiLine"
+                            android:text="Hey! You focused more."
+                            android:textColor="#707070"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="@+id/concentrationGreenArrowImg"
+                            app:layout_constraintStart_toStartOf="@+id/textView19"
+                            app:layout_constraintTop_toBottomOf="@+id/concentration" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/group_pos_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            android:maxHeight="300dp"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card7">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/positionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Group Position"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/miniPositionText"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Let See where you stand"
+                    android:textColor="#707070"
+                    android:textSize="14sp"
+                    app:fontFamily="@font/space_grotesk_light"
+                    app:layout_constraintEnd_toEndOf="@id/positionText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/positionText"
+                    app:layout_constraintTop_toBottomOf="@id/positionText">
+
+                </TextView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/miniPositionText"
+                    app:layout_constraintVertical_bias="0.0">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Name of Student"
+                            android:textColor="#363636"
+                            android:textSize="14sp"
+                            app:fontFamily="@font/space_grotesk_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Your Position"
+                            android:textColor="#363636"
+                            android:textSize="14sp"
+                            app:fontFamily="@font/space_grotesk_light" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="@dimen/dimen_24dp"
+                        android:background="#707070"
+                        android:gravity="center" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/group_pos_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dimen_24dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="16dp"
+                        android:layout_marginBottom="10dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <!--                        </LinearLayout>-->
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/heath_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            android:maxHeight="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/group_pos_cardview">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/healthText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Health"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    style="@style/SpaceGroteskBold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart_view"
+                    android:layout_width="320dp"
+                    android:layout_height="250dp"
+                    android:elevation="@dimen/dimen_8dp"
+
+                    android:padding="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/healthText" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_10"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="@dimen/dimen_12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heath_card">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dimen_4dp"
+                android:paddingBottom="@dimen/dimen_16dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_8dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/item_linear_layout"
+                        android:layout_width="130dp"
+                        android:layout_height="34dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/item_red_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:background="@drawable/back_select"
+                            android:orientation="vertical"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_accuracy"
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:paddingTop="2dp"
+                            android:text="Accuracy"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/item_linear_layout1"
+                        android:layout_width="130dp"
+                        android:layout_height="34dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/item_red_layout1"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:background="@drawable/back_select"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_status"
+                            style="@style/SpaceGroteskBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:paddingTop="2dp"
+                            android:text="Status"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:id="@+id/accuracyLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/accuracy_recycler"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/dimen_16sp"
+                                android:visibility="visible" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/statusLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/status_recycler"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/dimen_16sp"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <TextView
+                    android:id="@+id/no_data_available"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="@dimen/dimen_16dp"
+                    android:gravity="center"
+                    style="@style/SpaceGroteskLight"
+                    android:text="No Data Available!..."
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dimen_20dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

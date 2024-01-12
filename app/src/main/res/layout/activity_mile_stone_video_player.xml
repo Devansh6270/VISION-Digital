@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MileStoneVideoPlayerActivity">
+
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/mileStoneVideoView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#000"
+        android:clickable="true"
+        android:keepScreenOn="true"
+        app:bar_height="2dp"
+        app:resize_mode="fit"
+        app:fastforward_increment="10000"
+        app:played_color="@color/colorAccent"
+        app:rewind_increment="10000"
+        app:scrubber_color="@color/colorAccent"
+        app:show_buffering="always"
+        app:use_controller="true"
+        app:controller_layout_id="@layout/expo_player_layout">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_constrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#80000000"
+            android:layout_marginHorizontal="@dimen/dimen_32dp"
+            android:padding="@dimen/dimen_8dp">
+
+<!--            <ImageView-->
+<!--                android:id="@+id/backBtn"-->
+<!--                android:layout_width="30sp"-->
+<!--                android:layout_height="30sp"-->
+<!--                android:src="@drawable/back_button"-->
+<!--                android:layout_marginStart="@dimen/dimen_8dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <ImageView
+                android:id="@+id/backBtn"
+                android:elevation="8dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/round_shape"
+                android:src="@drawable/ic_back"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+            <TextView
+                android:id="@+id/topicName"
+                style="@style/Nohemi_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="Subject Title"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
+                app:layout_constraintEnd_toStartOf="@+id/sendInvitationBtn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintTop_toTopOf="@+id/backBtn"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/goToCommunityBtn"
+                android:layout_width="32.1sp"
+                android:layout_height="32.1sp"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_4dp"
+                android:src="@drawable/ic_baseline_group_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sendInvitationBtn"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/topicName"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                app:layout_constraintVertical_bias="0.392"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/sendInvitationBtn"
+                android:layout_width="22sp"
+                android:layout_height="22sp"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_4dp"
+                android:src="@drawable/ic_community_invite"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/playerSettingBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.552"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/playerSettingBtn"
+                android:layout_width="26dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_4dp"
+                android:src="@drawable/icon_setting"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                app:tint="@color/white" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/videoController"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/moreBtn"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="16sp"
+                android:src="@drawable/ic_more_vert_white_24dp"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+    </com.google.android.exoplayer2.ui.PlayerView>
+
+    <LinearLayout
+        android:id="@+id/opacityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#40000000">
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/closeSearchRecycler"
+        android:layout_width="32dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/com_facebook_close"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchMileStoneList"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="0dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bottom_sheet"
+        android:paddingStart="2dp"
+        android:backgroundTint="#99000000"
+        android:paddingEnd="2dp"
+        android:paddingTop="8dp"
+        tools:listitem="@layout/item_search_query_layout"
+        android:paddingBottom="8dp"
+        android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/innerMileStoneList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:foregroundGravity="center"
+        android:layout_marginHorizontal="@dimen/dimen_24dp"
+        android:layout_marginBottom="50dp"
+        android:padding="16sp"
+        android:visibility="visible" />
+
+
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/doubtSearch"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="64dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_marginRight="64dp"-->
+    <!--        android:layout_marginBottom="80dp"-->
+    <!--        android:elevation="5dp"-->
+    <!--        android:visibility="visible"-->
+    <!--        android:background="#50000000"-->
+    <!--        android:backgroundTint="#50000000"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        app:cardCornerRadius="30dp">-->
+
+    <LinearLayout
+        android:id="@+id/doubtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_transparent_curve"
+        android:visibility="visible"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="10dp"
+        android:elevation="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/search_btn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:paddingTop="2dp"
+            android:src="@drawable/ic_search_black_24dp"
+            app:tint="@color/white" />
+
+        <EditText
+            android:id="@+id/searchEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:layout_weight="99"
+            android:background="@null"
+            style="@style/PoppinsRegular"
+            android:hint="Ask your Doubt "
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/grey"
+            android:textColorHint="#505050"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/searchClearBtn"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="6sp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_clear_black_24dp"
+            app:tint="@color/white" />
+
+    </LinearLayout>
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+
+
+
+</RelativeLayout>

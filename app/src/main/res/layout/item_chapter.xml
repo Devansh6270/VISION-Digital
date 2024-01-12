@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        style="@style/SpaceGroteskBold"
+        android:id="@+id/linear_drop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="7dp"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:paddingBottom="5dp"
+        android:layout_margin="2dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/edit_text_background"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/Nohemi_Regular"
+            android:id="@+id/chapterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="Chapter Name:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="40dp"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/down_arrow"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:tint="#686766"
+                android:src="@drawable/down_arrow_hide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/up_arrow"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                android:tint="#686766"
+                android:src="@drawable/up_arrow_show"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/min_month"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minimum Month"
+        android:layout_marginLeft="7dp"
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:layout_marginTop="2dp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mileStoneList"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/chapterName"
+        android:layout_marginTop="4sp"
+        android:visibility="gone"
+        android:layout_marginBottom="16sp"
+        android:layout_marginLeft="16sp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

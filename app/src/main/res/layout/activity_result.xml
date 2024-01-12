@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/registration_background"
+    tools:context=".TestSeries.ResultActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:scaleType="fitXY"-->
+        <!--            android:src="@drawable/registration_background" />-->
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dashboardToolbar"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/no_data" />
+
+        <TextView
+            android:id="@+id/noDataTex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your result will publish soon!..."
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animationView" />
+
+
+        <RelativeLayout
+            android:id="@+id/dashboardToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/toolbar_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:elevation="8dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/round_shape"
+                android:src="@drawable/ic_back"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                 />
+
+            <!--        <ImageView-->
+            <!--            android:id="@+id/searchBtn"-->
+            <!--            android:layout_width="40dp"-->
+            <!--            android:layout_height="40dp"-->
+            <!--            android:layout_centerVertical="true"-->
+            <!--            android:layout_toLeftOf="@id/notificationBtn"-->
+            <!--            android:src="@drawable/search_icon" />-->
+
+            <!--        <RelativeLayout-->
+            <!--            android:id="@+id/notificationBtn"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_alignParentEnd="true"-->
+            <!--            android:layout_centerVertical="true"-->
+            <!--            android:layout_marginLeft="8dp"-->
+            <!--            android:layout_marginRight="16dp">-->
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="40dp"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:src="@drawable/notification_icon" />-->
+
+            <!--            <TextView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@drawable/button_background"-->
+            <!--                android:padding="4dp"-->
+            <!--                android:text="1"-->
+            <!--                android:textColor="#fff"-->
+            <!--                android:textSize="8dp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:visibility="gone" />-->
+            <!--        </RelativeLayout>-->
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/resultData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dashboardToolbar"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dashboardToolbar">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/nameHead"
+                    style="@style/headingFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Test Name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/testName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Test Name"
+                    android:textColor="@color/black" />
+
+
+                <TextView
+                    android:id="@+id/dateHead"
+                    style="@style/headingFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8sp"
+                    android:text="Test Date"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/testDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01 Jan 2021"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/resultHead"
+                    style="@style/headingFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8sp"
+                    android:text="Result"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/testCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Correct\t\t\t:20"
+                    android:textColor="#329136" />
+
+                <TextView
+                    android:id="@+id/testIncorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Incorrect\t\t:20"
+                    android:textColor="#f00" />
+
+                <TextView
+                    android:id="@+id/percentile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total\t\t\t\t\t:20"
+                    android:textColor="#3649AF" />
+
+                <TextView
+                    android:id="@+id/testTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total\t\t\t\t\t:20"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChartResult"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Button
+                android:id="@+id/show_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_background"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                style="@style/SpaceGroteskBold"
+                android:text="Show Answer"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/download_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_background"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                style="@style/SpaceGroteskBold"
+                android:text="Download Solutions"
+                android:textColor="@color/white" />
+
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

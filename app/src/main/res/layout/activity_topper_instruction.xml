@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TopperInstruction">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="15dp">
+
+        <TextView
+            style="@style/SpaceGroteskBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Instructions"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/SpaceGroteskLight"
+            android:id="@+id/instructiontxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/instruction_top"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+
+        <Button
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/registration"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/topper_button"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="Topper 20 Registration" />
+        <Button
+            style="@style/SpaceGroteskBold"
+
+            android:id="@+id/makePayment"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/topper_button"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="Make Payment" />
+
+        <Button
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/downloadAdmitCard"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/topper_button"
+            android:padding="5dp"
+            android:text="Download Admit Card"
+            android:textAllCaps="false"
+            android:textColor="@color/white"/>
+
+        <Button
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/forgotAppNo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/topper_button"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:text="Forgot Application no."
+            android:layout_marginBottom="20dp"/>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

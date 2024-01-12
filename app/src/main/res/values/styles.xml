@@ -1,0 +1,162 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--        <item name="android:windowTranslucentStatus">false</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="ChatAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/exo_white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--        <item name="android:windowTranslucentStatus">false</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="headingFont">
+        <item name="android:fontFamily">@font/sketch_font</item>
+        <item name="fontFamily">@font/sketch_font</item>
+    </style>
+    <style name="Inter_Bold">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="Mulish_Regular">
+        <item name="android:fontFamily">@font/mulish</item>
+        <item name="fontFamily">@font/mulish</item>
+    </style>
+    <style name="Nohemi_Bold">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="fontFamily">@font/space_grotesk_bold</item>
+    </style>
+
+    <style name="Nohemi_Light">
+        <item name="android:fontFamily">@font/space_grotesk_light</item>
+        <item name="fontFamily">@font/space_grotesk_light</item>
+    </style>
+    <style name="Nohemi_Medium">
+        <item name="android:fontFamily">@font/space_grotesk_medium</item>
+        <item name="fontFamily">@font/space_grotesk_medium</item>
+    </style>
+
+    <style name="Nohemi_Regular">
+        <item name="android:fontFamily">@font/space_grotesk</item>
+        <item name="fontFamily">@font/space_grotesk</item>
+    </style>
+
+    <style name="splashTextFontB">
+        <item name="android:fontFamily">@font/co_headline_bold</item>
+        <item name="fontFamily">@font/co_headline_bold</item>
+    </style>
+
+    <style name="splashTextFontR">
+        <item name="android:fontFamily">@font/co_text_regular</item>
+        <item name="fontFamily">@font/co_text_regular</item>
+    </style>
+
+    <style name="DmSansBold">
+        <item name="android:fontFamily">@font/dmsansbold</item>
+        <item name="fontFamily">@font/dmsansbold</item>
+    </style>
+
+    <style name="DmSansRegular">
+        <item name="android:fontFamily">@font/dmsansregular</item>
+        <item name="fontFamily">@font/dmsansregular</item>
+    </style>
+
+
+<!--    Adda fonts-->
+
+    <style name="PoppinsRegular">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="PoppinsMedium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+
+    <style name="PoppinsBold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="PoppinsSemiBold">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="SpaceGroteskBold">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="fontFamily">@font/space_grotesk_bold</item>
+
+    </style>
+
+    <style name="SpaceGroteskLight">
+        <item name="android:fontFamily">@font/space_grotesk_light</item>
+        <item name="fontFamily">@font/space_grotesk_light</item>
+
+    </style>
+
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSizeTopRight">20dp</item>
+
+        <item name="cornerSizeTopLeft">20dp</item>
+
+    </style>
+
+
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circle_progress</item>
+    </style>
+
+    <style name="CircularDeterminateProgressBarColorChange">
+        <item name="android:indeterminateOnly">false </item>
+        <item name="android:progressDrawable">@drawable/progress_color</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="roundimageview" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dimen_8dp</item>
+        <item name="color">@color/white</item>
+
+
+
+    </style>
+
+
+    <style name="SpaceGroteskRegular">
+        <item name="android:fontFamily">@font/space_grotesk</item>
+        <item name="fontFamily">@font/space_grotesk</item>
+
+    </style>
+
+</resources>

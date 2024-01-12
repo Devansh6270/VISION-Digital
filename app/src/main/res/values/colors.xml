@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2B3058</color>
+    <color name="colorPrimaryDark">#2B3058</color>
+    <color name="colorAccent">#2B3058</color>
+    <color name="colorAccenta">#686B6B</color>
+    <color name="green">#03980A</color>
+    <color name="light_green">#01CF76</color>
+    <color name="serch_text_color">#393E59</color>
+    <color name="ocean_color">#CBEBFC</color>
+    <color name="grey">#6E6E6E</color>
+    <color name="blue">#2B3058</color>
+    <color name="green_light">#99DDC6</color>
+    <color name="yellow_light">#FFCB78</color>
+    <color name="pagebackgroundblue">#EFF1FE</color>
+    <color name="themeBlue">#393E59</color>
+    <color name="dashCardTopColor">#2B3058</color>
+    <color name="colorText">#393E59</color>
+    <color name="sigmaColor">#2B1871</color>
+    <color name="pie_chart_red">#e73561</color>
+    <color name="pie_chart_green">#00ffcd</color>
+    <color name="pie_chart_green_dark">#02B894</color>
+    <color name="grey_light">#D1D3D3</color>
+    <color name="yellow_vision">#fff212</color>
+
+</resources>

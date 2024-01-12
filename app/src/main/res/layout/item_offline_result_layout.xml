@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_16dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/dimen_12dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOffline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/dimen_16dp"
+        app:cardCornerRadius="@dimen/dimen_12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llBatchTestDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen_16dp">
+
+                    <TextView
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Batch: "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvBatchNumber"
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="N33" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginTop="@dimen/dimen_14dp"
+                    android:layout_width="1.0dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:background="@drawable/course_button"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen_16dp">
+
+                    <TextView
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Test Date: "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvTestDate"
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="18-Dec-2023" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/Nohemi_Regular"
+                android:id="@+id/tvRank"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:background="@drawable/intersect"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="@dimen/dimen_12dp"
+                tools:text="21 \n Rank" />
+
+            <LinearLayout
+                android:id="@+id/llSubjects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llBatchTestDate">
+
+                <LinearLayout
+                    android:id="@+id/llPhysics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phy: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvPhysics"
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="34" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.8dp"
+                    android:layout_height="@dimen/dimen_16dp"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/llChemistry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chem: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvChemistry"
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="12" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.8dp"
+                    android:layout_height="@dimen/dimen_16dp"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/llBiology"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bio: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvBiology"
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="42" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.8dp"
+                    android:layout_height="@dimen/dimen_16dp"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/llMaths"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maths: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp" />
+
+                    <TextView
+                        android:id="@+id/tvMaths"
+                        style="@style/Nohemi_Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_12dp"
+                        tools:text="42" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRankTotalMarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_8dp"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/llSubjects">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Percentage: "
+                        android:textColor="@color/blue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvPercentage"
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        tools:text="31%" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1.0dp"
+                    android:layout_height="@dimen/dimen_22dp"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Marks: "
+                        android:textColor="@color/blue"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalMarks"
+                        style="@style/Nohemi_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        tools:text="30" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.cardview.widget.CardView>

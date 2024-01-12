@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="Beta Version"-->
+                <!--            android:layout_alignParentBottom="true"-->
+                <!--            android:textAlignment="center"-->
+                <!--            android:layout_gravity="center"-->
+                <!--            android:layout_margin="16dp"/>-->
+
+                <!--        <ImageView-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="match_parent"-->
+                <!--            android:scaleType="fitXY"-->
+                <!--            android:src="@drawable/registration_background" />-->
+
+                <RelativeLayout
+                    android:id="@+id/dashboardToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/toolbar_background"
+                    android:paddingTop="@dimen/dimen_12dp">
+
+                    <ImageView
+                        android:id="@+id/profile_back_btn"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:elevation="10dp"
+                        android:background="@drawable/round_shape"
+                        android:src="@drawable/ic_menu"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                         />
+
+
+                    <ImageView
+                        android:id="@+id/searchBtn"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/round_shape"
+                        android:src="@drawable/ic_search"
+                        android:elevation="12dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/notificationR"
+                         />
+
+                    <RelativeLayout
+                        android:id="@+id/notificationR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp">
+
+                        <ImageView
+                            android:id="@+id/notificationBtn"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:elevation="12dp"
+                            android:background="@drawable/round_shape"
+                            android:src="@drawable/ic_notification" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_background"
+                            android:padding="4dp"
+                            android:text="1"
+                            android:textColor="#fff"
+                            android:textSize="8dp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/dashboardToolbar"
+                    android:layout_marginBottom="6dp">
+
+                    <LinearLayout
+                        android:id="@+id/layoutModule1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/dashboardToolbar"
+                        android:layout_marginTop="@dimen/dimen_16dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/userName"
+                                style="@style/SpaceGroteskBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:layout_marginBottom="@dimen/dimen_8dp"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/no_data_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/dimen_8dp"
+                            android:paddingVertical="@dimen/dimen_8dp"
+                            android:visibility="gone"
+                            app:cardCornerRadius="@dimen/dimen_8dp"
+                            android:elevation="3dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/dimen_8dp"
+                                >
+
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="150dp"
+                                    android:layout_height="150dp"
+                                    android:src="@drawable/icon_irctc"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    style="@style/SpaceGroteskBold"
+                                    android:layout_width="0dp"
+                                    android:layout_marginTop="@dimen/dimen_8dp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="fill_horizontal"
+                                    android:inputType="textMultiLine"
+                                    android:text="What is i-Prepare?"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+                                <TextView
+                                    style="@style/SpaceGroteskLight"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="fill"
+                                    android:inputType="textMultiLine"
+                                    android:layout_marginTop="@dimen/dimen_4dp"
+                                    android:text="@string/no_data_home_text"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:id="@+id/continueWatchingContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+
+                            <com.yarolegovich.discretescrollview.DiscreteScrollView
+                                android:id="@+id/continueWatchingList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12sp"
+                                app:dsv_orientation="horizontal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/myCourseLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/Nohemi_Bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="My Course"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+                                <LinearLayout
+                                    android:id="@+id/MyCoursesViewAllBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/Nohemi_Bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"
+                                        android:text="See All"
+                                        android:layout_marginEnd="5dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#393E59" />
+
+                                    <ImageView
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_forword" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/myCourseList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noCoursesSubscribed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No ongoing live classes for you."
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/packageLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/Nohemi_Bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Packages"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+
+
+                                <LinearLayout
+                                    android:id="@+id/packageFullViewAllBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/Nohemi_Bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"
+                                        android:text="See All"
+                                        android:layout_marginEnd="5dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#393E59" />
+
+                                    <ImageView
+
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_forword" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerPackageList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noPopularCourse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Courses not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/Nohemi_Bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Courses"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+
+
+                                <LinearLayout
+                                    android:id="@+id/popularCoursesViewAllBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/Nohemi_Bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"
+                                        android:text="See All"
+                                        android:layout_marginEnd="5dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#393E59" />
+
+                                    <ImageView
+
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_forword" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/popularCourseList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noPopularCourse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Courses not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/Nohemi_Bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Offline Result"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+
+
+                                <LinearLayout
+                                    android:id="@+id/llOfflineResult"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/Nohemi_Bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"
+                                        android:text="See All"
+                                        android:layout_marginEnd="5dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#393E59" />
+
+                                    <ImageView
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_forword" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvOfflineResult"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <!--                            <TextView-->
+                            <!--                                android:id="@+id/noPopularCourse"-->
+                            <!--                                android:layout_width="match_parent"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:text="Courses not available"-->
+                            <!--                                android:textAlignment="center"-->
+                            <!--                                android:textColor="@color/colorPrimary"-->
+                            <!--                                android:visibility="gone" />-->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/Nohemi_Bold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Popular Teachers"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+
+                                <LinearLayout
+                                    android:id="@+id/popularTeachersViewAllBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/Nohemi_Bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"
+                                        android:text="See All"
+                                        android:layout_marginEnd="5dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#393E59" />
+
+                                    <ImageView
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_forword" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/popularTeachersList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noPopularTeachers"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Teachers not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/PoppinsSemiBold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="POPULAR INSTITUTES" />
+
+                                <ImageView
+                                    android:id="@+id/popularInstituteViewAllBtn"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/arrow_forward"
+                                    android:visibility="visible" />
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/popularInstituteList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noPopularInstitute"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Teachers not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="LIVE CLASSES"
+                                    android:textStyle="bold" />
+
+                                <ImageView
+                                    android:id="@+id/LiveViewAllBtn"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/arrow_forward" />
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/liveClassesList"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/noLiveClasses"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No ongoing live classes for you."
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/otherSubject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    style="@style/SpaceGroteskBold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/space_grotesk_light"
+                                    android:text="Other Subject"
+                                    android:textColor="#393E59" />
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:src="@drawable/arrow_forward" />
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Courses not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/analytics_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/SpaceGroteskBold"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Analytics &amp; Certification"
+                                    android:textSize="16sp"
+                                    android:textColor="#393E59" />
+
+                                <ImageView
+                                    android:id="@+id/analyticsFullPage"
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/round_shape"
+                                    android:src="@drawable/forward" />
+
+                            </RelativeLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/analyticRecyclarView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/layoutModule1"
+                                android:layoutAnimation="@anim/layout_animation"
+                                android:paddingTop="2dp"
+                                android:visibility="visible" />
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Courses not available"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nvView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/white"
+        app:headerLayout="@layout/nav_header"
+        app:itemBackground="@drawable/menu_item_padding"
+        app:itemHorizontalPadding="35dp"
+        app:itemIconTint="@color/dashCardTopColor"
+        app:itemTextAppearance="@style/PoppinsMedium"
+        app:itemTextColor="@color/grey"
+        app:menu="@menu/after_login_nav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="" />
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

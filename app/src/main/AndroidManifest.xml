@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.vision_digital">
+    <!-- com.app.sigma.classes -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- Add the following permission on devices running Android 12.0 or later -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- <uses-permission android:name="com.google.android.gms.permission.AD_ID" /> -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <application
+        android:name="com.vision_digital.internetConnectivity.MyApplication"
+        android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
+        android:exported="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:vmSafeMode="true"
+        tools:targetApi="q">
+        <activity
+            android:name=".activities.AllPackageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoursePackage.CoursePackageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.InstallmentPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.VisionStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.IPayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.AgentDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.OtherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.LicenseStaffActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.IRCTCStaffDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".signUp.SelectProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AllAnalyticsPage"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AnalyticsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CertificateActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.oboardingScreen.IntroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InstituteDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgoraCallingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.community.UserHoldingScreenActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.vision_digital.community.GroupStudyVideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.vision_digital.community.invitation.SelectStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.community.invitation.SelectMilestoneInvitationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.community.CommunityDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.community.CommunitiesListActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.profile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.community.CommunityChatPageActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vision_digital.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.vision_digital.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.transaction.TransactionDetails"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.transaction.TransactionHistory"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PdfRenderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AllPopularInstitute"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AllPopularTeachers"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TopperInstruction"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TopperTwentyRegistration"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.TestSeries.ShowResultActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.TestSeries.ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.thirdPartyRegistration.ThirdPartyRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.TestSeries.model.testResultNew.NewResultActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.TestSeries.OngoingTestActivity"
+            android:exported="false"
+            android:label="@string/title_activity_ongoing_test"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.vision_digital.TestSeries.TestDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.vision_digital.TestSeries.TestSeriesDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.QuestionBtwMilestoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PopularCoursesActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="POPULAR_COURSES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MyCoursesActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="MY_COURSES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.TeachersDetailsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="TEACHER_DETAILS" />
+                <!-- <action android:name="android.intent.action.VIEW" /> -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SearchActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.vision_digital.services.FirebaseMessageReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <activity
+            android:name=".activities.CoursePreviewVideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.MileStoneVideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.CourseDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="COURSE_DETAILS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.LiveVideoPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="LIVE_VIDEO_PLAYER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.DashboardActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="NOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.NeedHelpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="NEED_HELP" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.DashboardActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="DASHBOARD" /> -->
+
+
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
+            <intent-filter>
+                <action android:name="DASHBOARD" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="sigma.chalksnboard.com"
+                    android:scheme="http" />
+                <data
+                    android:host="sigma.chalksnboard.com"
+                    android:scheme="https" />
+                <data
+                    android:host="example.com"
+                    android:scheme="http" />
+                <data
+                    android:host="example.com"
+                    android:scheme="https" />
+                <data android:pathPattern="/.*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".signUp.LogInViaPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".signUp.OTPActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".signUp.RegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SplashScreen"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="SPLASH_SCREEN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="SPLASH_SCREEN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- </intent-filter> -->
+
+
+            <!-- on below line we are adding intent filter to our NewResultActivity -->
+
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

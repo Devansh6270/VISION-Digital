@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".TestSeries.TestSeriesDashboardActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dashboardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingTop="@dimen/dimen_12dp"
+        android:background="@drawable/toolbar_background"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:elevation="@dimen/dimen_8dp"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/ic_back"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dashboardToolbar"
+        android:layout_marginBottom="4dp">
+
+        <LinearLayout
+            android:id="@+id/layoutModule1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/dashboardToolbar"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+<!--            <ImageView-->
+<!--                android:id="@+id/backBtn"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginBottom="8sp"-->
+<!--                android:src="@drawable/back_button" />-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/SpaceGroteskBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tests"
+                    android:textColor="@color/black"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/userName"
+                    style="@style/headingFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text=""
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="16dp"-->
+            <!--                android:text="Welcome here! Lets begin!"-->
+            <!--                android:textColor="@color/colorPrimary" />-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/banner_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="@dimen/dimen_20dp"
+                >
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="197dp">
+
+
+                </androidx.viewpager.widget.ViewPager>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutTest"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                app:tabBackground="@drawable/indicator_selector"
+                app:tabIndicator="@drawable/indicator_selector">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <LinearLayout
+                android:id="@+id/subsTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_12dp"
+                android:layout_marginTop="@dimen/dimen_6dp"
+                android:layout_marginRight="@dimen/dimen_12dp"
+                android:elevation="2dp"
+                android:background="@drawable/edit_text_background"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="SUBSCRIBED TESTS"
+                        style="@style/Nohemi_Bold"
+                        android:textSize="@dimen/dimen_15sp"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:id="@+id/subscribedTestSeriesViewAll"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:src="@drawable/arrow_forward" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/subscribedTestSeriesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_18dp"
+                    android:layout_below="@+id/layoutModule1"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/noCoursesSubscribed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No ongoing live classes for you."
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bundleTxt"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="TEST SERIES"
+                        style="@style/Nohemi_Bold"
+                        android:textSize="@dimen/dimen_15sp"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:id="@+id/bundleViewAll"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:src="@drawable/arrow_forward" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/testSeriesBundleList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimen_4dp"
+                    android:paddingRight="@dimen/dimen_4dp"
+                    android:layout_below="@+id/layoutModule1"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/noBundleSubscribed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No ongoing live classes for you."
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/unsubscribedTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_12dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/edit_text_background"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="UNSUBSCRIBED TESTS"
+                        style="@style/Nohemi_Bold"
+                        android:textSize="@dimen/dimen_15sp"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/unsubscribedTestSeriesViewAllBtn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/arrow_forward"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/unsubscribedTestSeriesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_18dp"
+                    android:layout_below="@+id/layoutModule1"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/noPopularCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Courses not available"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/postTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_12dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_12dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edit_text_background"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="SUBMITTED TESTS"
+                        style="@style/Nohemi_Bold"
+                        android:textSize="@dimen/dimen_15sp"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:id="@+id/postTestSeriesViewAllBtn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/arrow_forward"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/postTestSeriesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:layout_below="@+id/layoutModule1"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/noPopularTeachers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teachers not available"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

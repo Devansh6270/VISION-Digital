@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/pagebackgroundblue"
+    tools:context=".activities.TeachersDetailsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-110dp"
+        android:src="@drawable/green_new_back" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-110dp"
+        android:src="@drawable/pink_new_back" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_back" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/backBtn"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="8sp">
+
+                            <ImageView
+                                android:id="@+id/teachersImage"
+                                android:layout_width="90sp"
+                                android:layout_height="120sp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/live_class_blue_background" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            app:cardCornerRadius="8sp">
+
+                            <TextView
+                                android:id="@+id/teacherQualification"
+                                android:layout_width="90dp"
+                                android:layout_height="30dp"
+                                android:autoSizeMaxTextSize="100sp"
+                                android:autoSizeMinTextSize="1sp"
+                                android:autoSizeStepGranularity="2sp"
+                                android:autoSizeTextType="uniform"
+                                android:background="@color/colorPrimary"
+                                android:text="P.hd(Mathenatics) \nExprience: 38\n Y Patna, Bihar"
+                                android:textAlignment="center"
+                                android:textColor="#fff" />
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8sp"
+                        app:cardCornerRadius="8sp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary"
+                            android:orientation="vertical">
+
+                            <!--                    <TextView-->
+                            <!--                        android:id="@+id/studentCount"-->
+                            <!--                        android:layout_width="wrap_content"-->
+                            <!--                        android:layout_height="wrap_content"-->
+                            <!--                        android:layout_margin="4dp"-->
+                            <!--                        android:layout_alignParentTop="true"-->
+                            <!--                        android:layout_alignParentStart="true"-->
+                            <!--                        android:textColor="#ff0"-->
+                            <!--                        android:text="Total Students : 412K+"/>-->
+
+                            <!--                    <RatingBar-->
+                            <!--                        android:layout_width="wrap_content"-->
+                            <!--                        android:layout_height="16sp"-->
+                            <!--                        android:layout_gravity="center"-->
+                            <!--                        style="@style/Base.Widget.AppCompat.RatingBar.Small"-->
+                            <!--                        android:numStars="5"-->
+                            <!--                        android:rating="5"-->
+                            <!--                        android:layout_margin="8dp"-->
+                            <!--                        android:layout_alignParentEnd="true"-->
+                            <!--                        android:layout_alignParentTop="true"-->
+                            <!--                        android:theme="@style/RatingBar"-->
+                            <!--                        android:scrollbarSize="18dp" />-->
+
+                            <TextView
+                                android:id="@+id/teachersName"
+                                style="@style/DmSansBold"
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="4sp"
+                                android:layout_marginLeft="8sp"
+                                android:layout_marginRight="8sp"
+                                android:text="K. C. Sinha"
+                                android:textColor="#fff"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/teachDesc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/teachersName"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="8sp"
+                                android:layout_marginRight="8sp"
+                                android:maxLines="5"
+                                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                                android:textColor="#fff"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/know_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/teachDesc"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="know more.."
+                                android:textColor="#00f" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <com.yarolegovich.discretescrollview.DiscreteScrollView
+                    android:id="@+id/videosList"
+                    android:layout_width="match_parent"
+                    android:layout_height="156dp"
+                    android:layout_marginTop="16sp"
+                    app:dsv_orientation="horizontal" />
+
+                <TextView
+                    android:id="@+id/popularCoursesBy"
+                    style="@style/DmSansBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/studentCount"
+                    android:layout_marginTop="16sp"
+                    android:padding="5dp"
+                    android:text="Popular Courses by K. C. Sinha"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/CourseList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutModule1"
+                    android:layout_marginTop="5dp"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:visibility="visible" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

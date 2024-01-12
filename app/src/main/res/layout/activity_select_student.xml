@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".community.invitation.SelectStudentActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/linearSmsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SpaceGroteskBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start"
+                    android:text="Select your Buddy:"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/selectTime"
+                    style="@style/PoppinsRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@drawable/chat_edittext_background"
+                    android:drawableEnd="@drawable/ic_down_arrow"
+                    android:gravity="center|start"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="@dimen/dimen_4dp"
+                    android:paddingRight="8dp"
+                    android:text="Select time"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal"
+                    android:paddingRight="3dp">
+
+                    <TextView
+                        android:id="@+id/txt_public_invitation"
+                        style="@style/SpaceGroteskLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:gravity="center|end"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="3dp"
+                        android:text="Select all"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/add_public_invitation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:src="@drawable/ic_rectangle"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/added_public_invitation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:src="@drawable/ic_checkbox"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/search_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_35dp"
+                            android:layout_marginLeft="@dimen/dimen_8dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginRight="@dimen/dimen_8dp"
+                            android:layout_marginBottom="2dp"
+                            android:elevation="5dp"
+                            android:padding="@dimen/dimen_4dp"
+                            app:cardCornerRadius="30dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <EditText
+                                    android:id="@+id/searchEdt"
+                                    style="@style/SpaceGroteskBold"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dimen_16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginRight="@dimen/dimen_8dp"
+                                    android:layout_marginBottom="@dimen/dimen_4dp"
+                                    android:layout_weight="99"
+                                    android:background="@null"
+                                    android:hint="Search your buddy "
+                                    android:imeOptions="actionSearch"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:textColor="@color/serch_text_color"
+                                    android:textColorHint="#C4DDE3"
+                                    android:textSize="14dp" />
+
+                                <ImageView
+                                    android:id="@+id/clearBtn"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="6sp"
+                                    android:layout_marginRight="8dp"
+
+                                    android:src="@drawable/ic_clear_black_24dp"
+                                    app:tint="@color/colorPrimary" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <ImageView
+                        android:id="@+id/search_icon"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginRight="@dimen/dimen_8dp"
+                        android:src="@drawable/ic_search" />
+
+                </LinearLayout>
+
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/or"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="38dp"-->
+                <!--                    android:layout_marginTop="2dp"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:paddingLeft="8dp"-->
+                <!--                    android:paddingRight="2dp"-->
+                <!--                    android:text="OR"-->
+                <!--                    android:textColor="@color/black"-->
+                <!--                    android:textSize="18sp"-->
+
+                <!--                    android:textStyle="bold" />-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/student_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="2dp"
+                    android:paddingBottom="35dp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:id="@+id/custom_message"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/edt_background_border"
+            android:gravity="center|start"
+            android:hint="Write your message here...."
+            android:inputType="textLongMessage"
+            android:paddingLeft="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+
+            <Button
+                android:id="@+id/cancelButton"
+                style="@style/SpaceGroteskBold"
+                android:layout_width="140dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:text="Back"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/nextButton"
+                style="@style/SpaceGroteskBold"
+                android:layout_width="140dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:padding="3dp"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

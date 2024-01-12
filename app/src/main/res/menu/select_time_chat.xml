@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/immediate"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:iconTint="@color/black"
+        android:title="Immediate"
+        app:showAsAction="never"/>
+
+<!--    <item-->
+<!--        android:id="@+id/fifteenMin"-->
+
+<!--        android:title="After 15 min"-->
+<!--        app:showAsAction="never"/>-->
+
+<!--    <item-->
+<!--        android:id="@+id/twentyMin"-->
+
+<!--        android:title="After 20 min"-->
+<!--        app:showAsAction="never"/>-->
+
+<!--    <item-->
+<!--        android:id="@+id/thirtyMin"-->
+
+<!--        android:title="After 30 min"-->
+<!--        app:showAsAction="never"/>-->
+
+
+
+</menu>

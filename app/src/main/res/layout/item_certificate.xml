@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemLiveClass"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:layout_margin="@dimen/dimen_8dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_4dp"
+        android:backgroundTint="#8C1893C5"
+        android:background="@color/white">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/subjectImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/image_round_corner"
+                    android:scaleType="fitXY"
+                    app:shapeAppearanceOverlay="@style/roundimageview"
+                    android:src="@drawable/nobita"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="-10dp"
+            android:layout_gravity="end"
+            android:background="@drawable/icon_like_fill"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+
+        <TextView
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/subjectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:maxLines="2"
+            android:text="POSH(Prevention, Prohibition
+and Redressal Act, 2013)"
+            android:textColor="@color/themeBlue"
+            android:textSize="14dp"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+        <TextView
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/teacherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="POSH"
+            android:textColor="@color/themeBlue"
+            android:textSize="8dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/classTitle"
+            app:layout_constraintTop_toBottomOf="@+id/classTitle" />
+
+        <ImageView
+            android:id="@+id/downloadImgBtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:elevation="8dp"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/download_btn_with_bg"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="2dp"
+           >
+
+        </ImageView>
+
+        <TextView
+            style="@style/SpaceGroteskBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_grotesk_bold"
+            android:gravity="center"
+            android:text="Download"
+            android:textSize="12sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

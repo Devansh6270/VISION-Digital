@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4sp"
+    app:cardBackgroundColor="@color/colorPrimary"
+    android:elevation="@dimen/dimen_6dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topper_button"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/notifImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/notifHolder"
+            android:scaleType="fitXY"
+            android:src="@drawable/live_class_blue_background" />
+
+
+        <LinearLayout
+            android:id="@+id/notifHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/PoppinsBold"
+                    android:id="@+id/notifTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8sp"
+                    android:layout_weight="99"
+                    android:text="Notification Title"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/clearBtn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="8sp"
+                    android:src="@drawable/ic_delete_black_24dp" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/PoppinsRegular"
+                android:id="@+id/notifDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/notifTitle"
+                android:layout_marginLeft="8sp"
+                android:layout_marginRight="8sp"
+                android:padding="12sp"
+                android:textSize="@dimen/dimen_14dp"
+                android:text="this is test notification content."
+                android:textColor="#fff" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

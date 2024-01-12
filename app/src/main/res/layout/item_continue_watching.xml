@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15sp"
+    android:layout_marginTop="1dp"
+    android:layout_marginRight="15sp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/graph_card_background"
+    android:orientation="vertical"
+
+    app:cardCornerRadius="15sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/graph_card_background"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/mileStoneName"
+                    style="@style/Nohemi_Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:elevation="3dp"
+                    android:gravity="top"
+                    android:maxLines="2"
+                    android:layout_marginTop="-7dp"
+                    android:outlineAmbientShadowColor="@color/colorAccenta"
+                    android:outlineSpotShadowColor="@color/colorAccenta"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="4dp"
+                    android:shadowColor="@color/colorAccenta"
+                    android:text="Area of Triangle in Coordinate Geometry"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/home_play_button"
+                    android:layout_width="94dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="@dimen/dimen_6dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_play"
+                    app:tint="@color/yellow_vision">
+
+                </ImageView>
+
+<!--                <com.airbnb.lottie.LottieAnimationView-->
+<!--                    android:id="@+id/home_play_button"-->
+<!--                    android:layout_width="160dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginLeft="2dp"-->
+<!--                    android:layout_marginTop="6dp"-->
+<!--                    android:layout_marginRight="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:elevation="5dp"-->
+<!--                    android:paddingTop="12dp"-->
+<!--                    app:lottie_autoPlay="true"-->
+<!--                    app:lottie_loop="true"-->
+<!--                    app:lottie_rawRes="@raw/play_button" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="4sp">
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="24dp"-->
+                <!--                    android:layout_height="24dp"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_marginTop="1dp"-->
+                <!--                    android:src="@drawable/arrow" />-->
+
+                <TextView
+                    android:id="@+id/courseName"
+                    style="@style/Nohemi_Light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:maxLines="1"
+                    android:paddingRight="8sp"
+                    android:layout_marginTop="1dp"
+                    android:text="SSC MATHEMATICS BY UC JHA"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/DmSansRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:layout_marginTop="90dp"
+                    android:layout_marginRight="-41dp"
+                    android:text="Time Spent (min) "
+                    android:layout_marginLeft="-22dp"
+                    android:rotation="270"
+                    android:textColor="@color/white" />
+
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/graph_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="26dp"
+                    android:padding="6dp" />
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/DmSansRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Topics."
+                android:textSize="11sp"
+                android:layout_marginTop="1dp"
+                android:textColor="@color/white" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="12dp">
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/DmSansRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Time spent"
+                    android:textColor="@color/white" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/spentTime"-->
+<!--                    style="@style/DmSansRegular"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="17dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="62 mins"-->
+<!--                    android:textColor="@color/white" />-->
+
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressDone"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="62"
+                android:progressDrawable="@drawable/custom_progressbar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+<!--                <TextView-->
+<!--                    style="@style/DmSansRegular"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="17dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="start"-->
+<!--                    android:text="Required Time"-->
+<!--                    android:textColor="@color/white" />-->
+
+                <TextView
+                    android:id="@+id/spentTime"
+                    style="@style/Nohemi_Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:text="62 mins"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/requiredTime"
+                    style="@style/Nohemi_Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="30 mins"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingBottom="4dp">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_completion"
+                        style="@style/CircularDeterminateProgressBar"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:progressDrawable="@drawable/progress_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/completedPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginEnd="3dp"
+                        android:text="100"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_completion"
+                        app:layout_constraintBottom_toBottomOf="@+id/progress_bar_completion"
+                        app:layout_constraintStart_toStartOf="@+id/progress_bar_completion"
+                        app:layout_constraintTop_toTopOf="@+id/progress_bar_completion" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Completed"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        style="@style/Nohemi_Regular"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_completion"
+                        app:layout_constraintStart_toStartOf="@+id/progress_bar_completion"
+                        app:layout_constraintTop_toBottomOf="@+id/progress_bar_completion" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="%"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/completedPercentage"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_completion"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/completedPercentage" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingBottom="4dp">
+
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_accuracy"
+                        style="@style/CircularDeterminateProgressBar"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:progressDrawable="@drawable/progress_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/accuracyPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="3dp"
+                        android:gravity="center"
+                        android:text="60"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintBottom_toBottomOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintStart_toStartOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintTop_toTopOf="@id/progress_bar_accuracy" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Accuracy"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Nohemi_Regular"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintStart_toStartOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintTop_toBottomOf="@+id/progress_bar_accuracy" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="%"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/accuracyPercentage"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar_accuracy"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/accuracyPercentage" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <!--        <TextView-->
+        <!--            android:id="@+id/percentageCompleted"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:paddingRight="8sp"-->
+        <!--            android:paddingLeft="8sp"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/colorPrimary"-->
+        <!--            android:text="62%\nCompleted"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:layout_gravity="center"/>-->
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

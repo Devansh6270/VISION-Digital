@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">VISION-Digital</string>
+
+    <!--        <string name="apiURL">https://test.bodvid.com/api/v3/</string>-->
+    <!--    <string name="apiURL">https://chalksnboard.com/api/v3/</string>-->
+
+    <!--    <string name="apiURL1">https://irctc.chalksnboard.com/api/v2/</string>-->
+    <!--    <string name="apiURL">https://irctc.chalksnboard.com/api/v2/</string>-->
+    <!--    <string name="apiURL4">https://irctc.chalksnboard.com/api/v4/</string>-->
+
+    <string name="apiURL1">https://v.chalksnboard.com/api/v3/</string>
+    <string name="apiURL">https://v.chalksnboard.com/api/v3/</string>
+    <string name="apiURL4">https://v.chalksnboard.com/api/v3/</string>
+
+
+    <string name="agora_app_id">1c80404fa804466fa4305ceeeaa07101</string>
+    <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
+    <!-- You will need to deploy your own token server for production release -->
+    <!-- Leave this   value empty if Security keys/Token is not enabled for your project -->
+    <!--    <string name="agora_access_token">0061c80404fa804466fa4305ceeeaa07101IAA+vtK5CDcgciLQl3vcfurni964imd7MdVurfWhK0KT24v2Tw8AAAAAEAB7kPq6lsNEXwEAAQCWw0Rf</string>-->
+    <string name="agora_access_token"></string>
+
+    <string name="show_more"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a
+        galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries,
+        but also the leap into electronic." />
+</string>
+
+    <string-array name="queryCatagories">
+        <item id="100">Category</item>
+        <item id="1">General Query</item>
+        <item id="2">Update Profile</item>
+        <item id="3">Report a Bug</item>
+        <item id="4">Suggestion</item>
+        <item id="5">Other</item>
+    </string-array>
+
+    <string-array name="queryPriority">
+        <item id="10">Priority</item>
+        <item id="0">Low</item>
+        <item id="1">Medium</item>
+        <item id="2">High</item>
+    </string-array>
+
+    <string-array name="countryCode">
+        <item>+91</item>
+        <item>+971</item>
+        <item>+44</item>
+        <item>+1</item>
+    </string-array>
+    <string name="title_activity_ongoing_test">OngoingTestActivity</string>
+
+    <string name="instruction_top">Topper 20 is a scholarship program for
+        the students appearing for IIT JEE . It is a two year program which includes free mentorship along with free fooding and lodging by Parmanu Classes, Patna, Bihar. Students who want to apply for this Scholarship program have to register for the Topper 20 Competitive exam that is to be held as per the dates announced by Parmanu. Since it is a two year program, only those students who are appearing in class 10th Board are eligible for Topper20 Final selection.</string>
+    <string name="Instruction_testDetails"><![CDATA[Accepted all the Terms & Conditions.]]></string>
+    <string name="title_activity_cactivity">cActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_transform">Transform</string>
+    <string name="menu_reflow">Reflow</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
+        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+        type specimen book"
+    </string>
+    <string name="fab_content_description">Represents a view to invoke an action</string>
+    <string name="image_view_item_transform_content_description">Represents an image view in the
+        item
+    </string>
+    <string name="title_activity_communities">CommunitiesActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_data_home_text">i-Prepare is a digital education joint initiative by the Department of Skill Development, IRCTC in collaboration with Bodvid Pvt. Ltd. to Train and Educate learners from various backgrounds and sectors in essential skills required in the modern world. i-Prepare is an Ai enabled app which guesses a learner\'s doubt in real time and solves them instantly. IRCTC is coming up with various courses for Internal staffs, Vendor Staffs and for General public. It will help fill the skill gap in society and will ensure better services and delivery in associated sectors. Let’s join this program to learn and grow with i-Prepare.</string>
+</resources>
+

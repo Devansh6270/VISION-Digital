@@ -1,0 +1,177 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+afterEvaluate {
+    if (project.hasProperty("android.injected.signing.store.file")) {
+        println "key store path: ${project.property("android.injected.signing.store.file")}"
+    }
+    if (project.hasProperty("android.injected.signing.store.password")) {
+        println "key store password: ${project.property("android.injected.signing.store.password")}"
+    }
+    if (project.hasProperty("android.injected.signing.key.alias")) {
+        println "key alias: ${project.property("android.injected.signing.key.alias")}"
+    }
+    if (project.hasProperty("android.injected.signing.key.password")) {
+        println "key password: ${project.property("android.injected.signing.key.password")}"
+    }
+}
+
+android {
+
+    compileSdkVersion 34
+
+
+    defaultConfig {
+        applicationId "com.vision_digital"
+        minSdkVersion 21
+        targetSdkVersion 34
+        compileSdkVersion 34
+        versionCode 1
+        versionName "1.0.0"
+        vectorDrawables.useSupportLibrary = true
+
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        ndk {
+//            abiFilters 'armeabi-v7a', 'arm64-v8a','x86',"x86_64"
+//        }
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures
+            {
+                dataBinding = true
+            }
+
+    buildTypes {
+        release {
+//            shrinkResources true
+//            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.4'
+    implementation 'androidx.navigation:navigation-ui:2.7.4'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.firebase:firebase-dynamic-links:21.0.2'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.7'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:20.1.2'
+    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+
+
+//    firebase
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+
+//    implementation 'com.google.firebase:firebase-core'
+    implementation('com.google.firebase:firebase-core') {
+        exclude group: 'com.google.android.gms', module: 'play-services-ads-identifier'
+    }
+
+    implementation('com.google.firebase:firebase-auth') {
+        exclude module: "play-services-safetynet"
+    }
+
+    implementation 'com.google.firebase:firebase-auth:20.0.3'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
+
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
+
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
+
+    // FirebaseUI for Cloud Storage
+    implementation 'com.firebaseui:firebase-ui-storage:8.0.2'
+
+
+
+    implementation 'androidx.browser:browser:1.2.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.12.3'
+    implementation 'com.chaos.view:pinview:1.4.3'
+    implementation 'io.agora.rtc:full-sdk:3.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation project(path: ':libbambuser')
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+
+
+    // Facebook App Links only
+    implementation 'com.facebook.android:facebook-applinks:15.1.0'
+
+    // Facebook Android SDK (everything)
+    implementation 'com.facebook.android:facebook-android-sdk:15.1.0'
+
+    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+
+    implementation 'com.krsticdragan:autotypetextview:1.1'
+//
+    implementation "io.grpc:grpc-okhttp:1.32.2"
+   // implementation 'com.github.Nishant-Pathak:MathView:v1.1'
+    implementation 'io.github.kexanie.library:MathView:0.0.6'
+
+//    implementation ('com.google.firebase:firebase-inappmessaging-display:19.0.3') {
+//        exclude group: 'com.squareup.okhttp', module: 'okhttp'
+//    }
+    implementation 'com.paytm.appinvokesdk:appinvokesdk:1.6.8'
+
+    implementation 'com.github.mahimrocky:ShowMoreText:1.0.2'
+    implementation 'com.github.noowenz:ShowMoreLess:1.0.3'
+
+    implementation 'com.github.orbitalsonic:Water-Wave-Animation-Android:1.0.0'
+
+
+
+//    compile('com.paytm:pgplussdk:1.4.4') {
+//        transitive = true;
+//    }
+
+}

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pagebackgroundblue"
+        tools:context=".signUp.OtherActivity">
+
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:elevation="8dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/back_btn_new"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-110dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/icon_irctc" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:background="#E6FFFFFF"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="24dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="123dp"
+                    android:layout_height="109dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="30dp"
+                    android:src="@drawable/icon_irctc">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/SpaceGroteskBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/space_grotesk_bold"
+                    android:text="Enter Your Details"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/SpaceGroteskLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/space_grotesk_light"
+                    android:text="Hello, Welcome to IRCTC"
+                    android:textColor="#393E59"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/nameOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginHorizontal="@dimen/dimen_24dp"
+                    android:background="@drawable/edt_background_border"
+                    android:fontFamily="@font/space_grotesk"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:padding="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_24dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/space_grotesk"
+                    android:text="Gender"
+                    android:textColor="#515151" />
+
+                <RadioGroup
+                    android:id="@+id/otherGenderRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        style="@style/SpaceGroteskRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Male"
+                        android:textColor="#515151"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        style="@style/SpaceGroteskRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Female"
+                        android:textColor="#515151"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/other"
+                        style="@style/SpaceGroteskRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="other"
+                        android:textColor="#515151"
+                        android:textSize="12sp" />
+
+                </RadioGroup>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginHorizontal="@dimen/dimen_24dp"
+                    android:layout_marginTop="@dimen/dimen_15dp"
+                    android:background="@drawable/edt_background_border">
+
+                    <Spinner
+                        android:id="@+id/spinnerQualificationOther"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/edt_background_border"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/space_grotesk"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/dimen_12dp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_down_arrow" />
+                </FrameLayout>
+
+
+                <EditText
+                    android:id="@+id/otherDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginHorizontal="@dimen/dimen_24dp"
+                    android:layout_marginTop="@dimen/dimen_15dp"
+                    android:background="@drawable/edt_background_border"
+                    android:drawableEnd="@drawable/icon_date_picker"
+                    android:fontFamily="@font/space_grotesk"
+                    android:hint="Date of Birth"
+                    android:inputType="text"
+                    android:padding="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_12dp" />
+
+
+                <EditText
+                    android:id="@+id/areaOfInterest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_24dp"
+                    android:background="@drawable/edt_background_border"
+                    android:fontFamily="@font/space_grotesk"
+                    android:hint="Area of Interest"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_12dp" />
+                <Button
+                    android:id="@+id/btnNextOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/topper_button"
+                    android:elevation="8dp"
+                    android:fontFamily="@font/space_grotesk"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:text="Next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="@dimen/dimen_10dp"
+    android:layout_marginBottom="@dimen/dimen_10dp"
+    app:cardCornerRadius="@dimen/dimen_8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:padding="6dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/dimen_6dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_doubt_icon_">
+
+        </ImageView>
+
+    <TextView
+        android:id="@+id/mileStoneName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/space_grotesk_light"
+        android:paddingLeft="4sp"
+        android:maxLines="2"
+        android:minLines="2"
+        android:gravity="center_vertical"
+        android:minWidth="250dp"
+        android:maxWidth="250dp"
+        android:paddingRight="8sp"
+        android:text="Topic Name"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mileStoneDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/space_grotesk_light"
+        android:paddingLeft="8sp"
+        android:paddingBottom="4sp"
+        android:text="00:00 mins"
+        android:visibility="gone"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

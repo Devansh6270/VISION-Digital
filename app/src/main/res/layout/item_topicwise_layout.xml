@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/new_result_tv_back"
+        android:layout_margin="4dp"
+        android:padding="8dp">
+
+        <TextView
+            style="@style/SpaceGroteskBold"
+            android:id="@+id/itemTopicName"
+            android:layout_width="match_parent"
+            android:fontFamily="sans-serif-black"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:text="TopicName"
+            android:textSize="12sp"
+            />
+
+        <TextView
+           style="@style/PoppinsBold"
+            android:id="@+id/itemCorrect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="02"
+            android:textColor="@color/black"
+            android:layout_weight="3"
+            android:layout_marginRight="2dp"
+            android:gravity="right"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_clip_path_group"
+    tools:context=".signUp.LogInViaPhoneActivity">
+
+
+
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="-110dp"-->
+<!--        android:src="@drawable/pink_new_back" />-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E0FFF212"
+        android:orientation="vertical">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/backBtnLog"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:src="@drawable/icon_back_button" />-->
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="24dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="36dp"
+                android:src="@drawable/vision_logo">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/SpaceGroteskBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="Welcome to Vision Classes"
+                android:textColor="#393e59"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+
+
+            >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mobNo"
+                    style="@style/Mulish_Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:textColor="@color/black"
+                    android:textSize="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneNo"
+                        style="@style/SpaceGroteskLight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_login"
+                        android:hint="Enter your mobile number"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:layout_gravity="center"
+                        android:paddingTop="8dp"
+                        android:paddingLeft="@dimen/dimen_16dp"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:paddingRight="@dimen/dimen_8dp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <TextView
+                android:id="@+id/btnSendOTP"
+                style="@style/SpaceGroteskBold"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/topper_button"
+                android:elevation="@dimen/dimen_4dp"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen_4dp"
+                android:text="Send OTP"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+            <TextView
+                style="@style/Mulish_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="You'll receive 4 digit code to verify your \nmobile number"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>
