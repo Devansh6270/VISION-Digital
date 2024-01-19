@@ -4,6 +4,40 @@ public class ItemInstallmentList {
     String installmentNumber, dueDate, amount, pendingAmount, date;
     String id, fee_id, admno, status, payment_alert, payment_status, payment_history;
 
+    String orderId, paidDate, paymentType, amountOrder;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getPaidDate() {
+        return paidDate;
+    }
+
+    public void setPaidDate(String paidDate) {
+        this.paidDate = paidDate;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public String getAmountOrder() {
+        return amountOrder;
+    }
+
+    public void setAmountOrder(String amountOrder) {
+        this.amountOrder = amountOrder;
+    }
+
     public String getId() {
         return id;
     }

@@ -108,6 +108,7 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                         String total_installment = dataObj.getString("total_installment");
                         JSONArray installmentArray = dataObj.getJSONArray("installment");
 
+                        JSONArray paymentHistoryArr;
                         arrayListInstallment.clear();
 
                         for (int i = 0; i<installmentArray.length(); i++){
@@ -131,7 +132,14 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                             itemInstallmentList.setPayment_alert(payment_alert);
                             String payment_status= installDataObj.getString("payment_status");
                             itemInstallmentList.setPayment_status(payment_status);
-                            JSONArray payment_history= installDataObj.getJSONArray("payment_history");
+                            paymentHistoryArr= installDataObj.getJSONArray("payment_history");
+                            for (int j = 0; i<paymentHistoryArr.length(); j++){
+                                JSONObject paymentHistoryObj = paymentHistoryArr.getJSONObject(j);
+                                itemInstallmentList.setOrderId(paymentHistoryObj.getString("order_id"));
+                                itemInstallmentList.setPaidDate(paymentHistoryObj.getString("paid_date"));
+                                itemInstallmentList.setPaymentType(paymentHistoryObj.getString("payment_type"));
+                                itemInstallmentList.setAmountOrder(paymentHistoryObj.getString("amount"));
+                            }
 
 
                             arrayListInstallment.add(itemInstallmentList);
