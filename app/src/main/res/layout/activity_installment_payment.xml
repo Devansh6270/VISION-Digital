@@ -52,7 +52,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="2dp"
                         android:layout_marginRight="2dp"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@drawable/round_shape"
                         android:elevation="8dp"
                         android:src="@drawable/ic_back" />
@@ -71,7 +71,8 @@
                             android:layout_width="30dp"
                             android:layout_height="40dp"
                             android:src="@drawable/ic_more_vert_white_24dp"
-                            app:tint="@color/white" />
+                            app:tint="@color/white"
+                            android:visibility="gone"/>
 
 
                     </RelativeLayout>
@@ -90,6 +91,7 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
+                    android:id="@+id/feesLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -187,6 +189,7 @@
                     android:background="#989898" />
 
                 <LinearLayout
+                    android:id="@+id/installmentMonths"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="16dp"

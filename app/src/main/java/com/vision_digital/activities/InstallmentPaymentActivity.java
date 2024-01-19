@@ -100,51 +100,70 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                     Log.e("Status", status.toString());
                     if (status.equals("true")){
 
-                        binding.tvTotalFees.setText(dataObj.getString("total_fee"));
-                        binding.tvPendingAmount.setText(dataObj.getString("pending_fee"));
-                        String id = String.valueOf(dataObj.getInt("id"));
-                        String batch = dataObj.getString("batch");
-                        String admno = dataObj.getString("admno");
-                        String total_installment = dataObj.getString("total_installment");
-                        JSONArray installmentArray = dataObj.getJSONArray("installment");
 
-                        arrayListInstallment.clear();
 
-                        for (int i = 0; i<installmentArray.length(); i++){
-                            ItemInstallmentList itemInstallmentList = new ItemInstallmentList();
-                            JSONObject installDataObj = installmentArray.getJSONObject(i);
-                            itemInstallmentList.setInstallmentNumber(String.valueOf(installDataObj.getInt("installment"))+" Installment");
-                            itemInstallmentList.setDueDate("Pay by "+installDataObj.getString("due_date"));
+
+
+                        if (dataObj.length()==0){
+                            binding.feesLayout.setVisibility(View.GONE);
+                            binding.installmentMonths.setVisibility(View.GONE);
+                        }else {
+                            JSONArray installmentArray = dataObj.getJSONArray("installment");
+
+                            binding.feesLayout.setVisibility(View.VISIBLE);
+                            binding.installmentMonths.setVisibility(View.VISIBLE);
+
+                            binding.tvTotalFees.setText(dataObj.getString("total_fee"));
+                            binding.tvPendingAmount.setText(dataObj.getString("pending_fee"));
+                            String id = String.valueOf(dataObj.getInt("id"));
+                            String batch = dataObj.getString("batch");
+                            String admno = dataObj.getString("admno");
+                            String total_installment = dataObj.getString("total_installment");
+                            binding.edtMonth.setText(total_installment);
+
+
+                            arrayListInstallment.clear();
+
+                            for (int i = 0; i<installmentArray.length(); i++){
+                                ItemInstallmentList itemInstallmentList = new ItemInstallmentList();
+                                JSONObject installDataObj = installmentArray.getJSONObject(i);
+                                itemInstallmentList.setInstallmentNumber(String.valueOf(installDataObj.getInt("installment"))+" Installment");
+                                itemInstallmentList.setDueDate("Pay by "+installDataObj.getString("due_date"));
 //                            itemInstallmentList.setDate(installDataObj.getString(""));
-                            itemInstallmentList.setAmount(String.valueOf(installDataObj.getInt("amount")));
-                            itemInstallmentList.setPendingAmount(String.valueOf(installDataObj.getInt("pending")));
+                                itemInstallmentList.setAmount(String.valueOf(installDataObj.getInt("amount")));
+                                itemInstallmentList.setPendingAmount(String.valueOf(installDataObj.getInt("pending")));
 
-                            String idCard = String.valueOf(installDataObj.getInt("id"));
-                            itemInstallmentList.setId(idCard);
-                            String fee_id = String.valueOf(installDataObj.getInt("fee_id"));
-                            itemInstallmentList.setFee_id(fee_id);
-                            String admnoCard = installDataObj.getString("admno");
-                            itemInstallmentList.setAdmno(admnoCard);
-                            String statusCard = installDataObj.getString("status");
-                            itemInstallmentList.setStatus(statusCard);
-                            String payment_alert = installDataObj.getString("payment_alert");
-                            itemInstallmentList.setPayment_alert(payment_alert);
-                            String payment_status= installDataObj.getString("payment_status");
-                            itemInstallmentList.setPayment_status(payment_status);
-                            JSONArray payment_history= installDataObj.getJSONArray("payment_history");
+                                String idCard = String.valueOf(installDataObj.getInt("id"));
+                                itemInstallmentList.setId(idCard);
+                                String fee_id = String.valueOf(installDataObj.getInt("fee_id"));
+                                itemInstallmentList.setFee_id(fee_id);
+                                String admnoCard = installDataObj.getString("admno");
+                                itemInstallmentList.setAdmno(admnoCard);
+                                String statusCard = installDataObj.getString("status");
+                                itemInstallmentList.setStatus(statusCard);
+                                String payment_alert = installDataObj.getString("payment_alert");
+                                itemInstallmentList.setPayment_alert(payment_alert);
+                                String payment_status= installDataObj.getString("payment_status");
+                                itemInstallmentList.setPayment_status(payment_status);
+                                JSONArray payment_history= installDataObj.getJSONArray("payment_history");
 
 
-                            arrayListInstallment.add(itemInstallmentList);
+                                arrayListInstallment.add(itemInstallmentList);
+                            }
+
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(InstallmentPaymentActivity.this, RecyclerView.VERTICAL, false);
+                            binding.rvInstallment.setLayoutManager(layoutManager);
+
+                            itemInstallmentAdapter = new ItemInstallmentAdapter(InstallmentPaymentActivity.this, arrayListInstallment);
+                            binding.rvInstallment.setAdapter(itemInstallmentAdapter);
+
+                            Log.e("INSTALLMENT DATA", installmentArray.toString());
+
                         }
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(InstallmentPaymentActivity.this, RecyclerView.VERTICAL, false);
-                        binding.rvInstallment.setLayoutManager(layoutManager);
-
-                        itemInstallmentAdapter = new ItemInstallmentAdapter(InstallmentPaymentActivity.this, arrayListInstallment);
-                        binding.rvInstallment.setAdapter(itemInstallmentAdapter);
 
 
-                        Log.e("INSTALLMENT DATA", installmentArray.toString());
+
 
 
                     } else if (status.equals("false")) {

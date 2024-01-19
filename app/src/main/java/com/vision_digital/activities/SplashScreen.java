@@ -225,7 +225,18 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
                                         //Student is banned--------------------------
                                         String message = dataObj.getString("user_status_banned_message");
                                         Toast.makeText(SplashScreen.this, message, Toast.LENGTH_SHORT).show();
-                                    } else if (userStatus.equals("not_registered")) {
+                                    } else if (userStatus.equals("logout_user")) {
+                                        String message = dataObj.getString("message");
+                                        Toast.makeText(SplashScreen.this, message, Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(SplashScreen.this, LogInViaPhoneActivity.class);
+                                        i.putExtra("deeplinkFirebase",deeplinkFirebase);
+                                        startActivity(i);
+                                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                                        finish();
+
+                        }
+                                    else if (userStatus.equals("not_registered")) {
 //                                        startActivity(new Intent(SplashScreen.this, RegistrationActivity.class));
 //                                        finish();
                                         new Handler().postDelayed(new Runnable() {
