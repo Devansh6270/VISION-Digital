@@ -1,12 +1,19 @@
 package com.vision_digital.TestSeries.model.result.objectiveQuestion;
 
 import static com.vision_digital.TestSeries.ShowResultActivity.ansImage;
+import static com.vision_digital.TestSeries.ShowResultActivity.btnUnderstood;
+import static com.vision_digital.TestSeries.ShowResultActivity.dialogExplain;
+import static com.vision_digital.TestSeries.ShowResultActivity.dialogWvResult;
 import static com.vision_digital.TestSeries.ShowResultActivity.drawer_ans;
 import static com.vision_digital.TestSeries.ShowResultActivity.nextQuesBtn;
 import static com.vision_digital.TestSeries.ShowResultActivity.optionsListView;
 import static com.vision_digital.TestSeries.ShowResultActivity.prevQuesBtn;
 import static com.vision_digital.TestSeries.ShowResultActivity.questionNumber;
 import static com.vision_digital.TestSeries.ShowResultActivity.questionView;
+import static com.vision_digital.TestSeries.ShowResultActivity.tvExplaination;
+import static com.vision_digital.TestSeries.ShowResultActivity.tvNegativeMarks;
+import static com.vision_digital.TestSeries.ShowResultActivity.tvPositiveMarks;
+import static com.vision_digital.TestSeries.ShowResultActivity.wvResult;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -84,7 +91,7 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
         prevQuesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//Update list of question layout-------
+//--------------Update list of question layout-------
 
                 loadObjectiveQuestion((ArrayList<ItemObjectiveQuestion>) questionsList, currentQuestion - 1);
 
@@ -109,6 +116,37 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
             }
         });
 
+
+        String solutionResult =  ((ItemObjectiveQuestion) objectiveQuestionList.get(position)).getWvResult();
+
+        Log.e("solutionResult", solutionResult);
+        if (solutionResult.equals("")){
+            tvExplaination.setVisibility(View.GONE);
+            wvResult.setVisibility(View.GONE);
+        } else {
+//========Currently we are not using wvResult in the main screen instead of that we are using Dialog wvResult=============================
+            wvResult.setVisibility(View.GONE);
+//================================================================================================================================
+            wvResult.loadDataWithBaseURL(null, solutionResult, "text/html", "UTF-8", null);
+            dialogWvResult.loadDataWithBaseURL(null, solutionResult, "text/html", "UTF-8", null);
+
+            Log.e("In ELSE",solutionResult);
+            tvExplaination.setVisibility(View.VISIBLE);
+
+            tvExplaination.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogExplain.show();
+                }
+            });
+            btnUnderstood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogExplain.dismiss();
+                }
+            });
+        }
+
     }
 
 
@@ -132,11 +170,17 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
         }
         skip = true;
         currentQuestion = position;
-        //Log.e("Question"+position,questionArrayList.get(position).getQuestion());
+        Log.e("SelectedAnswer"+position,questionArrayList.get(position).getSelected_answer());
         questionView.setText(questionArrayList.get(position).getQuestion().toString());
+        tvNegativeMarks.setText(questionArrayList.get(position).getNegativeMarks().toString());
+        tvPositiveMarks.setText(questionArrayList.get(position).getPositiveMarks().toString());
+
         Glide.with(context)
                 .load(questionArrayList.get(position).getQuestionImageURL())
                 .into(ansImage);
+
+
+
         ansImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +214,7 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
                 alertDialog.setCanceledOnTouchOutside(true);
             }
         });
+
         questionNumber.setText("" + (position + 1) + " of " + questionArrayList.size());
         //SectionList Work from here------------------------
 

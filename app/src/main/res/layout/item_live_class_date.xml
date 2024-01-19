@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="54dp"
+    android:layout_height="54dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/dimen_32dp"
+    android:id="@+id/dateMonthLayout"
+    android:layout_marginStart="@dimen/dimen_8dp"
+    android:layout_marginTop="@dimen/dimen_8dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/Nohemi_Bold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="30"
+            android:textColor="@color/grey"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

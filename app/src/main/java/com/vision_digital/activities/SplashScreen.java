@@ -49,7 +49,7 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
     long delay = 2000;
 
     String checkLoginUrl = "";
-    String isLogin="";
+    String isLogin="" , current_login_id="";
     FirebaseUser user;
     String uid = "";
     boolean goodToGo = false;
@@ -91,6 +91,7 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
         SharedPreferences userIsRegisteredSuccessful = this.getSharedPreferences("CNB", MODE_PRIVATE);
         sid = userIsRegisteredSuccessful.getInt("sid", 0);
         isLogin=userIsRegisteredSuccessful.getString("isLogin","No");
+        current_login_id = userIsRegisteredSuccessful.getString("current_login_id","");
         Log.e("TAG", "onCreate sid: "+sid);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -175,7 +176,7 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
             Log.e("versionCode", String.valueOf(versionCode));
 
 
-            String param = "uid=" + uid + "&app_version=" + versionCode + "&sid=" + sid;
+            String param = "uid=" + uid + "&app_version=" + versionCode + "&sid=" + sid+ "&current_login_id=" + current_login_id;
 
             Log.e("param", param);
 

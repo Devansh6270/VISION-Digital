@@ -1,11 +1,14 @@
 package com.vision_digital.TestSeries.model.testResultNew;
 
+import static com.vision_digital.TestSeries.AllTestPageActivity.testSeriesId;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +44,7 @@ public class NewResultActivity extends AppCompatActivity {
     private String sid = "";
     private String test_name_string = "";
     public static String apiURL = "";
-    TextView score, rank, percentile, correct, incorrect, not_attempt, correctPerEasy, mediumCorrect, toughCorrect, test_name_new, no_data_available,questionDifficultyLevel;
+    TextView score, rank, percentile, correct, incorrect, not_attempt, correctPerEasy, mediumCorrect, toughCorrect, test_name_new, no_data_available,questionDifficultyLevel, solutionUrlPdf;
     CardView tough_card, medium_card, easy_card;
     ImageView backBtn;
     LottieAnimationView no_result_lottieAnimationView;
@@ -95,6 +98,7 @@ public class NewResultActivity extends AppCompatActivity {
         no_data_available.setVisibility(View.GONE);
         questionDifficultyLevel=findViewById(R.id.questionDifficultyLevel);
         questionDifficultyLevel.setVisibility(View.GONE);
+        solutionUrlPdf = findViewById(R.id.solutionUrlPdf);
 
 
         correctPerEasy = findViewById(R.id.correctPerEasy);
@@ -116,7 +120,7 @@ public class NewResultActivity extends AppCompatActivity {
 
 
 
-        apiURL = getApplicationContext().getString(R.string.apiURL) + "getTestResultAdvance";
+        apiURL = getApplicationContext().getString(R.string.apiURL)+ "getTestResultAdvance";
 
         SharedPreferences userIsRegisteredSuccessful = getSharedPreferences("CNB", MODE_PRIVATE);
         sid = String.valueOf(userIsRegisteredSuccessful.getInt("sid", 0));
@@ -208,6 +212,20 @@ public class NewResultActivity extends AppCompatActivity {
 
     }
 
+    private void openPdfInBrowser(String pdfUrl) {
+        // Create an Intent to open the PDF in a browser
+        Intent intentPdf = new Intent(Intent.ACTION_VIEW);
+        intentPdf.setData(Uri.parse(pdfUrl));
+
+        try {
+            startActivity(intentPdf);
+        } catch (Exception e) {
+            // Handle exceptions, such as the browser not being available or the URL being invalid
+            Toast.makeText(NewResultActivity.this, "Document will be uploaded soon", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
 
     class GetResultDetails extends AsyncTask<String, Void, String> {
 
@@ -230,7 +248,7 @@ public class NewResultActivity extends AppCompatActivity {
 
             versionCode = pInfo.versionCode;
             Log.d("versionCode", String.valueOf(versionCode));
-            String param = "&sid=" + sid + "&test_id=" + test_id_this;
+            String param = "sid=" + sid + "&test_id=" + test_id_this +"&testseries_id="+testSeriesId;
             Log.d("param", param);
 
             JSONObject jsonObject = jsonParser.makeHttpRequest(apiURL, "POST", param);
@@ -259,7 +277,7 @@ public class NewResultActivity extends AppCompatActivity {
                     switch (status) {
                         case "success":
 
-                            String queryScore = dataObj.getString("obtain_marks");
+                            String queryScore = dataObj.getString("gain_marks");
                             String queryRank = dataObj.getString("rank");
                             String queryPercentile = dataObj.getString("percentile_rank");
                             String queryCorrect = dataObj.getString("no_ques_correct");
@@ -268,6 +286,7 @@ public class NewResultActivity extends AppCompatActivity {
                             String queryTestName = dataObj.getString("test_name");
                             String queryTotalMarks = dataObj.getString("total_marks");
                             String queryTotalQues = dataObj.getString("no_ques_total");
+                            String solutionUrl = dataObj.getString("solution_url");
 
                             score.setText(queryScore + "/" + queryTotalMarks);
                             rank.setText(queryRank);
@@ -277,6 +296,19 @@ public class NewResultActivity extends AppCompatActivity {
                             not_attempt.setText(queryNotAttempt + "/" + queryTotalQues);
                             test_name_new.setText(queryTestName);
                             test_name_string = queryTestName;
+
+                            if (solutionUrl.equals("") || solutionUrl.isEmpty() || solutionUrl.equals(null)){
+                                solutionUrlPdf.setVisibility(View.GONE);
+                            } else {
+                                solutionUrlPdf.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        openPdfInBrowser(solutionUrl);
+                                    }
+                                });
+                            }
+
+
 
                             String resultStatus = dataObj.getString("status");
                             Log.e("resultStatus", resultStatus);

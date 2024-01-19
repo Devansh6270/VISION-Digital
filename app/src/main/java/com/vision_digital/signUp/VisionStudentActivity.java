@@ -66,7 +66,7 @@ public class VisionStudentActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Please wait..");
 
-        urlRegister = getApplicationContext().getString(R.string.apiURL1) + "registerStudent";
+        urlRegister = getApplicationContext().getString(R.string.apiURL) + "registerStudent";
 
         SharedPreferences userIsRegisteredSuccessful = this.getSharedPreferences("CNB", MODE_PRIVATE);
         sid = userIsRegisteredSuccessful.getInt("sid", 0);
@@ -261,8 +261,8 @@ public class VisionStudentActivity extends AppCompatActivity {
             Log.d("DeviceDetails", details);
 
             Log.e(TAG, "doInBackground: " + "do in background");
-            String param = "sid=" + sid + "&name=" + name + "&dob=" + dob
-                    + "&type=" + type + "&device_details=" + details
+            String param = "sid=" + sid + "&name=" + name + "&dob=" + dob + "&enrollno=" + registerNumber+
+                    "&type=" + type + "&device_details=" + details
                     + "&mobile=" + OTPActivity.mobileNum;
 
             Log.e(TAG, "param: " + param);
@@ -303,7 +303,7 @@ public class VisionStudentActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = getSharedPreferences("CNB", MODE_PRIVATE).edit();
                             editor.putBoolean("registered", true);
                             editor.putString("profileName", name);
-                            editor.apply();
+                            editor.putString("current_login_id", dataObj.getString("current_login_id"));                            editor.apply();
                             Toast.makeText(VisionStudentActivity.this, message, Toast.LENGTH_SHORT).show();
 
                             if (isIntro) {

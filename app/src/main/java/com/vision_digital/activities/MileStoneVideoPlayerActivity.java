@@ -1,6 +1,5 @@
 package com.vision_digital.activities;
 
-//import androidx.annotation.Nullable;
 
 import static android.content.ContentValues.TAG;
 import static com.vision_digital.activities.DashboardActivity.instituteForProfile;
@@ -62,8 +61,6 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,9 +73,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.vision_digital.R;
-import com.vision_digital.community.CommunityChatPageActivity;
-import com.vision_digital.community.invitation.SelectStudentActivity;
-import com.vision_digital.community.studentModel.ItemStudents;
 import com.vision_digital.helperClasses.JSONParser;
 import com.vision_digital.model.chapters.ItemChapter;
 import com.vision_digital.model.milestone.ItemMileStone;
@@ -377,7 +371,7 @@ public class MileStoneVideoPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!userNameString.equals("")) {
-                    communityEnterVerification();
+
 
                 } else {
                     popupForCompleteProfile();
@@ -387,31 +381,31 @@ public class MileStoneVideoPlayerActivity extends AppCompatActivity {
             }
         });
 
-        sendInvitationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!userNameString.equals("")) {
-//                    if (subscription.equals("subscribed")){
-                    Intent invitationIntent = new Intent(MileStoneVideoPlayerActivity.this, SelectStudentActivity.class);
-                    invitationIntent.putExtra("community_id", courseIdM);
-                    invitationIntent.putExtra("community_name", courseNameM);
-                    invitationIntent.putExtra("community_logo", courseLogoM);
-                    invitationIntent.putExtra("userNameString", userNameString);
-                    invitationIntent.putExtra("milestone_id", mileStoneArrayList.get(player.getCurrentWindowIndex()).getId());
-                    invitationIntent.putExtra("milestone_name", mileStoneArrayList.get(player.getCurrentWindowIndex()).getTitle());
-                    invitationIntent.putExtra("videoPos", String.valueOf(mediaIndex));
-                    invitationIntent.putExtra("fromActivity", "milestonePlayer");
-                    Log.e("mediaIndex", String.valueOf(mediaIndex));
-
-                    startActivity(invitationIntent);
-//                    }else{
-//                        Toast.makeText(MileStoneVideoPlayerActivity.this, "Subscribe this course for the sending invitation! ", Toast.LENGTH_SHORT).show();
-//                    }
-                } else {
-                    popupForCompleteProfile();
-                }
-            }
-        });
+//        sendInvitationBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (!userNameString.equals("")) {
+////                    if (subscription.equals("subscribed")){
+//                    Intent invitationIntent = new Intent(MileStoneVideoPlayerActivity.this, SelectStudentActivity.class);
+//                    invitationIntent.putExtra("community_id", courseIdM);
+//                    invitationIntent.putExtra("community_name", courseNameM);
+//                    invitationIntent.putExtra("community_logo", courseLogoM);
+//                    invitationIntent.putExtra("userNameString", userNameString);
+//                    invitationIntent.putExtra("milestone_id", mileStoneArrayList.get(player.getCurrentWindowIndex()).getId());
+//                    invitationIntent.putExtra("milestone_name", mileStoneArrayList.get(player.getCurrentWindowIndex()).getTitle());
+//                    invitationIntent.putExtra("videoPos", String.valueOf(mediaIndex));
+//                    invitationIntent.putExtra("fromActivity", "milestonePlayer");
+//                    Log.e("mediaIndex", String.valueOf(mediaIndex));
+//
+//                    startActivity(invitationIntent);
+////                    }else{
+////                        Toast.makeText(MileStoneVideoPlayerActivity.this, "Subscribe this course for the sending invitation! ", Toast.LENGTH_SHORT).show();
+////                    }
+//                } else {
+//                    popupForCompleteProfile();
+//                }
+//            }
+//        });
 
         cid = courseIdM;
 
@@ -800,60 +794,60 @@ public class MileStoneVideoPlayerActivity extends AppCompatActivity {
 
     }
 
-    private void communityEnterVerification() {
-
-        db.collection("Communities").document(courseIdM).collection("Students").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                List<DocumentSnapshot> studentList = queryDocumentSnapshots.getDocuments();
-                Log.e("List", studentList.toString());
-
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-                        String sids = documentChange.getDocument().getData().get("student_id").toString();
-                        Log.e("studentIdloop12", sids);
-
-
-                        if (uid.equals(sids)) {
-
-                            isInCommunity = "yes";
-
-                            break;
-
-                        } else {
-                            isInCommunity = "no";
-
-                        }
-                    }
-
-                } else {
-                    isInCommunity = "no";
-                }
-                Log.e("isInCommunity", isInCommunity);
-                if (!userNameString.equals("")) {
-                    if (isInCommunity.equals("yes")) {
-                        Intent communityIntent = new Intent(MileStoneVideoPlayerActivity.this, CommunityChatPageActivity.class);
-                        communityIntent.putExtra("activity", "milestone");
-                        communityIntent.putExtra("milestone_id", mileStoneArrayList.get(player.getCurrentWindowIndex()).getId());
-                        communityIntent.putExtra("community_id", courseIdM);
-                        communityIntent.putExtra("community_name", courseNameM);
-                        communityIntent.putExtra("videoPos", mediaIndex);
-                        communityIntent.putExtra("community_logo", courseLogoM);
-                        Log.e("Student saved", "student saved");
-                        startActivity(communityIntent);
-                    } else {
-                        askToJoin(courseIdM, courseNameM, courseLogoM);
-                    }
-                } else {
-                    popupForCompleteProfile();
-                }
-
-
-            }
-        });
-
-
-    }
+//    private void communityEnterVerification() {
+//
+//        db.collection("Communities").document(courseIdM).collection("Students").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                List<DocumentSnapshot> studentList = queryDocumentSnapshots.getDocuments();
+//                Log.e("List", studentList.toString());
+//
+//                if (!queryDocumentSnapshots.isEmpty()) {
+//                    for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
+//                        String sids = documentChange.getDocument().getData().get("student_id").toString();
+//                        Log.e("studentIdloop12", sids);
+//
+//
+//                        if (uid.equals(sids)) {
+//
+//                            isInCommunity = "yes";
+//
+//                            break;
+//
+//                        } else {
+//                            isInCommunity = "no";
+//
+//                        }
+//                    }
+//
+//                } else {
+//                    isInCommunity = "no";
+//                }
+//                Log.e("isInCommunity", isInCommunity);
+//                if (!userNameString.equals("")) {
+//                    if (isInCommunity.equals("yes")) {
+//                        Intent communityIntent = new Intent(MileStoneVideoPlayerActivity.this, CommunityChatPageActivity.class);
+//                        communityIntent.putExtra("activity", "milestone");
+//                        communityIntent.putExtra("milestone_id", mileStoneArrayList.get(player.getCurrentWindowIndex()).getId());
+//                        communityIntent.putExtra("community_id", courseIdM);
+//                        communityIntent.putExtra("community_name", courseNameM);
+//                        communityIntent.putExtra("videoPos", mediaIndex);
+//                        communityIntent.putExtra("community_logo", courseLogoM);
+//                        Log.e("Student saved", "student saved");
+//                        startActivity(communityIntent);
+//                    } else {
+//                        askToJoin(courseIdM, courseNameM, courseLogoM);
+//                    }
+//                } else {
+//                    popupForCompleteProfile();
+//                }
+//
+//
+//            }
+//        });
+//
+//
+//    }
 
     private void popupForCompleteProfile() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MileStoneVideoPlayerActivity.this);
@@ -942,7 +936,6 @@ public class MileStoneVideoPlayerActivity extends AppCompatActivity {
                 ArrayList<ItemMyCourse> myCoursesList = new ArrayList<>();
 
                 String communityId = id;
-                joinStudentInGroup(courseIdM, studentName, courseNameM, courseLogoM);
                 alertDialog.dismiss();
 
             }
@@ -955,33 +948,6 @@ public class MileStoneVideoPlayerActivity extends AppCompatActivity {
 
     }
 
-    private void joinStudentInGroup(String communityId, String studentName, String community_name_recommendation, String community_logo_recommendation) {
-
-        DocumentReference reference = db.collection("Communities").document(communityId).collection("Students").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-        ItemStudents studentDetails = new ItemStudents(uid, studentName, profileImageUrlString);
-
-
-        reference.set(studentDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Intent communityIntent = new Intent(MileStoneVideoPlayerActivity.this, CommunityChatPageActivity.class);
-                communityIntent.putExtra("community_id", courseIdM);
-                communityIntent.putExtra("community_name", courseNameM);
-                communityIntent.putExtra("community_logo", courseLogoM);
-                communityIntent.putExtra("activity", "community_list");
-                startActivity(communityIntent);
-                Log.e("Student saved", "student saved");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("Student saved failed", "student not saved");
-
-            }
-        });
-
-    }
 
     private void getProfileData() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

@@ -52,7 +52,7 @@
                         android:background="@drawable/round_shape"
                         android:src="@drawable/ic_back"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="2dp"
                         android:layout_marginRight="2dp"
                         android:layout_marginBottom="2dp" />
@@ -311,6 +311,7 @@
                                         android:layout_height="match_parent"
                                         android:paddingLeft="16dp"
                                         android:paddingRight="16dp"
+                                        android:visibility="gone"
                                         android:paddingBottom="20dp">
 
                                         <TextView
@@ -331,6 +332,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="16dp"
                                             android:text="Email: "
+                                            android:visibility="gone"
                                             style="@style/Nohemi_Medium"
                                             android:textColor="@color/black"
                                             android:textSize="16sp"

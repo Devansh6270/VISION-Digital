@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "781256072904",
-    "project_id": "vision-digital-e7f35",
-    "storage_bucket": "vision-digital-e7f35.appspot.com"
+    "project_number": "279642656286",
+    "project_id": "vision-21d06",
+    "storage_bucket": "vision-21d06.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:781256072904:android:ec1d8e0cab0c3ad6578ffd",
+        "mobilesdk_app_id": "1:279642656286:android:396debe81dd4688469280f",
         "android_client_info": {
           "package_name": "com.vision_digital"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "781256072904-c1a2fffgajh49t2q5l3dfksj5gdqakb5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.vision_digital",
-            "certificate_hash": "2b37a12619cf945fa9393a7593e4ecca7b903bfd"
-          }
-        },
-        {
-          "client_id": "781256072904-5rqo76qfbspfetmkrdvc3rfkqmk0m6tf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCN_ysWrXi3fWEaxaRifQ2pQfsosvdWCL4"
+          "current_key": "AIzaSyAwTAff8Qa-JQdit_xZ1jCG1Odb8HCiqJI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "781256072904-5rqo76qfbspfetmkrdvc3rfkqmk0m6tf.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

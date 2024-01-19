@@ -1,5 +1,9 @@
 package com.vision_digital.TestSeries;
 
+import static com.vision_digital.TestSeries.AllTestPageActivity.testSeriesId;
+import static com.vision_digital.activities.DashboardActivity.sid;
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,37 +13,40 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.vision_digital.R;
-import com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestion;
-import com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestionAdapter;
-import com.vision_digital.TestSeries.model.section.ItemSectionAdapter;
-import com.vision_digital.helperClasses.JSONParser;
-
-
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vision_digital.R;
+import com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestion;
+import com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestionAdapter;
+import com.vision_digital.TestSeries.model.objectiveQuestion.options.ItemOption;
+import com.vision_digital.TestSeries.model.section.ItemSection;
+import com.vision_digital.TestSeries.model.section.ItemSectionAdapter;
+import com.vision_digital.helperClasses.JSONParser;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.vision_digital.TestSeries.TestDetailsActivity.sectionArrayList;
-import static com.vision_digital.TestSeries.TestDetailsActivity.timeLimit;
-import static com.vision_digital.TestSeries.TestDetailsActivity.titleTestSeries;
 
 public class OngoingTestActivity extends AppCompatActivity {
 
@@ -48,12 +55,22 @@ public class OngoingTestActivity extends AppCompatActivity {
     TextView testSeriesTitle;
     TextView navigationTimer;
     TextView submitTestBtn;
-    JSONObject jsonRawData = new JSONObject();
-    JSONObject jsonRawData_one = new JSONObject();
+    ProgressDialog dialog;
     String resultData;
     public static String test_id;
 
+    public static ArrayList<ItemSection> sectionArrayList = new ArrayList<>();
 
+    long timeLimit = 60 * 30;
+    String timeDuration;
+    String testId = "";
+
+    String titleTestSeries;
+
+    ArrayList<ItemObjectiveQuestion> questionArrayList = null;
+
+    //Shared preference option
+    String answer;
     RecyclerView sectionListView;
     ItemSectionAdapter itemSectionAdapter;
 
@@ -63,10 +80,12 @@ public class OngoingTestActivity extends AppCompatActivity {
     //Question Layout
 
     public static TextView questionNumber, questionPageTimer;
-    public static TextView questionView;
+
+
+    public static TextView questionView, tvPositiveMarks, tvNegativeMarks;
     public static ImageView questionImage;
     public static RecyclerView optionsListView;
-    public static TextView nextQuesBtn, prevQuesBtn,proceedToSubBtn,hint_txt;
+    public static TextView nextQuesBtn, prevQuesBtn, proceedToSubBtn, hint_txt;
 
     public static DrawerLayout drawer;
     final Handler timer = new Handler(Looper.getMainLooper());
@@ -75,13 +94,18 @@ public class OngoingTestActivity extends AppCompatActivity {
     //Timmer------------------------
     long min, sec, hours;
 
-    //Global data:
-    long currentQuestionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_test);
+        testId = getIntent().getStringExtra("id");
+
+        dialog = new ProgressDialog(OngoingTestActivity.this);
+        dialog.setMessage("Loading");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        new GetTestDetails().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         //Setting Question Page layout:
         questionNumber = findViewById(R.id.questionNumber);
@@ -93,13 +117,16 @@ public class OngoingTestActivity extends AppCompatActivity {
         proceedToSubBtn = findViewById(R.id.proceedToSubBtn);
         hint_txt = findViewById(R.id.hint_txt);
         questionImage = findViewById(R.id.questionImage);
+        tvPositiveMarks = findViewById(R.id.tvPositiveMarks);
+        tvNegativeMarks = findViewById(R.id.tvNegativeMarks);
 
 
         drawer = findViewById(R.id.drawer_layout);
 
 
         test_id = getIntent().getStringExtra("id");
-        Log.e("test_id",test_id);
+
+        Log.e("test_id", test_id);
 
         closeDrawerBtn = findViewById(R.id.closeDrawerBtn);
         closeDrawerBtn.setOnClickListener(new View.OnClickListener() {
@@ -109,12 +136,7 @@ public class OngoingTestActivity extends AppCompatActivity {
             }
         });
         openDrawerBtn = findViewById(R.id.openDrawerBtn);
-//        openDrawerBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                drawer.openDrawer(Gravity.RIGHT);
-//            }
-//        });
+
 
         testSeriesTitle = findViewById(R.id.testSeriesTitle);
         testSeriesTitle.setText(titleTestSeries);
@@ -125,14 +147,14 @@ public class OngoingTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(OngoingTestActivity.this);
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OngoingTestActivity.this);
                 // ...Irrelevant code for customizing the buttons and title
                 LayoutInflater inflater = OngoingTestActivity.this.getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.exit_popup, null);
                 dialogBuilder.setView(dialogView);
 
                 //Alert Dialog Layout work
-                final androidx.appcompat.app.AlertDialog alertDialog = dialogBuilder.create();
+                final AlertDialog alertDialog = dialogBuilder.create();
 //                      TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -163,14 +185,14 @@ public class OngoingTestActivity extends AppCompatActivity {
                         new SubmitAnswer().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         alertDialog.dismiss();
 
-                        androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(OngoingTestActivity.this);
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OngoingTestActivity.this);
                         // ...Irrelevant code for customizing the buttons and title
                         LayoutInflater inflater = OngoingTestActivity.this.getLayoutInflater();
                         View dialogView = inflater.inflate(R.layout.exit_popup, null);
                         dialogBuilder.setView(dialogView);
 
                         //Alert Dialog Layout work
-                        final androidx.appcompat.app.AlertDialog alertDialogend = dialogBuilder.create();
+                        final AlertDialog alertDialogend = dialogBuilder.create();
 //                      TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
                         alertDialogend.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -192,9 +214,15 @@ public class OngoingTestActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
 
-                                Intent intent = new Intent(OngoingTestActivity.this,TestSeriesDashboardActivity.class);
+
+                                Intent intent = new Intent(OngoingTestActivity.this, AllTestPageActivity.class);
+                                intent.putExtra("id", testSeriesId);
                                 startActivity(intent);
-//                                OngoingTestActivity.this.finish();
+                                questionArrayList.clear();
+                                sectionArrayList.clear();
+                                OngoingTestActivity.this.finish();
+
+
                                 alertDialogend.dismiss();
 
                             }
@@ -219,23 +247,24 @@ public class OngoingTestActivity extends AppCompatActivity {
 
 
         //SectionList Work from here------------------------
-        sectionListView = findViewById(R.id.sectionsList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        sectionListView.setLayoutManager(linearLayoutManager);
-        itemSectionAdapter = new ItemSectionAdapter(sectionArrayList);
-        sectionListView.setAdapter(itemSectionAdapter);
-
-        //Questions List----------------------------
-        questionsListView = findViewById(R.id.questionsListView);
-        LinearLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
-
-        questionsListView.setLayoutManager(gridLayoutManager);
-        itemObjectiveQuestionAdapter = new ItemObjectiveQuestionAdapter(sectionArrayList.get(0).getQuestionsList());
-//        Log.e("List", sectionArrayList.get(0).getQuestionsList().toString());
-        questionsListView.setAdapter(itemObjectiveQuestionAdapter);
-        questionsListView.scrollToPosition(0);
+//        sectionListView = findViewById(R.id.sectionsList);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        sectionListView.setLayoutManager(linearLayoutManager);
+//        itemSectionAdapter = new ItemSectionAdapter(sectionArrayList);
+//        sectionListView.setAdapter(itemSectionAdapter);
+//
+//        //Questions List----------------------------
+//        questionsListView = findViewById(R.id.questionsListView);
+//        LinearLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
+//
+//        questionsListView.setLayoutManager(gridLayoutManager);
+//        itemObjectiveQuestionAdapter = new ItemObjectiveQuestionAdapter(sectionArrayList.get(0).getQuestionsList());
+////        Log.e("List", sectionArrayList.get(0).getQuestionsList().toString());
+//        questionsListView.setAdapter(itemObjectiveQuestionAdapter);
+//        questionsListView.scrollToPosition(0);
 
         navigationTimer = findViewById(R.id.timer);
+
 
 //Loading only first section-----------------
 //        Object temp = sectionArrayList.get(0).getQuestionsList();
@@ -283,14 +312,14 @@ public class OngoingTestActivity extends AppCompatActivity {
                     timer.removeCallbacksAndMessages(null);
 
                     //Alert for AutoSubmitted
-                    androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(OngoingTestActivity.this);
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OngoingTestActivity.this);
                     // ...Irrelevant code for customizing the buttons and title
                     LayoutInflater inflater = OngoingTestActivity.this.getLayoutInflater();
                     View dialogView = inflater.inflate(R.layout.exit_popup, null);
                     dialogBuilder.setView(dialogView);
 
                     //Alert Dialog Layout work
-                    final androidx.appcompat.app.AlertDialog alertDialog = dialogBuilder.create();
+                    final AlertDialog alertDialog = dialogBuilder.create();
 //                  TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -312,9 +341,13 @@ public class OngoingTestActivity extends AppCompatActivity {
                     okBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(OngoingTestActivity.this,TestSeriesDashboardActivity.class);
+                            Intent intent = new Intent(OngoingTestActivity.this, AllTestPageActivity.class);
+                            intent.putExtra("id", testSeriesId);
+
                             startActivity(intent);
-//                            OngoingTestActivity.this.finish();
+                            OngoingTestActivity.this.finish();
+                            questionArrayList.clear();
+                            sectionArrayList.clear();
                             alertDialog.dismiss();
 
                         }
@@ -356,6 +389,7 @@ public class OngoingTestActivity extends AppCompatActivity {
             timerPref.apply();
 
             Map<String, String> answerMap = new HashMap<String, String>();
+
             for (int i = 0; i < sectionArrayList.get(0).getQuestionsList().size(); i++) {
                 ItemObjectiveQuestion objectiveQuestion = (ItemObjectiveQuestion) sectionArrayList.get(0).getQuestionsList().get(i);
 
@@ -364,7 +398,9 @@ public class OngoingTestActivity extends AppCompatActivity {
                 Log.e("answered", String.valueOf(((ItemObjectiveQuestion) sectionArrayList.get(0).getQuestionsList().get(i)).getAnsweredAnswer()));
 
                 if (objectiveQuestion.getStatus().equals("Answered")) {
-                    answerMap.put(objectiveQuestion.getId(), objectiveQuestion.getAnsweredAnswer());
+                    Log.e("CHECKING ANswer", "---" + objectiveQuestion.getAnsweredAnswer());
+                    Log.e("CHECKING ANswer", "---" + objectiveQuestion.getId());
+                    answerMap.put(objectiveQuestion.getId(), "option" + objectiveQuestion.getAnsweredAnswer());
                     Log.e("answer", objectiveQuestion.getAnsweredAnswer());
                 }
             }
@@ -389,21 +425,21 @@ public class OngoingTestActivity extends AppCompatActivity {
             String test_id_intent = intent.getStringExtra("id");
             int test_id = Integer.parseInt(test_id_intent);
 
-            SharedPreferences preferences =getSharedPreferences("cnb"+test_id,Context.MODE_PRIVATE);
-            Log.e("preference",preferences.toString());
+            SharedPreferences preferences = getSharedPreferences("cnb" + test_id, Context.MODE_PRIVATE);
+            Log.e("preference", preferences.toString());
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.apply();
 
             JSONParser jsonParser = new JSONParser(OngoingTestActivity.this);
-            int sid;
-            SharedPreferences studDetails = getSharedPreferences("CNB", MODE_PRIVATE);
-            sid = studDetails.getInt("sid", 0);
+//            int sid;
+//            SharedPreferences studDetails = getSharedPreferences("CNB", MODE_PRIVATE);
+//            sid = studDetails.getInt("sid", 0);
             //json raw data should be encoded**
 
 
-            String param = "sid=" + sid + "&test_id=" + test_id + "&result=" + resultData;
+            String param = "sid=" + sid + "&test_id=" + test_id + "&result=" + resultData + "&testseries_id=" + testSeriesId;
             Log.e("params", param);
             JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
             if (jsonObject == null) {
@@ -444,14 +480,14 @@ public class OngoingTestActivity extends AppCompatActivity {
 //        super.onBackPressed();
 //        timer.removeCallbacksAndMessages(null);
 
-        androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(OngoingTestActivity.this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OngoingTestActivity.this);
         // ...Irrelevant code for customizing the buttons and title
         LayoutInflater inflater = OngoingTestActivity.this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.exit_popup, null);
         dialogBuilder.setView(dialogView);
 
         //Alert Dialog Layout work
-        final androidx.appcompat.app.AlertDialog alertDialog = dialogBuilder.create();
+        final AlertDialog alertDialog = dialogBuilder.create();
 //                TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -485,5 +521,245 @@ public class OngoingTestActivity extends AppCompatActivity {
         alertDialog.setCanceledOnTouchOutside(false);
 //
 
+    }
+
+    class GetTestDetails extends AsyncTask<String, Void, String> {
+        // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Please wait");
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            JSONParser jsonParser = new JSONParser(OngoingTestActivity.this);
+
+
+//            String param = "uid=" + uid + "&app_version=" + versionCode + "&student_id=" + studId + "&course_id=" + courseId;
+            String param = "test_id=" + testId + "&sid=" + sid;
+            Log.e("param", param);
+
+            String url = getApplicationContext().getString(R.string.apiURL) + "getTestQueList";
+
+            JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
+            if (jsonObject != null) {
+                return jsonObject.toString();
+            } else {
+
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.i("json", s);
+            if (!s.equals("")) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    Log.e("Result : ", s);
+
+                    //Do work-----------------------------
+                    String status = jsonObject.getString("status");
+                    final JSONObject dataObj = jsonObject.getJSONObject("data");
+                    dialog.dismiss();
+                    switch (status) {
+                        case "success":
+
+
+                            SharedPreferences saveTimeData = getSharedPreferences(testId, MODE_PRIVATE);
+
+                            Long time_saved = saveTimeData.getLong("timeSave", 0);
+                            if (time_saved == 0) {
+                                timeLimit = dataObj.getLong("duration");
+
+                                long hours = timeLimit / 3600;
+                                long remainder = timeLimit - hours * 3600;
+                                long min = remainder / 60;
+                                long sec = timeLimit % 60;
+                                String hour = String.format("%02d", hours);
+                                String minut = String.format("%02d", min);
+
+                                if (hours == 0) {
+                                    timeDuration = minut + " minutes";
+                                } else {
+                                    timeDuration = hour + ":" + minut + " hours";
+                                }
+
+                            } else {
+                                timeLimit = time_saved;
+
+                            }
+                            Log.e("timesaved", String.valueOf(time_saved));
+
+                            titleTestSeries = dataObj.getString("title");
+
+
+                            SimpleDateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                            SimpleDateFormat outputFormatter = new SimpleDateFormat("dd MMM yyyy, hh:mm aaa");
+
+
+                            //fetching sections--------------
+                            JSONArray sectionsArray = dataObj.getJSONArray("section_list");
+                            sectionArrayList.clear();
+                            for (int i = 0; i < sectionsArray.length(); i++) {
+                                JSONObject sectionObject = sectionsArray.getJSONObject(i);
+                                ItemSection section = new ItemSection();
+
+                                section.setId(sectionObject.getString("id"));
+                                section.setName(sectionObject.getString("name"));
+
+
+                                JSONArray questionsArray = sectionObject.getJSONArray("question_list");
+
+
+                                questionArrayList = new ArrayList<ItemObjectiveQuestion>();
+                                questionArrayList.clear();
+
+
+                                for (int j = 0; j < questionsArray.length(); j++) {
+                                    ItemObjectiveQuestion objectiveQuestion = new ItemObjectiveQuestion();
+                                    JSONObject questionObject = questionsArray.getJSONObject(j);
+
+                                    SharedPreferences saveTestData = getSharedPreferences("cnb" + testId, MODE_PRIVATE);
+
+                                    answer = saveTestData.getString(questionObject.getString("id"), "NO_VALUE");
+                                    Log.e("answer", answer);
+
+                                    if (answer.equals("NO_VALUE")) {
+                                        objectiveQuestion.setStatus("");
+
+                                    } else if (answer.equals("")) {
+                                        objectiveQuestion.setStatus("");
+                                    } else {
+                                        objectiveQuestion.setStatus("Answered");
+                                        objectiveQuestion.setAnsweredAnswer(answer);
+
+
+                                    }
+                                    objectiveQuestion.setId(questionObject.getString("id"));
+
+                                    objectiveQuestion.setQuestion(questionObject.getString("question"));
+                                    objectiveQuestion.setPositiveMarks(" +" + questionObject.getDouble("p_marks") + "");
+                                    objectiveQuestion.setNegativeMarks(" -" + questionObject.getDouble("n_marks") + "");
+                                    if (!questionObject.getString("image").equals(null)) {
+                                        objectiveQuestion.setQuestionImageURL(questionObject.getString("image"));
+
+                                    }
+//                                            JSONArray optionsArray = questionObject.getJSONArray("options");
+//                                            ArrayList<ItemOption> optionsList = new ArrayList<>();
+//                                            for (int k = 0; k < optionsArray.length(); k++) {
+//                                                ItemOption itemOption = new ItemOption();
+//                                                itemOption.setOption(optionsArray.getString(k));
+//                                                if (optionsArray.getString(k).trim().equals(answer.trim())) {
+//                                                    itemOption.setSelected(true);
+//                                                }
+//                                                optionsList.add(itemOption);
+//                                            }
+
+                                    JSONObject optionObject = questionObject.getJSONObject("options");
+                                    ArrayList<ItemOption> optionsList = new ArrayList<>();
+                                    int a = 1;
+                                    optionsList.clear();
+                                    for (int k = 0; k < optionObject.length(); k++) {
+                                        ItemOption itemOption = new ItemOption();
+
+                                        JSONObject optionObjectvar = optionObject.getJSONObject("option" + a);
+                                        Log.e("objectoption", String.valueOf(optionObject.getJSONObject("option1")));
+                                        itemOption.setOptNo("option" + a);
+                                        String optionNumber = "option" + a;
+                                        itemOption.setOption(optionObjectvar.getString("title"));
+                                        itemOption.setOptNo(String.valueOf(k + 1));
+
+
+                                        itemOption.setOptionImageUrl(optionObjectvar.getString("image"));
+                                        if (optionNumber.trim().equals(answer.trim())) {
+                                            itemOption.setSelected(true);
+                                        }
+
+                                        optionsList.add(itemOption);
+                                        a++;
+
+                                    }
+
+//                                            Collections.shuffle(questionArrayList);
+                                    Object questionsList = questionArrayList;
+                                    section.setQuestionsList((ArrayList<Object>) questionsList);
+                                    sectionArrayList.add(section);
+                                    Log.e("Test Question Size-", String.valueOf(sectionArrayList.size()));
+
+
+//                                            Collections.shuffle(optionsList);
+                                    objectiveQuestion.setOptions(optionsList);
+                                    questionArrayList.add(objectiveQuestion);
+
+                                    //SectionList Work from here------------------------
+                                    sectionListView = findViewById(R.id.sectionsList);
+                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OngoingTestActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                                    sectionListView.setLayoutManager(linearLayoutManager);
+                                    itemSectionAdapter = new ItemSectionAdapter(sectionArrayList);
+                                    sectionListView.setAdapter(itemSectionAdapter);
+
+                                    //Questions List----------------------------
+                                    questionsListView = findViewById(R.id.questionsListView);
+                                    LinearLayoutManager gridLayoutManager = new GridLayoutManager(OngoingTestActivity.this, 5);
+
+                                    questionsListView.setLayoutManager(gridLayoutManager);
+                                    itemObjectiveQuestionAdapter = new ItemObjectiveQuestionAdapter(sectionArrayList.get(0).getQuestionsList());
+//        Log.e("List", sectionArrayList.get(0).getQuestionsList().toString());
+                                    questionsListView.setAdapter(itemObjectiveQuestionAdapter);
+                                    questionsListView.scrollToPosition(0);
+
+
+                                }
+
+
+                            }
+
+                            break;
+                        case "maintenance":
+                            //Undermaintance
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(OngoingTestActivity.this);
+                            // ...Irrelevant code for customizing the buttons and title
+                            LayoutInflater inflater = OngoingTestActivity.this.getLayoutInflater();
+                            View dialogView = inflater.inflate(R.layout.under_maintanance_dialog, null);
+                            dialogBuilder.setView(dialogView);
+                            //Alert Dialog Layout work
+                            TextView maintainanceContent = dialogView.findViewById(R.id.underMaintananceContent);
+                            String msgContent = dataObj.getString("message");
+                            maintainanceContent.setText(Html.fromHtml(msgContent));
+
+                            TextView btnOK = dialogView.findViewById(R.id.btnOK);
+                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    finishAndRemoveTask();
+                                }
+                            });
+                            AlertDialog alertDialog = dialogBuilder.create();
+                            alertDialog.show();
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            break;
+                        case "failure":
+                            Toast.makeText(OngoingTestActivity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(OngoingTestActivity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
     }
 }

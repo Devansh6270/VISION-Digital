@@ -1,8 +1,5 @@
 package com.vision_digital.TestSeries;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.vision_digital.BuildConfig;
@@ -317,7 +317,7 @@ public class ResultActivity extends AppCompatActivity {
             String param = "test_id=" + testId + "&sid=" + sid;
             Log.e("param", param);
 
-            JSONObject jsonObject = jsonParser.makeHttpRequest(getApplicationContext().getString(R.string.apiURL) + "getTestResult", "POST", param);
+            JSONObject jsonObject = jsonParser.makeHttpRequest("https://v.chalksnboard.com/api/v3/" + "getTestResult", "POST", param);
             if (jsonObject != null) {
                 return jsonObject.toString();
             } else {

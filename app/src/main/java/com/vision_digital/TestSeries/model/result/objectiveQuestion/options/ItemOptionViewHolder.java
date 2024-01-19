@@ -2,19 +2,21 @@ package com.vision_digital.TestSeries.model.result.objectiveQuestion.options;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vision_digital.R;
 
 public class ItemOptionViewHolder extends RecyclerView.ViewHolder {
 
-    TextView option;
+    TextView option, tvOptionNo;
     ImageView optionImage,zoomImage;
-    CardView optionCard;
+
+//    CardView optionCard;
+    LinearLayout optionCard, llOption;
     public ItemOptionViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -22,5 +24,7 @@ public class ItemOptionViewHolder extends RecyclerView.ViewHolder {
         optionImage = itemView.findViewById(R.id.optionImage);
         optionCard = itemView.findViewById(R.id.optionCard);
         zoomImage = itemView.findViewById(R.id.zoomImage);
+        tvOptionNo = itemView.findViewById(R.id.tvOptionNo);
+        llOption = itemView.findViewById(R.id.llOption);
     }
 }

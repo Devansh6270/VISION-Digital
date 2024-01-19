@@ -1,14 +1,10 @@
 package com.vision_digital.TestSeries;
 
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import static com.vision_digital.TestSeries.AllTestPageActivity.testSeriesId;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -19,10 +15,19 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.vision_digital.R;
 import com.vision_digital.TestSeries.model.result.objectiveQuestion.ItemObjectiveQuestion;
@@ -36,7 +41,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ShowResultActivity extends AppCompatActivity {
     private CardView closeDrawerBtn, openDrawerBtn;
@@ -52,6 +56,7 @@ public class ShowResultActivity extends AppCompatActivity {
     ItemSectionAdapter itemSectionAdapter;
     LinearLayout goToAnalysis;
 
+
     public static RecyclerView questionsListView;
     com.vision_digital.TestSeries.model.result.objectiveQuestion.ItemObjectiveQuestionAdapter itemObjectiveQuestionAdapter;
     public static ArrayList<ItemSection> sectionthisArrayList = new ArrayList<>();
@@ -59,14 +64,18 @@ public class ShowResultActivity extends AppCompatActivity {
     //Question Layout
 
     public static TextView questionNumber;
-    public static TextView questionView,note_one;
+    public static TextView questionView,note_one ,tvPositiveMarks, tvNegativeMarks, tvExplaination, btnUnderstood;
+    public static WebView wvResult, dialogWvResult;
     public static RecyclerView optionsListView;
     public static TextView nextQuesBtn, prevQuesBtn;
+
+    public static Dialog dialogExplain;
     ImageView backBtn;
 
 
     //api
     JSONObject dataObj;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +85,7 @@ public class ShowResultActivity extends AppCompatActivity {
 
         questionNumber = findViewById(R.id.questionNumber);
         optionsListView = findViewById(R.id.optionsList);
+//        tvOptionNo = optionsListView.findViewById(R.id.tvOptionNo);
         questionView = findViewById(R.id.question);
         nextQuesBtn = findViewById(R.id.nextQuesBtn);
         prevQuesBtn = findViewById(R.id.prevQuesBtn);
@@ -85,6 +95,17 @@ public class ShowResultActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         testNameTv = findViewById(R.id.testNameTv);
 //        testSeriesTitle = findViewById(R.id.testSeriesTitle);
+
+        tvPositiveMarks = findViewById(R.id.tvPositiveMarks);
+        tvNegativeMarks = findViewById(R.id.tvNegativeMarks);
+        wvResult = findViewById(R.id.wvResult);
+        tvExplaination = findViewById(R.id.tvExplaination);
+
+        dialogExplain = new Dialog(ShowResultActivity.this);
+        dialogExplain.setContentView(R.layout.custom_dialog_explaination);
+        dialogWvResult = dialogExplain.findViewById(R.id.dialogWvResult);
+        btnUnderstood = dialogExplain.findViewById(R.id.btnUnderstood);
+
 
         nextQuesBtn.setVisibility(View.VISIBLE);
         prevQuesBtn.setVisibility(View.VISIBLE);
@@ -149,10 +170,11 @@ public class ShowResultActivity extends AppCompatActivity {
             sid = studDetails.getInt("sid", 0);
 
 //            String param = "uid=" + uid + "&app_version=" + versionCode + "&student_id=" + studId + "&course_id=" + courseId;
-            String param = "test_id=" + testId + "&sid=" + sid;
+            String param = "test_id=" + testId + "&sid=" + sid + "&testseries_id=" + testSeriesId;
             Log.e("param", param);
+            String url = getApplicationContext().getString(R.string.apiURL) + "getMyTestResultData";
 
-            JSONObject jsonObject = jsonParser.makeHttpRequest(getApplicationContext().getString(R.string.apiURL4) + "getMyTestResultData", "POST", param);
+            JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
             if (jsonObject != null) {
                 return jsonObject.toString();
             } else {
@@ -195,9 +217,11 @@ public class ShowResultActivity extends AppCompatActivity {
                                 section.setName(sectionObject.getString("name"));
 
                                 JSONArray questionsArray = sectionObject.getJSONArray("questions");
+                                Log.e("Question Data--", questionsArray.toString());
                                 ArrayList<ItemObjectiveQuestion> questionArrayList = null;
                                 switch (section.getType()) {
                                     case "Objective":
+//                                        questionArrayList.clear();
                                         questionArrayList = new ArrayList<ItemObjectiveQuestion>();
                                         for (int j = 0; j < questionsArray.length(); j++) {
                                            ItemObjectiveQuestion objectiveQuestion = new ItemObjectiveQuestion();
@@ -208,6 +232,10 @@ public class ShowResultActivity extends AppCompatActivity {
                                             objectiveQuestion.setAnswer_status(questionObject.getString("answer_status"));
                                             objectiveQuestion.setCorrect_answer(questionObject.getString("correct_option"));
                                             objectiveQuestion.setSelected_answer(questionObject.getString("selected_answer"));
+                                            objectiveQuestion.setPositiveMarks(" +" +questionObject.getDouble("p_marks")+"");
+                                            objectiveQuestion.setNegativeMarks(" -" +questionObject.getDouble("n_marks")+"");
+//                                           TestSeries > model > result.objectiveQuestion > ItemObjectiveQuestionAdapter
+                                            objectiveQuestion.setWvResult(questionObject.getString("solution"));
 //                                            JSONArray optionsArray = questionObject.getJSONArray("options");
                                             ArrayList<ItemOption> optionsList = new ArrayList<>();
                                             JSONObject optionObject = questionObject.getJSONObject("options");
@@ -218,12 +246,11 @@ public class ShowResultActivity extends AppCompatActivity {
 
                                                 JSONObject optionObjectvar = optionObject.getJSONObject("option"+a);
                                                 Log.e("objectoption", String.valueOf(optionObject.getJSONObject("option1" )));
-
                                                 itemOption.setOption(optionObjectvar.getString("title"));
                                                 Log.e("title",(optionObjectvar.getString("title")));
                                                 itemOption.setOptionImageUrl(optionObjectvar.getString("image"));
                                                 itemOption.setOptionNo("option"+a);
-
+                                                itemOption.setTvOptionNo(String.valueOf(k+1));
 
 
 
@@ -233,13 +260,11 @@ public class ShowResultActivity extends AppCompatActivity {
                                                 itemOption.setSelected_ans(questionObject.getString("selected_answer"));
 
                                                 objectiveQuestion.setStatus(questionObject.getString("answer_status"));
-//
-
 
                                                 optionsList.add(itemOption);
                                                 a++;
                                             }
-                                            Collections.shuffle(optionsList);
+//                                            Collections.shuffle(optionsList);
                                             objectiveQuestion.setOptions(optionsList);
                                             questionArrayList.add(objectiveQuestion);
                                             Log.e("Questions Added","Done");

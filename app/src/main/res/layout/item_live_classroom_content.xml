@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/checkboxPackage"-->
+<!--        android:layout_width="28dp"-->
+<!--        android:layout_height="@dimen/dimen_24dp"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        />-->
+
+    <LinearLayout
+        android:id="@+id/describeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/coursesCard"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="12dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/packageImg"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/image_round_corner"
+                android:scaleType="fitXY"
+                android:src="@drawable/nobita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundimageview" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/packageTitle"
+                    style="@style/Nohemi_Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="Title"
+                    android:textColor="@color/darkGreyColor"
+                    android:textSize="@dimen/dimen_16sp" />
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/forwordBtn"-->
+<!--                    android:layout_width="21dp"-->
+<!--                    android:layout_height="21dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:src="@drawable/ic_right_gray_arrow"-->
+<!--                    app:tint="@color/darkGreyColor" />-->
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/packageDescription"
+                style="@style/Nohemi_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_4dp"
+                android:maxLines="4"
+                android:text="Short Description
+            \n
+             Short Description Short Description Short Description"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/dateId"
+                style="@style/Nohemi_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_8dp"
+                android:maxLines="1"
+                android:text="06-12-2023"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

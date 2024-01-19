@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,10 +42,17 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
     public void onBindViewHolder(@NonNull final ItemOptionViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         holder.option.setText(optionArrayLists.get(position).getOption());
+        String optionNumber = optionArrayLists.get(position).getTvOptionNo();
+        if (optionArrayLists.get(position).getOption().equals("")){
+            holder.llOption.setVisibility(View.GONE);
+        } else {
+            holder.llOption.setVisibility(View.VISIBLE);
+            holder.tvOptionNo.setText(optionNumber+") ");
+        }
+
         if (!optionArrayLists.get(position).getOptionImageUrl().equals("")) {
             holder.optionImage.setVisibility(View.VISIBLE);
             holder.zoomImage.setVisibility(View.VISIBLE);
-
 
             Glide.with(context)
                     .load(optionArrayLists.get(position).getOptionImageUrl())
@@ -93,12 +101,15 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
 
         if (optionArrayLists.get(position).getCorrect_ans().trim().equals(optionArrayLists.get(position).getOptionNo().trim())) {
 
-            holder.optionCard.setBackgroundColor(Color.parseColor("#03980A"));
+//            holder.optionCard.setBackgroundColor(Color.parseColor("#03980A"));
+            holder.optionCard.setBackgroundResource(R.drawable.bg_correct_answer);
 
             holder.option.setTextColor(Color.WHITE);
         }
+        Log.e("Incorrect","User Selected Option"+optionArrayLists.get(position).getSelected_ans().trim());
         if (optionArrayLists.get(position).getOptionNo().trim().equals(optionArrayLists.get(position).getSelected_ans().trim())) {
-            holder.optionCard.setBackgroundColor(Color.parseColor("#D30404"));
+//            holder.optionCard.setBackgroundColor(Color.parseColor("#D30404"));
+            holder.optionCard.setBackgroundResource(R.drawable.bg_incorrect_answer);
             holder.option.setTextColor(Color.WHITE);
 //            note_one.setText("Hey! You did it Right...");
 //            note_two.setText("You are among 10.0% of the student who attempted it and got the right answer");
@@ -108,7 +119,8 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
         }
         if (optionArrayLists.get(position).getSelected_ans().trim().equals(optionArrayLists.get(position).getCorrect_ans().trim())) {
             if (optionArrayLists.get(position).getOptionNo().trim().equals(optionArrayLists.get(position).getSelected_ans().trim())) {
-                holder.optionCard.setBackgroundColor(Color.parseColor("#03980A"));
+//               holder.optionCard.setBackgroundColor(Color.parseColor("#03980A"));
+                holder.optionCard.setBackgroundResource(R.drawable.bg_correct_answer);
                 holder.option.setTextColor(Color.WHITE);
 //                note_one.setText("Hey! You did it Right...");
 //                note_two.setText("You are among 10.0% of the student who attempted it and got the right answer");
@@ -117,6 +129,8 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
 
             }
         }
+        // my change
+
 
 //
 //

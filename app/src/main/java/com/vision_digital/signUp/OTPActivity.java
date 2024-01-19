@@ -77,9 +77,9 @@ public class OTPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_o_t_p);
         checkLoginUrl = getApplicationContext().getString(R.string.apiURL) + "isRegisteredStudent";
-        sendOtpUrl=getApplicationContext().getString(R.string.apiURL4)+"sendOTPcnb";
-        resendOtpUrl=getApplicationContext().getString(R.string.apiURL4)+"resendOTPcnb";
-        verifyOtpUrl=getApplicationContext().getString(R.string.apiURL4)+"verifyOTPcnb";
+        sendOtpUrl=getApplicationContext().getString(R.string.apiURL)+"sendOTPcnb";
+        resendOtpUrl=getApplicationContext().getString(R.string.apiURL)+"resendOTPcnb";
+        verifyOtpUrl=getApplicationContext().getString(R.string.apiURL)+"verifyOTPcnb";
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -124,34 +124,7 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
 
-//        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//            @Override
-//            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-//                phoneAuthCredentialUser = phoneAuthCredential;
-//                otpView.setText(phoneAuthCredential.getSmsCode());
-//                signInWithPhoneAuthCredential(phoneAuthCredentialUser);
-//            }
-//
-//            @Override
-//            public void onVerificationFailed(FirebaseException e) {
-//                Log.i("ERROR", "" + e);
-//                Toast.makeText(OTPActivity.this, "Oops! Something went wrong", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
-//            }
-//
-//            @Override
-//            public void onCodeSent(String verificationId,
-//                                   PhoneAuthProvider.ForceResendingToken token) {
-//                // The SMS verification code has been sent to the provided phone number, we
-//                // now need to ask the user to enter the code and then construct a credential
-//                // by combining the code with a verification ID.
-//                Log.d("Id is", "onCodeSent:" + verificationId);
-//                dialog.dismiss();
-//                // Save verification ID and resending token so we can use them later
-//                mVerificationId = verificationId;
-//                mResendToken = token;
-//            }
-//        };
+
 
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
@@ -166,90 +139,9 @@ public class OTPActivity extends AppCompatActivity {
         });
 
 
-       // sendVerificationCode();
+
     }
 
-//    public void sendVerificationCode() {
-//        if (phoneNumber.length() == 13) {
-//            PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber, 90, TimeUnit.SECONDS, OTPActivity.this, mCallbacks);
-//            dialog = new ProgressDialog(OTPActivity.this);
-//            dialog.setMessage("OTP sending to your Mobile Number");
-//            dialog.show();
-//        } else {
-//            Toast.makeText(OTPActivity.this, "Please Input Correct Mobile Number", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-//    public void verifyOTP() {
-//        String code = otpView.getText().toString().trim();
-//        if (code.length() == 6) {
-//            Log.d("VErify","VerifyingOTP");
-//            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
-//            signInWithPhoneAuthCredential(credential);
-//        } else {
-//            otpView.setText("");
-//            btnOTPVerification.setEnabled(true);
-//            dialog.hide();
-//            Toast.makeText(OTPActivity.this, "OOPS! Something went wrong.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-//    private void
-//    resendVerificationCode(String phoneNumber,
-//                                        PhoneAuthProvider.ForceResendingToken token) {
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                phoneNumber,        // Phone number to verify
-//                90,                 // Timeout duration
-//                TimeUnit.SECONDS,   // Unit of timeout
-//                OTPActivity.this,               // Activity (for callback binding)
-//                mCallbacks,         // OnVerificationStateChangedCallbacks
-//                token);             // ForceResendingToken from callbacks
-//        dialog.setMessage("OTP Re-Sending to your Mobile Number");
-//        dialog.show();
-//    }
-
-//    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-//        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//                if (task.isSuccessful()) {
-//                    SharedPreferences.Editor editor = getSharedPreferences("CNBMOBILE", MODE_PRIVATE).edit();
-//                    editor.putBoolean("mobileNoRegistered", true);
-//                    editor.putString("mobileNo", mobileNum);
-//                    editor.apply();
-//
-//
-//                    SharedPreferences studDetails = getSharedPreferences("CNBMOBILE", MODE_PRIVATE);
-//                    String mobString = studDetails.getString("mobileNo", "NO_NAME");
-//                    Log.e("mobString",mobString);
-//                    //Checking previous user Status
-//                    if (FirebaseAuth.getInstance().getCurrentUser() != null){
-//                        //I made changes here
-//                        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                        Log.e("TAG", "onComplete: userId"+uid);
-//                        SharedPreferences.Editor shareUid = getSharedPreferences("CNBUID", MODE_PRIVATE).edit();
-//                        shareUid.putBoolean("isUidSaved", true);
-//                        shareUid.putString("uid", uid);
-//                        shareUid.apply();
-//
-//                        // to here
-//                        new IsRegisteredStudent().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//
-//                    }
-//                    else{
-//                        Toast.makeText(OTPActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                } else {
-//                    btnOTPVerification.setEnabled(true);
-//                    dialog.hide();
-//                    otpView.setText("");
-//                    Toast.makeText(OTPActivity.this, "Please Input Correct OTP", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
 
 
     class  VerifyOtp extends AsyncTask<String,Void ,String> {
@@ -427,10 +319,14 @@ public class OTPActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
+            SharedPreferences userIsRegisteredSuccessful = OTPActivity.this.getSharedPreferences("CNB", MODE_PRIVATE);
+            String current_login = userIsRegisteredSuccessful.getString("current_login_id","");
+            Log.e(TAG, "doInBackground: " + "do in background");
+
             JSONParser jsonParser = new JSONParser(OTPActivity.this);
             int versionCode = BuildConfig.VERSION_CODE;
             Log.e(TAG, "doInBackground: token id =========================================="+tokenId);
-            String param = "mobile=" + mobileNum + "&app_version=" + versionCode + "&token_id=" +tokenId;
+            String param = "mobile=" + mobileNum + "&app_version=" + versionCode + "&token_id=" +tokenId+ "&current_login_id="+current_login;
 
             // FirebaseInstanceId.getInstance().getToken();
             Log.e("test-param", param + checkLoginUrl);
@@ -474,6 +370,8 @@ public class OTPActivity extends AppCompatActivity {
                                 editor.putInt("sid", dataObj.getInt("id"));
                                 editor.putString("profileName",dataObj.getString("name"));
                                 editor.putString("isLogin","Yes");
+                                editor.putString("mobileNo",dataObj.getString("mobile"));
+                                editor.putString("current_login_id", dataObj.getString("current_login_id"));
                                 sid=dataObj.getInt("id");
                                 editor.apply();
                                 editor.commit();
@@ -511,10 +409,10 @@ public class OTPActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = getSharedPreferences("CNB", MODE_PRIVATE).edit();
                                 editor.putInt("sid", dataObj.getInt("id"));
                                 editor.putString("isLogin","Yes");
+                                editor.putString("mobileNo",mobileNum);
                                 sid=dataObj.getInt("id");
                                 editor.apply();
                                 editor.commit();
-                                Log.e(TAG, "login save hoga hai: "+sid );
                                 Log.e(TAG, "onPostExecute: "+ "login registered nhi hia"  );
                                 startActivity(new Intent(OTPActivity.this, VisionStudentActivity.class));
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

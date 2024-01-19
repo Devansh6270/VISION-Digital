@@ -5,7 +5,27 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_all_test_page.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_certificate.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_communit_details.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_study_video_player.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
@@ -15,12 +35,177 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_irctcstaff_detail.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_license_staff.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_live_class_room.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_live_details.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_log_in_via_phone.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_new_result.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ongoing_test.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_other.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_select_profile.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_show_result.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_subjective_paper_detail.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_test_series_availability.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_vision_student.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_you_tube_video_player.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/bg_green_round_positive.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_explaination.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/custom_ui_player.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_all_test_page.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_course_package.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_installment_layout.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_live_class_date.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_live_classroom_content.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_live_courses_card.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_notes_classroom_content.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_objective_question_option.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_offline_result_layout.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_package_course.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_play_live_class.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_subjective_paper.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_test_series_availability.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/msg_receive.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/msg_sent.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
@@ -31,7 +216,185 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14eaaadb-ad15-488d-966a-16e4fef5ef9a" name="Changes" comment="" />
+    <list default="true" id="14eaaadb-ad15-488d-966a-16e4fef5ef9a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/AllTestPageActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/PdfUploadTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/SubjectivePaperDetailActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/TestSeriesAvailabilityActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/SubjectivePaper/ItemSubjectivePaperAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/SubjectivePaper/ItemSubjectivePaperList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/TestSeriesAvailabilityBundle/ItemTestSeriesAvailabilityAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/TestSeriesAvailabilityBundle/ItemTestSeriesAvailabilityList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/allTestSeries/ItemAllTestPageAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/allTestSeries/ItemAllTestPageList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/videoPlayer/CustomPlayerUiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/videoPlayer/YouTubeVideoPlayerActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/liveClass/LiveClassRoomActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/liveClass/LiveDetailsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/chats/Messages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/chats/MessagesAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemClassroomContentAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemClassroomContentModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemLiveClassDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemLiveClassesDateWise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemLiveClassesDateWiseAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/Classroom/ItemLiveDateAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/ItemAllLiveClassViewHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/ItemAllLiveClassesAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/ItemLiveClassesAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/NotesClassroomContent/ItemNotesAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/NotesClassroomContent/ItemNotesList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/arrow_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/baseline_check.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_border_corner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_correct_answer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_green_round_positive.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_grey_round_button.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_grey_round_stroke.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_incorrect_answer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_live_card.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_live_class_button.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_live_time.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_red_round_button.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_red_round_negative.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_red_round_stroke.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_round_stroke.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_strike.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_subjective_paper_cardview.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/books_for_notes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/buynow_classroom_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/dislikes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/download_notes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/education.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_back_ios_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_backward_solid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_forward_solid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_fullscreen_exit_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_fullscreen_open_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_red.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_unlock.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icons_solution.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img_banner_books.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img_banner_triangl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/item_objective_question_option.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/like.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/msg_receive_drawable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/msg_sent_drawable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/tab_selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/test_passed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/test_series_banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_test_page.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_live_class_room.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_live_details.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_subjective_paper_detail.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_test_series_availability.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_you_tube_video_player.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/bg_green_round_positive.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_explaination.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_ui_player.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_all_test_page.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_live_class_date.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_live_classroom_content.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_live_courses_card.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_notes_classroom_content.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_play_live_class.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_subjective_paper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_test_series_availability.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/msg_receive.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/msg_sent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/CoursePackage/CoursePackageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/CoursePackage/CoursePackageActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/OngoingTestActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/OngoingTestActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/ResultActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/ResultActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/ShowResultActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/ShowResultActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/TestDetailsActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/TestSeriesDashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/TestSeriesDashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/bundle/ItemTestBundleAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/bundle/ItemTestBundleAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/ItemObjectiveQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/ItemObjectiveQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/ItemObjectiveQuestionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/ItemObjectiveQuestionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/options/ItemOptionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/options/ItemOptionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/options/ItemOptionViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/objectiveQuestion/options/ItemOptionViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/ItemObjectiveQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/ItemObjectiveQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/ItemObjectiveQuestionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/ItemObjectiveQuestionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOptionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOptionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOptionViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/result/objectiveQuestion/options/ItemOptionViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/section/ItemSectionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/section/ItemSectionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/testResultNew/NewResultActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/TestSeries/model/testResultNew/NewResultActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/CourseDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/CourseDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/DashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/MileStoneVideoPlayerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/MileStoneVideoPlayerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/SplashScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/CommunitiesListActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/CommunityChatPageActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/CommunityDetailsActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/GroupStudyVideoPlayerActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/ItemCommunityModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/UserHoldingScreenActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatModels/AudioModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatModels/ImageModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatModels/ItemChat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatPages/ChatsFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatPages/DoubtsFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatPages/InvitationsFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chatPages/TabAccessorAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/chooseadminModel/ItemChooseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/communitymodels/CommunityItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/communitymodels/ItemCommunityAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/communitymodels/ItemCommunityViewHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/groupMicOnOff/ItemStudentMic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/groupMileStoneModel/ItemGroupSuggestedMileAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/groupMileStoneModel/ItemGroupSuggestedMileItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/groupMileStoneModel/ItemGroupSuggestedMileViewHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/invitation/SelectMilestoneInvitationActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/invitation/SelectStudentActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/invitation/studentModel/ItemStudent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/invitation/studentModel/ItemStudentAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/studentModel/ItemStudentCommDetailsAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/community/studentModel/ItemStudents.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/CoursePackage/ItemPackageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/CoursePackage/ItemPackageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/CoursePackage/ItemTypesPackageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/CoursePackage/ItemTypesPackageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemAllPopularCourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemAllPopularCourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemPopularCoursesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemPopularCoursesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyAllCourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyAllCourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyCourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyCourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/profile/EditProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/profile/EditProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/profile/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/profile/ProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/AgentDetailsActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/IRCTCStaffDetailActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/LicenseStaffActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/LogInViaPhoneActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/LogInViaPhoneActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/OTPActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/OTPActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/OtherActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/SelectProfileActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/VisionStudentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/signUp/VisionStudentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/transaction/testTransaction/ItemTestTransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/transaction/testTransaction/ItemTestTransactionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_communit_details.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_communities_list.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_community_chat_page.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_group_study_video_player.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_irctcstaff_detail.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_license_staff.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ongoing_test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ongoing_test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_course_package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_course_package.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_objective_question_option.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_objective_question_option.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +403,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\devan\.android\avd\Android_11.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[662b51b80206]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -71,16 +434,23 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "devansh__branch",
-    "last_opened_file_path": "C:/Users/devan/AndroidStudioProjects/VISION-Digital-package/app/src/main/res/drawable",
+    "git-widget-placeholder": "nihal__branch",
+    "last_opened_file_path": "C:/Users/NIHAL RAM TRIPATHI/AndroidStudioProjects/Flutter Project/VISION-Digital/app/src/main/res/drawable",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\devan\AndroidStudioProjects\VISION-Digital-package\app\src\main\res\drawable" />
-      <recent name="C:\Users\devan\AndroidStudioProjects\VISION-Digital-package\app\src\main\java\com\vision_digital\model" />
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\drawable" />
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\layout" />
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\java\com\vision_digital\model" />
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app" />
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\java\com\vision_digital" />
     </key>
   </component>
   <component name="RunManager">

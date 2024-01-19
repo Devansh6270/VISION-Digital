@@ -1,12 +1,5 @@
 package com.vision_digital.TestSeries;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -25,14 +18,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import com.vision_digital.BuildConfig;
 import com.vision_digital.R;
 import com.vision_digital.TestSeries.model.banner.ItemTestBanner;
 import com.vision_digital.TestSeries.model.banner.TestBannerViewPagerAdapter;
-import com.vision_digital.activities.DashboardActivity;
-import com.vision_digital.helperClasses.JSONParser;
 import com.vision_digital.TestSeries.model.bundle.ItemTestBundle;
 import com.vision_digital.TestSeries.model.bundle.ItemTestBundleAdapter;
+import com.vision_digital.activities.DashboardActivity;
+import com.vision_digital.helperClasses.JSONParser;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
@@ -251,13 +251,14 @@ public class TestSeriesDashboardActivity extends AppCompatActivity {
 
             SharedPreferences studDetails = getSharedPreferences("CNBUID", MODE_PRIVATE);
             uid = studDetails.getString("uid", "NO_NAME");
-
+//=================Previous code for api hit=======================================
             String param = "uid=" + uid + "&app_version=" + versionCode + "&sid=" + sid;
 
             Log.e("param", param);
 
-            JSONObject jsonObject = jsonParser.makeHttpRequest(getApplicationContext().getString(R.string.apiURL) + getDashboardData, "POST", param);
-            Log.e("link", getApplicationContext().getString(R.string.apiURL) + getDashboardData);
+            JSONObject jsonObject = jsonParser.makeHttpRequest("https://v.chalksnboard.com/api/v3/" + getDashboardData, "POST", param);
+            Log.e("link", "https://v.chalksnboard.com/api/v3/" + getDashboardData);
+
             if (jsonObject != null) {
                 return jsonObject.toString();
             } else {
@@ -284,7 +285,7 @@ public class TestSeriesDashboardActivity extends AppCompatActivity {
                     String status = jsonObject.getString("status");
                     final JSONObject dataObj = jsonObject.getJSONObject("data");
                     switch (status) {
-                        case "success":
+                        case "true":
 
                             //Already Logged in-----------------------
 
@@ -335,6 +336,7 @@ public class TestSeriesDashboardActivity extends AppCompatActivity {
                                     subscribedTestsList.add(itemSubscribedTestSeries);
 
                                 }
+
                                 //My courses-------------
 
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(TestSeriesDashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -368,6 +370,7 @@ public class TestSeriesDashboardActivity extends AppCompatActivity {
 
 
                                 }
+
                                 LinearLayoutManager layoutManagerBundleTestSeries = new LinearLayoutManager(TestSeriesDashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
                                 testSeriesBundleList.setLayoutManager(layoutManagerBundleTestSeries);
                                 itemBundleTestSeriesAdapter = new ItemTestBundleAdapter(myBundleList);

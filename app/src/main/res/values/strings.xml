@@ -1,23 +1,11 @@
 <resources>
     <string name="app_name">VISION-Digital</string>
 
-    <!--        <string name="apiURL">https://test.bodvid.com/api/v3/</string>-->
-    <!--    <string name="apiURL">https://chalksnboard.com/api/v3/</string>-->
 
-    <!--    <string name="apiURL1">https://irctc.chalksnboard.com/api/v2/</string>-->
-    <!--    <string name="apiURL">https://irctc.chalksnboard.com/api/v2/</string>-->
-    <!--    <string name="apiURL4">https://irctc.chalksnboard.com/api/v4/</string>-->
-
-    <string name="apiURL1">https://v.chalksnboard.com/api/v3/</string>
-    <string name="apiURL">https://v.chalksnboard.com/api/v3/</string>
-    <string name="apiURL4">https://v.chalksnboard.com/api/v3/</string>
+    <string name="apiURL">http://v.chalksnboard.com/api/v4/</string>
 
 
     <string name="agora_app_id">1c80404fa804466fa4305ceeeaa07101</string>
-    <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
-    <!-- You will need to deploy your own token server for production release -->
-    <!-- Leave this   value empty if Security keys/Token is not enabled for your project -->
-    <!--    <string name="agora_access_token">0061c80404fa804466fa4305ceeeaa07101IAA+vtK5CDcgciLQl3vcfurni964imd7MdVurfWhK0KT24v2Tw8AAAAAEAB7kPq6lsNEXwEAAQCWw0Rf</string>-->
     <string name="agora_access_token"></string>
 
     <string name="show_more"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a

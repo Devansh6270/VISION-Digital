@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:id="@+id/liveClassCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="48dp"
+        android:background="@drawable/bg_live_card"
+        android:layout_marginEnd="@dimen/dimen_24dp"
+        android:layout_marginBottom="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:cardCornerRadius="@dimen/dimen_8dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/liveClassTitle"
+            style="@style/Nohemi_Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="6dp"
+            android:text="What you will get in this class?"
+            android:textColor="@color/textColor"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/liveClassDescription"
+            style="@style/Nohemi_Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="6dp"
+            android:text="What you will get in this class?"
+            android:textColor="@color/textColor"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/liveClassShortDescription"
+            style="@style/Nohemi_Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="6dp"
+            android:text="2.00.00 English Medium"
+            android:textColor="@color/textColor"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                style="@style/Nohemi_Regular"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/textColor"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/startLiveClass"
+                style="@style/Nohemi_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_live_class_button"
+                android:text="Start Class"
+                android:padding="@dimen/dimen_12dp"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/timeLiveClass"
+        style="@style/Nohemi_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_live_time"
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingEnd="@dimen/dimen_4dp"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:paddingStart="@dimen/dimen_4dp"
+        android:text="4:00 PM"
+        android:textColor="@color/red"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@id/liveClassCard"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/liveClassCard" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

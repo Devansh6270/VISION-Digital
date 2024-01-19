@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.vision_digital.CoursePackage.CoursePackageActivity;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
+import com.vision_digital.TestSeries.AllTestPageActivity;
+import com.vision_digital.TestSeries.OngoingTestActivity;
 import com.vision_digital.activities.CourseDetailsActivity;
+import com.vision_digital.liveClass.LiveDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,20 +77,28 @@ public class ItemTypesPackageAdapter extends RecyclerView.Adapter<ItemTypesPacka
                         courseIntent.putExtra("image",itemList.get(position).getProductImage());
                         courseIntent.putExtra("fromActivity","homePage");
                         courseIntent.putExtra("forTask","learn");
+                        courseIntent.putExtra("packageId",itemList.get(position).getProductId());
                         context.startActivity(courseIntent);
                     } else if (type.equals("test")) {
-                        Intent courseIntent = new Intent(context, TestDetailsActivity.class);
+                        Intent courseIntent = new Intent(context, OngoingTestActivity.class);
                         courseIntent.putExtra("id", itemList.get(position).getProductId());
                         courseIntent.putExtra("testType", itemList.get(position).getProductId());
                         courseIntent.putExtra("price", itemList.get(position).getProductId());
                         courseIntent.putExtra("desc", itemList.get(position).getProductId());
                         context.startActivity(courseIntent);
                     }
-                    else if (type.equals("testSeries")) {
-
+                    else if (type.equals("testseries")) {
+                        Intent courseIntent = new Intent(context, AllTestPageActivity.class);
+                        courseIntent.putExtra("id", itemList.get(position).getProductId());
+                        courseIntent.putExtra("testType", itemList.get(position).getProductId());
+                        courseIntent.putExtra("price", itemList.get(position).getProductId());
+                        courseIntent.putExtra("subscriptionValidity","");
+                        context.startActivity(courseIntent);
                     }
                     else if (type.equals("live")) {
-
+                        Intent courseIntent = new Intent(context, LiveDetailsActivity.class);
+                        courseIntent.putExtra("id", itemList.get(position).getProductId());
+                        context.startActivity(courseIntent);
                     }
 
                 }

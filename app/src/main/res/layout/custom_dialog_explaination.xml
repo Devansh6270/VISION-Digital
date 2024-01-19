@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_12sp"
+    android:orientation="vertical"
+    tools:ignore="WebViewLayout">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/LogikaNavaRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explaination :"
+                android:textColor="@color/red"
+                android:textSize="@dimen/dimen_16dp"
+                android:textStyle="bold" />
+
+
+            <WebView
+                android:id="@+id/dialogWvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginVertical="@dimen/dimen_8dp"
+                android:gravity="center"
+                android:padding="@dimen/dimen_6dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/btnUnderstood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_red_round_stroke"
+                android:padding="@dimen/dimen_8dp"
+                android:text="Understood"
+                android:textColor="@color/red" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

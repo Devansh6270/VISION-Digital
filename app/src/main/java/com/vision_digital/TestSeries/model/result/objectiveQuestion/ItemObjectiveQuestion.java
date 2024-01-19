@@ -12,7 +12,14 @@ public class ItemObjectiveQuestion {
     String correct_answer;
     String answer_status;
     String selected_answer;
+
+    String negativeMarks;
+    String positiveMarks;
     ArrayList<ItemOption> options = new ArrayList<>();
+
+
+
+    String wvResult;
 
 
 
@@ -20,7 +27,8 @@ public class ItemObjectiveQuestion {
 
     }
 
-    public ItemObjectiveQuestion(String id, String question, String questionImageURL, String status, String correct_answer, String answer_status, String selected_answer, ArrayList<ItemOption> options) {
+    public ItemObjectiveQuestion(String id, String question, String questionImageURL, String status, String correct_answer,
+                                 String answer_status, String selected_answer, String negativeMarks, String positiveMarks, ArrayList<ItemOption> options) {
         this.id = id;
         this.question = question;
         this.questionImageURL = questionImageURL;
@@ -28,7 +36,32 @@ public class ItemObjectiveQuestion {
         this.correct_answer = correct_answer;
         this.answer_status = answer_status;
         this.selected_answer = selected_answer;
+        this.negativeMarks = negativeMarks;
+        this.positiveMarks = positiveMarks;
         this.options = options;
+    }
+
+    public String getWvResult() {
+        return wvResult;
+    }
+
+    public void setWvResult(String wvResult) {
+        this.wvResult = wvResult;
+    }
+    public String getNegativeMarks() {
+        return negativeMarks;
+    }
+
+    public void setNegativeMarks(String negativeMarks) {
+        this.negativeMarks = negativeMarks;
+    }
+
+    public String getPositiveMarks() {
+        return positiveMarks;
+    }
+
+    public void setPositiveMarks(String positiveMarks) {
+        this.positiveMarks = positiveMarks;
     }
 
     public String getCorrect_answer() {

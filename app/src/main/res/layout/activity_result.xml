@@ -59,13 +59,13 @@
             <ImageView
                 android:id="@+id/backBtn"
                 android:elevation="8dp"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:background="@drawable/round_shape"
-                android:src="@drawable/ic_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_ios_24"
                 android:layout_centerVertical="true"
+                android:tint="@color/white"
                 android:layout_marginLeft="16dp"
-                 />
+                />
 
             <!--        <ImageView-->
             <!--            android:id="@+id/searchBtn"-->
@@ -222,7 +222,7 @@
                 android:background="@drawable/button_background"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/SpaceGroteskBold"
+                style="@style/Nohemi_Regular"
                 android:text="Show Answer"
                 android:textColor="@color/white" />
 
@@ -236,7 +236,7 @@
                 android:background="@drawable/button_background"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                style="@style/SpaceGroteskBold"
+                style="@style/Nohemi_Regular"
                 android:text="Download Solutions"
                 android:textColor="@color/white" />
 

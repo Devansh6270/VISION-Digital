@@ -21,13 +21,13 @@
             android:elevation="8dp"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:background="@drawable/round_shape"
-            android:src="@drawable/back_btn_new"
+            android:src="@drawable/ic_back_ios_24"
             android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/dimen_8dp"
             android:layout_marginEnd="@dimen/dimen_8dp"
             android:layout_marginBottom="@dimen/dimen_8dp"
-            />
+            app:tint="@color/white"
+            android:contentDescription="Back BTN" />
     </RelativeLayout>
 
 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_4dp"
+    android:id="@+id/llOption"
+    android:visibility="visible"
+    android:background="@drawable/bg_round_stroke"
+    android:orientation="vertical">
+
+
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:id="@+id/optionCard"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="8sp"-->
+    <!--            android:layout_marginTop="8sp"-->
+    <!--            android:outlineSpotShadowColor="@color/colorPrimary"-->
+    <!--            android:outlineAmbientShadowColor="@color/colorPrimary"-->
+    <!--            android:layout_marginEnd="8sp"-->
+    <!--            android:layout_marginBottom="8sp"-->
+    <!--            android:layout_weight="5">-->
+
+    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="5dp"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical"-->
+    <!--                android:padding="2dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/tvOptionNo"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="option"-->
+    <!--                    android:padding="@dimen/dimen_16dp"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent"-->
+    <!--                    app:layout_constraintEnd_toStartOf="@id/option"/>-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/option"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:padding="16sp"-->
+    <!--                    android:text="Lorem Ipsum is simply dummy text"-->
+    <!--                    android:textAlignment="viewStart"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    android:longClickable="false"-->
+    <!--                    app:layout_constraintStart_toEndOf="@id/tvOptionNo"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--                <androidx.cardview.widget.CardView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_margin="0.5dp"-->
+    <!--                    android:elevation="1dp"-->
+    <!--                    android:outlineAmbientShadowColor="@color/colorPrimary"-->
+    <!--                    android:outlineSpotShadowColor="@color/colorPrimary"-->
+    <!--                    android:padding="2dp"-->
+    <!--                    app:cardBackgroundColor="@color/white"-->
+    <!--                    app:cardCornerRadius="25dp"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/zoomImage"-->
+    <!--                        android:layout_width="30dp"-->
+    <!--                        android:layout_height="30dp"-->
+    <!--                        android:padding="3dp"-->
+    <!--                        android:src="@drawable/ic_baseline_zoom_in_24"-->
+    <!--                        android:tint="@color/colorPrimary"-->
+    <!--                        android:visibility="visible" />-->
+    <!--                </androidx.cardview.widget.CardView>-->
+
+
+    <!--                <ImageView-->
+    <!--                    android:id="@+id/optionImage"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="100dp"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:src="@drawable/right_chalk"-->
+    <!--                    android:visibility="visible"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toBottomOf="@+id/option" />-->
+
+    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    <!--        </androidx.cardview.widget.CardView>-->
+
+
+        <LinearLayout
+            android:id="@+id/optionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvOptionNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_8dp"
+                android:text="1)"
+                android:textSize="@dimen/dimen_16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:longClickable="false"
+                android:padding="8sp"
+                android:text="Lorem Ipsum is simply dummy text"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:layout_marginRight="@dimen/dimen_4dp"
+                android:elevation="1dp"
+                android:outlineAmbientShadowColor="@color/colorPrimary"
+                android:outlineSpotShadowColor="@color/colorPrimary"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="25dp">
+
+                <ImageView
+                    android:id="@+id/zoomImage"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_baseline_zoom_in_24"
+                    android:tint="@color/colorPrimary"
+                    android:visibility="visible"
+                    tools:ignore="UseAppTint" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/optionImage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/right_chalk"
+            android:visibility="visible" />
+
+
+</LinearLayout>

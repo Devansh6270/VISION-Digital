@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
         binding = DataBindingUtil.setContentView(this,R.layout.activity_profile);
         category_layout = findViewById(R.id.category_layout);
 
-        url = getApplicationContext().getString(R.string.apiURL1) + "getProfile";
+        url = getApplicationContext().getString(R.string.apiURL) + "getProfile";
         dialog = new ProgressDialog(this);
        // dialog.show();
 

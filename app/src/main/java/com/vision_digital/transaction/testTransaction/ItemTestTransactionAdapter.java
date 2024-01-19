@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
+import com.vision_digital.TestSeries.OngoingTestActivity;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,7 +74,7 @@ public class ItemTestTransactionAdapter extends RecyclerView.Adapter<ItemTestTra
         holder.test_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent td = new Intent(context, TestDetailsActivity.class);
+                Intent td = new Intent(context, OngoingTestActivity.class);
                 td.putExtra("id",testIdSt);
                 context.startActivity(td);
             }

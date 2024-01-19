@@ -1,5 +1,8 @@
 package com.vision_digital.TestSeries.model.objectiveQuestion.options;
 
+import static com.vision_digital.TestSeries.OngoingTestActivity.sectionArrayList;
+import static com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestionAdapter.currentQuestion;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,9 +24,6 @@ import com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuesti
 
 import java.util.ArrayList;
 
-import static com.vision_digital.TestSeries.TestDetailsActivity.sectionArrayList;
-import static com.vision_digital.TestSeries.model.objectiveQuestion.ItemObjectiveQuestionAdapter.currentQuestion;
-
 public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder> {
 
     Context context;
@@ -44,7 +44,15 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ItemOptionViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
+
         holder.option.setText(optionArrayList.get(position).getOption());
+        String optionNumber = optionArrayList.get(position).getOptNo();
+        if (optionArrayList.get(position).getOption().equals("")){
+            holder.llOption.setVisibility(View.GONE);
+        } else {
+            holder.llOption.setVisibility(View.VISIBLE);
+            holder.tvOptioNo.setText(optionNumber+") ");
+        }
 //        Glide.with(context)
 //                .load(optionArrayList.get(position).getOptionImageUrl())
 //                .into(holder.optionImage);
@@ -63,12 +71,14 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
 
 
         if (optionArrayList.get(position).isSelected()) {
-            holder.optionCard.setBackgroundColor(Color.parseColor("#1893C5"));
+//            holder.optionCard.setBackgroundColor(Color.parseColor("#1893C5"));
+            holder.llOption.setBackgroundResource(R.drawable.bg_correct_answer);
         } else {
-            holder.optionCard.setBackgroundColor(Color.WHITE);
+//            holder.optionCard.setBackgroundColor(Color.WHITE);
+            holder.llOption.setBackgroundResource(R.drawable.bg_round_stroke);
         }
 
-        holder.optionCard.setOnClickListener(new View.OnClickListener() {
+        holder.llOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (clicked != position) {
@@ -78,6 +88,7 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
                             clicked = position;
                             ItemObjectiveQuestion itemObjectiveQuestion = (ItemObjectiveQuestion) sectionArrayList.get(0).getQuestionsList().get(currentQuestion);
                             itemObjectiveQuestion.setAnsweredAnswer(optionArrayList.get(i).getOptNo());
+                            Log.e("SelectedOption","Selected Option"+optionArrayList.get(i).getOptNo());
 
                             Log.e("aaaaa",optionArrayList.get(i).getOptNo());
                             SharedPreferences.Editor test = context.getSharedPreferences(itemObjectiveQuestion.getId(),Context.MODE_PRIVATE).edit();
@@ -98,7 +109,8 @@ public class ItemOptionAdapter extends RecyclerView.Adapter<ItemOptionViewHolder
                 } else {
                     optionArrayList.get(position).setSelected(false);
 
-                    holder.optionCard.setBackgroundColor(Color.WHITE);
+//                    holder.optionCard.setBackgroundColor(Color.WHITE);
+                    holder.llOption.setBackgroundResource(R.drawable.bg_round_stroke);
 //                    holder.option.setTextColor(Color.BLACK);
 //                    String text =  "<span style='color:black;'>"
 //                            + optionArrayList.get(position).getOption()

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
+import com.vision_digital.TestSeries.AllTestPageActivity;
 import com.vision_digital.TestSeries.model.testResultNew.NewResultActivity;
 
 import java.util.List;
@@ -115,7 +115,7 @@ public class ItemTestBundleAdapter extends RecyclerView.Adapter<ItemTestBundleVi
                         courseIntent.putExtra("id", myTestBundleList.get(position).getId());
                         context.startActivity(courseIntent);
                     }else{
-                        Intent courseIntent = new Intent(context, TestDetailsActivity.class);
+                        Intent courseIntent = new Intent(context, AllTestPageActivity.class);
                         courseIntent.putExtra("desc", myTestBundleList.get(position).getDescription());
                         courseIntent.putExtra("price", myTestBundleList.get(position).getPrice());
                         courseIntent.putExtra("testType", myTestBundleList.get(position).getTestType());

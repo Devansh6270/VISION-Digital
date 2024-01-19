@@ -27,13 +27,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,9 +40,7 @@ import com.vision_digital.R;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.vision_digital.databinding.ActivityEditProfileBinding;
 import com.vision_digital.helperClasses.JSONParser;
-import com.vision_digital.signUp.SelectProfileActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,7 +49,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -122,11 +115,11 @@ public class EditProfileActivity extends AppCompatActivity implements PopupMenu.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
 
 
-        getProfileDataUrl = getApplicationContext().getString(R.string.apiURL1) + "getProfile";
-        updateProfileUrl = getApplicationContext().getString(R.string.apiURL1) + "updateProfile";
+        getProfileDataUrl = getApplicationContext().getString(R.string.apiURL) + "getProfile";
+        updateProfileUrl = getApplicationContext().getString(R.string.apiURL) + "updateProfile";
 
 
-        setProfileImage=getApplicationContext().getString(R.string.apiURL1)+"updateImage";
+        setProfileImage=getApplicationContext().getString(R.string.apiURL)+"updateImage";
 
         FirebaseApp.initializeApp(this);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
@@ -480,7 +473,7 @@ public class EditProfileActivity extends AppCompatActivity implements PopupMenu.
             param = "sid=" + sid + "&name=" + updatedName + "&username=" + updatedUserName +
                     "&email=" + updatedEmail + "&dob=" + updatedDob + "&gender=" + updatedGender +
                     "&type=" + "others" + "&mobile="
-                    + mobString  + "&token_id=" + SelectProfileActivity.tokenId ;
+                    + mobString  + "&token_id=" + "" ;
 
 
             Log.e(TAG, "param: " + param);

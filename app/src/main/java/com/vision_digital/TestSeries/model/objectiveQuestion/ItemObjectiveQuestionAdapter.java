@@ -1,5 +1,18 @@
 package com.vision_digital.TestSeries.model.objectiveQuestion;
 
+import static com.vision_digital.TestSeries.OngoingTestActivity.drawer;
+import static com.vision_digital.TestSeries.OngoingTestActivity.hint_txt;
+import static com.vision_digital.TestSeries.OngoingTestActivity.nextQuesBtn;
+import static com.vision_digital.TestSeries.OngoingTestActivity.openDrawerBtn;
+import static com.vision_digital.TestSeries.OngoingTestActivity.optionsListView;
+import static com.vision_digital.TestSeries.OngoingTestActivity.prevQuesBtn;
+import static com.vision_digital.TestSeries.OngoingTestActivity.proceedToSubBtn;
+import static com.vision_digital.TestSeries.OngoingTestActivity.questionImage;
+import static com.vision_digital.TestSeries.OngoingTestActivity.questionNumber;
+import static com.vision_digital.TestSeries.OngoingTestActivity.questionView;
+import static com.vision_digital.TestSeries.OngoingTestActivity.tvNegativeMarks;
+import static com.vision_digital.TestSeries.OngoingTestActivity.tvPositiveMarks;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -25,17 +38,6 @@ import com.vision_digital.R;
 import com.vision_digital.TestSeries.model.objectiveQuestion.options.ItemOptionAdapter;
 
 import java.util.ArrayList;
-
-import static com.vision_digital.TestSeries.OngoingTestActivity.hint_txt;
-import static com.vision_digital.TestSeries.OngoingTestActivity.nextQuesBtn;
-import static com.vision_digital.TestSeries.OngoingTestActivity.optionsListView;
-import static com.vision_digital.TestSeries.OngoingTestActivity.prevQuesBtn;
-import static com.vision_digital.TestSeries.OngoingTestActivity.proceedToSubBtn;
-import static com.vision_digital.TestSeries.OngoingTestActivity.questionImage;
-import static com.vision_digital.TestSeries.OngoingTestActivity.questionNumber;
-import static com.vision_digital.TestSeries.OngoingTestActivity.questionView;
-import static com.vision_digital.TestSeries.OngoingTestActivity.drawer;
-import static com.vision_digital.TestSeries.OngoingTestActivity.openDrawerBtn;
 
 
 public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjectiveQuestionViewHolder> {
@@ -65,8 +67,9 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
 
         final Object questionsList = objectiveQuestionList;
         if (position == 0 && firstTime) {
-            loadObjectiveQuestion((ArrayList<ItemObjectiveQuestion>) questionsList, position);
             currentQuestion = 0;
+            loadObjectiveQuestion((ArrayList<ItemObjectiveQuestion>) questionsList, position);
+            //  currentQuestion = 0;
             firstTime = false;
         }
         final String question_id = objectiveQuestion.getId();
@@ -96,6 +99,8 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
             }
         });
 
+
+
         prevQuesBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -115,10 +120,14 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
             }
         });
         proceedToSubBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 loadObjectiveQuestion((ArrayList<ItemObjectiveQuestion>) questionsList, currentQuestion);
+
                 drawer.openDrawer(Gravity.RIGHT);
+
             }
         });
 
@@ -155,9 +164,7 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
                 Log.e("Answered", "True" + (i + 1));
                 break;
 
-            }
-
-            else {
+            } else {
                 Log.e("Answered", "false");
                 itemObjectiveQuestionArrayList.get(currentQuestion).setStatus("NotAnswered");
             }
@@ -172,6 +179,13 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
         currentQuestion = position;
 //        questionView.setText(questionArrayList.get(position).getQuestion());
         questionView.setText(String.valueOf(Html.fromHtml(questionArrayList.get(position).getQuestion(), Html.FROM_HTML_MODE_COMPACT)));
+        tvPositiveMarks.setText(( questionArrayList.get(position)).getPositiveMarks());
+        tvNegativeMarks.setText(( questionArrayList.get(position)).getNegativeMarks());
+
+//        String questionString = questionArrayList.get(position).getQuestion();
+//        questionView.setLines().setJavaScriptEnabled(true);
+//        questionView.loadDataWithBaseURL(null, questionString, "text/html", "UTF-8", null);
+
         Glide.with(context)
                 .load(questionArrayList.get(position).getQuestionImageURL())
                 .into(questionImage);

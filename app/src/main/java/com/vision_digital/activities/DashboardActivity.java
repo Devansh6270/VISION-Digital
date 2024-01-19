@@ -51,10 +51,9 @@ import com.bumptech.glide.Glide;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.vision_digital.TestSeries.TestSeriesDashboardActivity;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
-import com.vision_digital.community.CommunityChatPageActivity;
 import com.vision_digital.helperClasses.JSONParser;
 import com.vision_digital.internetConnectivity.ConnectivityReciever;
 import com.vision_digital.internetConnectivity.MyApplication;
@@ -82,8 +81,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.github.mikephil.charting.data.Entry;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -121,7 +118,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     ImageView menuBtn, searchBtn, live_ViewAllBtn, popularInstitute_viewAllBtn, analytics_viewAllBtn;
     ImageView notificationBtn;
 
-    LinearLayout myCourse_viewAllBtn, popularCousre_viewAllBtn, popularTeachers_viewAllBtn, packagesViewALLBtn;
+    LinearLayout myCourse_viewAllBtn, popularCousre_viewAllBtn, popularTeachers_viewAllBtn, packagesViewALLBtn, offLineResultLayout ;
 
     Button logOut;
 
@@ -151,7 +148,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    List<String> myCourseListForCommunity;
 
     public static String uid;
 
@@ -234,11 +230,12 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         packageLayout = findViewById(R.id.packageLayout);
         packageRecyclerView = findViewById(R.id.recyclerPackageList);
         rvOfflineResult = findViewById(R.id.rvOfflineResult);
+        offLineResultLayout = findViewById(R.id.offlineResultLayout);
 
         no_data_card = findViewById(R.id.no_data_card);
 
 //        logOut=findViewById(R.id.logout);
-        getProfileDataUrl = getApplicationContext().getString(R.string.apiURL1) + "getProfile";
+        getProfileDataUrl = getApplicationContext().getString(R.string.apiURL) + "getProfile";
         getPackageListApi = getApplicationContext().getString(R.string.apiURL) + "getProductPackageList";
 
 
@@ -248,6 +245,17 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         dialog.show();
         menuBtn = findViewById(R.id.profile_back_btn);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                String deviceToken = task.getResult();
+                Log.e("Token",deviceToken);
+
+            }
+        });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all_users");
 
         FirebaseApp.initializeApp(this);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
@@ -268,10 +276,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         mobileNo = getIntent().getStringExtra("mobileNo");
 
 
-//        --DEEP LINK HANDLING--
-
-        //www.example.com/course/9
-        getDynamicLinkFromFirebase();
 
         deeplinkFirebase = getIntent().getStringExtra("deeplinkFirebase");
 
@@ -302,7 +306,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         sid = studDetails.getInt("sid", 0);
         String sidString = String.valueOf(sid);
         getDashboardData = getApplicationContext().getString(R.string.apiURL) + "getDashboardData";
-        getOfflineResultData = "http://v.chalksnboard.com/api/v4/students/" + sidString + "/offlineresultall";
+        getOfflineResultData = getApplicationContext().getString(R.string.apiURL) +"students/"+ sidString + "/offlineresultall";
 
 
         //Putting name on dasboard--------------------Hello User--------------
@@ -452,11 +456,11 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(DashboardActivity.this, ProfileActivity.class);
-                profile.putExtra("instituteForProfile", instituteForProfile);
-                profile.putExtra("fromActivity", "homePage");
-                startActivity(profile);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                Intent profile = new Intent(DashboardActivity.this, ProfileActivity.class);
+//                profile.putExtra("instituteForProfile", instituteForProfile);
+//                profile.putExtra("fromActivity", "homePage");
+//                startActivity(profile);
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -570,85 +574,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     }
 
-    private void getDynamicLinkFromFirebase() {
-        FirebaseDynamicLinks.getInstance()
-                .getDynamicLink(getIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        // Get deep link from result (may be null if no link is found)
-
-                        Log.i("link", "we have dynamic link");
-                        Uri deepLink = null;
-                        if (pendingDynamicLinkData != null) {
-                            Log.i("link", String.valueOf(pendingDynamicLinkData));
-                            deepLink = pendingDynamicLinkData.getLink();
-                        }
-
-                        // Handle the deep link. For example, open the linked content,
-                        // or apply promotional credit to the user's account.
-                        // ...
-                        if (deepLink != null) {
-                            Log.i("link", String.valueOf(deepLink));
-                            String value = deepLink.getLastPathSegment();
-
-                            List<String> param = deepLink.getPathSegments();
-                            Log.e("ParamList", String.valueOf(param));
-                            String paramZero = param.get(0);
-
-                            if (paramZero.equals("courseProfile")) {
-                                Log.e("param_one", paramZero);
-                                String courseId = param.get(1);
-                                Intent i = new Intent(DashboardActivity.this, CourseDetailsActivity.class);
-                                i.putExtra("id", courseId);
-                                i.putExtra("image", "");
-                                i.putExtra("fromActivity", "homePage");
-                                startActivity(i);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            } else if (paramZero.equals("mytestProfile")) {
-                                String id = param.get(1);
-                                Intent k = new Intent(DashboardActivity.this, TestDetailsActivity.class);
-                                k.putExtra("id", id);
-                                k.putExtra("desc", "");
-                                k.putExtra("price", "");
-                                k.putExtra("testType", "");
-                                startActivity(k);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            } else if (paramZero.equals("teacherProfile")) {
-                                String id = param.get(1);
-                                Intent k = new Intent(DashboardActivity.this, TeachersDetailsActivity.class);
-                                k.putExtra("id", id);
-                                startActivity(k);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            } else if (paramZero.equals("schoolProfile")) {
-                                String id = param.get(1);
-                                Intent k = new Intent(DashboardActivity.this, InstituteDetailsActivity.class);
-                                k.putExtra("id", id);
-                                startActivity(k);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            } else if (paramZero.equals("community")) {
-                                String id = param.get(1);
-                                String image = deepLink.getQueryParameter("link");
-                                String name = param.get(2);
-                                Intent k = new Intent(DashboardActivity.this, CommunityChatPageActivity.class);
-                                k.putExtra("community_name", name);
-                                k.putExtra("community_id", id);
-                                k.putExtra("community_logo", image);
-                                k.putExtra("activity", "community_list");
-                                startActivity(k);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                            }
-                        }
-
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "getDynamicLink:onFailure", e);
-                    }
-                });
-    }
 
     private String getDate(long time) {
 
@@ -947,6 +872,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
         @Override
         protected String doInBackground(String... params) {
+            this.dialog.dismiss();
 
             JSONParser jsonParser = new JSONParser(DashboardActivity.this);
 
@@ -977,53 +903,59 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                     Log.e("Result Offline : ", s);
 
                     //Do work-----------------------------
-                    dialog.dismiss();
+                    this.dialog.dismiss();
                     String status = jsonObject.getString("success");
                     final JSONArray dataArr = jsonObject.getJSONArray("data");
 
                     Log.e("Status", status.toString());
                     if (status.equals("true")) {
+                        if(dataArr.length()==0){
+                            offLineResultLayout.setVisibility(View.GONE);
+                        }else{
+                            offLineResultLayout.setVisibility(View.VISIBLE);
+                            Log.e("DATA OFFLINE", dataArr.toString());
+                            offlineResultListArrayList.clear();
+                            for (int i = 0; i < dataArr.length(); i++) {
+                                ItemOfflineResultList itemOfflineResult = new ItemOfflineResultList();
+                                JSONObject dataObj = dataArr.getJSONObject(i);
+                                String id = String.valueOf(dataObj.getInt("id"));
+                                String student_rollno = dataObj.getString("student_rollno");
+                                String sid = String.valueOf(dataObj.getInt("sid"));
+                                String student_name = dataObj.getString("student_name");
+                                String batch_no = dataObj.getString("batch_no");
+                                String physics = dataObj.getString("physics");
+                                String chemistry = dataObj.getString("chemistry");
+                                String maths = dataObj.getString("maths");
+                                String biology = dataObj.getString("biology");
+                                String total = dataObj.getString("total");
+                                String percentage = dataObj.getString("percentage");
+                                String rank = dataObj.getString("rank") + "\nRank";
+                                String test_date = dataObj.getString("test_date");
+                                String created_at = dataObj.getString("created_at");
+                                String updated_at = dataObj.getString("updated_at");
+                                itemOfflineResult.setBatchNumber(batch_no);
+                                itemOfflineResult.setTestDate(test_date);
+                                itemOfflineResult.setRank(rank);
+                                itemOfflineResult.setPhysics(physics);
+                                itemOfflineResult.setChemistry(chemistry);
+                                itemOfflineResult.setBiology(biology);
+                                itemOfflineResult.setMaths(maths);
+                                itemOfflineResult.setPercentage(percentage);
+                                itemOfflineResult.setTotalMarks(total);
 
-                        Log.e("DATA OFFLINE", dataArr.toString());
-                        offlineResultListArrayList.clear();
-                        for (int i = 0; i < dataArr.length(); i++) {
-                            ItemOfflineResultList itemOfflineResult = new ItemOfflineResultList();
-                            JSONObject dataObj = dataArr.getJSONObject(i);
-                            String id = String.valueOf(dataObj.getInt("id"));
-                            String student_rollno = dataObj.getString("student_rollno");
-                            String sid = String.valueOf(dataObj.getInt("sid"));
-                            String student_name = dataObj.getString("student_name");
-                            String batch_no = dataObj.getString("batch_no");
-                            String physics = dataObj.getString("physics");
-                            String chemistry = dataObj.getString("chemistry");
-                            String maths = dataObj.getString("maths");
-                            String biology = dataObj.getString("biology");
-                            String total = dataObj.getString("total");
-                            String percentage = dataObj.getString("percentage");
-                            String rank = dataObj.getString("rank") + "\nRank";
-                            String test_date = dataObj.getString("test_date");
-                            String created_at = dataObj.getString("created_at");
-                            String updated_at = dataObj.getString("updated_at");
-                            itemOfflineResult.setBatchNumber(batch_no);
-                            itemOfflineResult.setTestDate(test_date);
-                            itemOfflineResult.setRank(rank);
-                            itemOfflineResult.setPhysics(physics);
-                            itemOfflineResult.setChemistry(chemistry);
-                            itemOfflineResult.setBiology(biology);
-                            itemOfflineResult.setMaths(maths);
-                            itemOfflineResult.setPercentage(percentage);
-                            itemOfflineResult.setTotalMarks(total);
+                                offlineResultListArrayList.add(itemOfflineResult);
+                            }
 
-                            offlineResultListArrayList.add(itemOfflineResult);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(DashboardActivity.this, RecyclerView.HORIZONTAL, false);
+                            rvOfflineResult.setLayoutManager(layoutManager);
+                            offlineResultAdapter = new ItemOfflineResultAdapter(DashboardActivity.this, offlineResultListArrayList);
+                            rvOfflineResult.setAdapter(offlineResultAdapter);
+
+
+                            Log.e("DATA", dataArr.toString());
+
                         }
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(DashboardActivity.this, RecyclerView.HORIZONTAL, false);
-                        rvOfflineResult.setLayoutManager(layoutManager);
-                        offlineResultAdapter = new ItemOfflineResultAdapter(DashboardActivity.this, offlineResultListArrayList);
-                        rvOfflineResult.setAdapter(offlineResultAdapter);
-
-
-                        Log.e("DATA", dataArr.toString());
 
 
                     } else if (status.equals("false")) {

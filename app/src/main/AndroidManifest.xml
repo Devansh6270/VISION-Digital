@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.vision_digital">
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- com.app.sigma.classes -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -40,6 +39,15 @@
         android:vmSafeMode="true"
         tools:targetApi="q">
         <activity
+            android:name=".TestSeries.SubjectivePaperDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestSeries.TestSeriesAvailabilityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestSeries.AllTestPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AllPackageActivity"
             android:exported="false" />
         <activity
@@ -55,20 +63,16 @@
             android:name=".activities.IPayActivity"
             android:exported="false" />
         <activity
-            android:name=".signUp.AgentDetailsActivity"
+            android:name=".liveClass.LiveClassRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".signUp.OtherActivity"
+            android:name=".liveClass.LiveDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".signUp.LicenseStaffActivity"
+            android:name=".activities.videoPlayer.YouTubeVideoPlayerActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
-        <activity
-            android:name=".signUp.IRCTCStaffDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".signUp.SelectProfileActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.AllAnalyticsPage"
             android:exported="false" />
@@ -90,32 +94,11 @@
         <activity
             android:name=".AgoraCallingActivity"
             android:exported="false" />
-        <activity
-            android:name="com.vision_digital.community.UserHoldingScreenActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name="com.vision_digital.community.GroupStudyVideoPlayerActivity"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name="com.vision_digital.community.invitation.SelectStudentActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.vision_digital.community.invitation.SelectMilestoneInvitationActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.vision_digital.community.CommunityDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.vision_digital.community.CommunitiesListActivity"
-            android:exported="false" />
+
         <activity
             android:name="com.vision_digital.profile.EditProfileActivity"
             android:exported="false" />
-        <activity
-            android:name="com.vision_digital.community.CommunityChatPageActivity"
-            android:exported="false" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -295,17 +278,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="sigma.chalksnboard.com"
+                    android:host="chalksnboard.com"
                     android:scheme="http" />
                 <data
-                    android:host="sigma.chalksnboard.com"
+                    android:host="chalksnboard.com"
                     android:scheme="https" />
-                <data
-                    android:host="example.com"
-                    android:scheme="http" />
-                <data
-                    android:host="example.com"
-                    android:scheme="https" />
+
                 <data android:pathPattern="/.*" />
             </intent-filter>
         </activity>
@@ -332,15 +310,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <!-- <intent-filter> -->
-            <!-- <action android:name="SPLASH_SCREEN" /> -->
 
-
-            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-            <!-- </intent-filter> -->
-
-
-            <!-- on below line we are adding intent filter to our NewResultActivity -->
 
         </activity>
 

@@ -13,21 +13,44 @@ public class ItemObjectiveQuestion {
     String questionImageURL;
     String status;
     String answeredAnswer = "";
+    String positiveMarks, negativeMarks;
+
+    public String getPositiveMarks() {
+        return positiveMarks;
+    }
+
+    public void setPositiveMarks(String positiveMarks) {
+        this.positiveMarks = positiveMarks;
+    }
+
+    public String getNegativeMarks() {
+        return negativeMarks;
+    }
+
+    public void setNegativeMarks(String negativeMarks) {
+        this.negativeMarks = negativeMarks;
+    }
+
     ArrayList<ItemOption> options = new ArrayList<>();
 
 
-    public ItemObjectiveQuestion(String id, String question, @Nullable String questionImageURL, String status, String answeredAnswer, ArrayList<ItemOption> options) {
+    public ItemObjectiveQuestion(String id, String question, @Nullable String questionImageURL, String status, String answeredAnswer,
+                                 String positiveMarks, String negativeMarks, ArrayList<ItemOption> options) {
         this.id = id;
         this.question = question;
         this.questionImageURL = questionImageURL;
         this.status = status;
         this.answeredAnswer = answeredAnswer;
+        this.positiveMarks = positiveMarks;
+        this.negativeMarks = negativeMarks;
         this.options = options;
     }
 
     public ItemObjectiveQuestion() {
 
     }
+
+
 
     public String getId() {
         return id;

@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
-            android:backgroundTint="@color/themeBlue"
+            android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -45,19 +45,18 @@
                     android:elevation="8dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:background="@drawable/round_shape"
-                    android:src="@drawable/ic_back"
+                    android:src="@drawable/ic_back_ios_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.042"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                     />
+                    />
 
                 <TextView
                     android:id="@+id/test_name_new"
-                    style="@style/SpaceGroteskBold"
+                    style="@style/LogikaNavaBold"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/dimen_3dp"
@@ -65,7 +64,7 @@
                     android:gravity="center"
                     android:paddingTop="2dp"
                     android:text="Name of the test"
-                    android:textColor="@color/white"
+                    android:textColor="@color/textColor"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +105,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/PoppinsBold"
+                    style="@style/LogikaNavaBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -134,7 +133,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/PoppinsBold"
+                    style="@style/LogikaNavaBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -167,50 +166,50 @@
                 android:orientation="vertical">
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dimen_16dp"
-                    android:elevation="6dp"
-                    android:outlineAmbientShadowColor="@color/blue"
-                    android:outlineSpotShadowColor="@color/blue"
-                    app:cardCornerRadius="@dimen/dimen_8dp">
+                <!--                <androidx.cardview.widget.CardView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_margin="@dimen/dimen_16dp"-->
+                <!--                    android:elevation="6dp"-->
+                <!--                    android:outlineAmbientShadowColor="@color/blue"-->
+                <!--                    android:outlineSpotShadowColor="@color/blue"-->
+                <!--                    app:cardCornerRadius="@dimen/dimen_8dp">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_12dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/dimen_8dp"
-                        android:paddingTop="@dimen/dimen_8dp"
-                        android:paddingBottom="@dimen/dimen_16dp">
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginTop="@dimen/dimen_12dp"-->
+                <!--                        android:gravity="center"-->
+                <!--                        android:orientation="horizontal"-->
+                <!--                        android:paddingLeft="@dimen/dimen_8dp"-->
+                <!--                        android:paddingTop="@dimen/dimen_8dp"-->
+                <!--                        android:paddingBottom="@dimen/dimen_16dp">-->
 
-                        <TextView
-                            style="@style/PoppinsMedium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="6dp"
-                            android:layout_weight="1"
-                            android:ellipsize="end"
-                            android:gravity="fill_horizontal|center"
-                            android:text="Your result based on the questions attempted is as follows.\Vision-Digital has also analyzed your strengths and weaknesses along with checking how have you performed when the questions were difficult."
-                            android:textColor="#5C5B5B"
-                            android:textSize="12dp" />
+                <!--                        <TextView-->
+                <!--                            style="@style/PoppinsMedium"-->
+                <!--                            android:layout_width="match_parent"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_centerHorizontal="true"-->
+                <!--                            android:layout_marginStart="6dp"-->
+                <!--                            android:layout_weight="1"-->
+                <!--                            android:ellipsize="end"-->
+                <!--                            android:gravity="fill_horizontal|center"-->
+                <!--                            android:text="Your result based on the questions attempted is as follows.\Vision-Digital has also analyzed your strengths and weaknesses along with checking how have you performed when the questions were difficult."-->
+                <!--                            android:textColor="#5C5B5B"-->
+                <!--                            android:textSize="12dp" />-->
 
 
-                        <ImageView
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-6dp"
-                            android:paddingBottom="@dimen/dimen_4dp"
-                            android:src="@drawable/analyticsresults" />
+                <!--                        <ImageView-->
+                <!--                            android:layout_width="140dp"-->
+                <!--                            android:layout_height="140dp"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginTop="-6dp"-->
+                <!--                            android:paddingBottom="@dimen/dimen_4dp"-->
+                <!--                            android:src="@drawable/analyticsresults" />-->
 
-                    </LinearLayout>
+                <!--                    </LinearLayout>-->
 
-                </androidx.cardview.widget.CardView>
+                <!--                </androidx.cardview.widget.CardView>-->
 
 
                 <LinearLayout
@@ -245,7 +244,7 @@
 
                             <TextView
                                 android:id="@+id/score"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="19.39dp"
@@ -255,7 +254,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -292,7 +291,7 @@
 
                             <TextView
                                 android:id="@+id/correct"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
@@ -302,7 +301,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -346,7 +345,7 @@
 
                             <TextView
                                 android:id="@+id/notattempt"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="22.5dp"
@@ -356,7 +355,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -393,7 +392,7 @@
 
                             <TextView
                                 android:id="@+id/incorrect"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="28.97dp"
@@ -403,7 +402,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -448,7 +447,7 @@
 
                             <TextView
                                 android:id="@+id/rank"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="11.38dp"
@@ -458,7 +457,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -495,7 +494,7 @@
 
                             <TextView
                                 android:id="@+id/percentileAna"
-                                style="@style/SpaceGroteskBold"
+                                style="@style/LogikaNavaBold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="14.97dp"
@@ -505,7 +504,7 @@
                                 android:textSize="@dimen/dimen_17sp" />
 
                             <TextView
-                                style="@style/SpaceGroteskLight"
+                                style="@style/LogikaNavaRegular"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -517,10 +516,25 @@
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
-
+                <TextView
+                    style="@style/LogikaNavaRegular"
+                    android:id="@+id/solutionUrlPdf"
+                    android:padding="@dimen/dimen_6dp"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="@dimen/dimen_4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_red_round_stroke"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Solution"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/questionDifficultyLevel"
-                    style="@style/SpaceGroteskBold"
+                    style="@style/LogikaNavaBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_6dp"
@@ -576,7 +590,7 @@
                                     android:paddingRight="6dp">
 
                                     <TextView
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -601,7 +615,7 @@
 
                                     <TextView
                                         android:id="@+id/correctPerEasy"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -633,7 +647,7 @@
                                     android:paddingRight="6dp">
 
                                     <TextView
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -659,7 +673,7 @@
 
                                     <TextView
                                         android:id="@+id/mediumCorrect"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="bottom"
@@ -692,7 +706,7 @@
                                     android:paddingRight="6dp">
 
                                     <TextView
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -717,7 +731,7 @@
 
                                     <TextView
                                         android:id="@+id/toughCorrect"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="bottom"
@@ -740,7 +754,7 @@
 
 
                 <TextView
-                    style="@style/SpaceGroteskBold"
+                    style="@style/LogikaNavaBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_6dp"
@@ -807,7 +821,7 @@
 
                                     <TextView
                                         android:id="@+id/weak"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center"
@@ -843,7 +857,7 @@
 
                                     <TextView
                                         android:id="@+id/average"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center"
@@ -879,7 +893,7 @@
 
                                     <TextView
                                         android:id="@+id/strong"
-                                        style="@style/SpaceGroteskBold"
+                                        style="@style/LogikaNavaBold"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:gravity="center"

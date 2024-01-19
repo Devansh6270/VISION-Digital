@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +47,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -60,12 +58,6 @@ import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 import com.vision_digital.R;
-import com.vision_digital.activities.AnalyticsActivity;
-import com.vision_digital.activities.CoursePreviewVideoPlayerActivity;
-import com.vision_digital.activities.DashboardActivity;
-import com.vision_digital.activities.MileStoneVideoPlayerActivity;
-import com.vision_digital.community.CommunityChatPageActivity;
-import com.vision_digital.community.studentModel.ItemStudents;
 import com.vision_digital.coupons.ItemCoupon;
 import com.vision_digital.coupons.ItemCouponAdapter;
 import com.vision_digital.helperClasses.JSONParser;
@@ -199,6 +191,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
     private String profileImageUrlChatList = "";
     private String isInCommunity = "";
     private String forTask="";
+    private String packageId="";
 
     //get profile
     private String userNameString = "";
@@ -217,6 +210,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
         fromActivity = getIntent().getStringExtra("fromActivity");
         //fromActivity = getIntent().getStringExtra("fromActivity");
         forTask=getIntent().getStringExtra("forTask");
+        forTask=getIntent().getStringExtra("packageId");
 
         Log.e("courseId", courseId);
 
@@ -271,7 +265,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
             public void onClick(View v) {
 
                 if (!userNameString.equals("")) {
-                    communityEnterVerification();
 
                 } else {
                     popupForCompleteProfile();
@@ -804,55 +797,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
     }
 
 
-    private void communityEnterVerification() {
-
-        db.collection("Communities").document(courseId).collection("Students").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                List<DocumentSnapshot> studentList = queryDocumentSnapshots.getDocuments();
-                Log.e("List", studentList.toString());
-
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-                        String sids = documentChange.getDocument().getData().get("student_id").toString();
-                        Log.e("studentIdloop12", sids);
-
-
-                        if (uid.equals(sids)) {
-
-                            isInCommunity = "yes";
-
-                            break;
-
-                        } else {
-                            isInCommunity = "no";
-
-                        }
-                    }
-
-                } else {
-                    isInCommunity = "no";
-                }
-                Log.e("isInCommunity", isInCommunity);
-                if (isInCommunity.equals("yes")) {
-                    Intent communityIntent = new Intent(CourseDetailsActivity.this, CommunityChatPageActivity.class);
-                    communityIntent.putExtra("activity", "course_details");
-                    communityIntent.putExtra("community_id", courseId);
-                    communityIntent.putExtra("community_name", courseName);
-                    communityIntent.putExtra("community_logo", courseLogo);
-                    Log.e("Student saved", "student saved");
-                    startActivity(communityIntent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                } else {
-                    askToJoin(courseId, courseName, courseLogo);
-                }
-            }
-
-        });
-
-
-    }
-
     @Override
     public void networkNotAvailable() {
         Toast.makeText(this, "Network gone", Toast.LENGTH_SHORT).show();
@@ -1063,7 +1007,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
             Log.e("versionCode", String.valueOf(versionCode));
 
 
-            String param = "uid=" + uid + "&app_version=" + versionCode + "&student_id=" + studId + "&course_id=" + courseId;
+            String param = "uid=" + uid + "&app_version=" + versionCode + "&student_id=" + studId + "&course_id=" + courseId +"&package_id="+packageId;
 
             Log.e("param", param);
 
@@ -2165,85 +2109,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
             //Response reached---------------value in 's' variable
         }
     }
-
-    private void askToJoin(String id, String community_name_recommendation, String community_logo_recommendation) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(CourseDetailsActivity.this);
-        // ...Irrelevant code for customizing the buttons and title
-        LayoutInflater inflater = CourseDetailsActivity.this.getLayoutInflater();
-//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View dialogView = inflater.inflate(R.layout.exit_popup, null);
-        dialogBuilder.setView(dialogView);
-
-        //Alert Dialog Layout work
-        alertDialog = dialogBuilder.create();
-//                TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        Button cancelBtn = dialogView.findViewById(R.id.cancelButton);
-        Button yesBtn = dialogView.findViewById(R.id.yesButton);
-        TextView message = dialogView.findViewById(R.id.message);
-        TextView title = dialogView.findViewById(R.id.title);
-        title.setText("Community Joining Confirmation");
-        message.setText("Do you want to join this Community?");
-
-
-        cancelBtn.setText("No");
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-        yesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences studDetails = getSharedPreferences("CNB", MODE_PRIVATE);
-                studentName = studDetails.getString("profileName", "NO_NAME");
-                ArrayList<ItemMyCourse> myCoursesList = new ArrayList<>();
-
-                String communityId = id;
-                joinStudentInGroup(courseId, studentName, courseName, courseLogo);
-                alertDialog.dismiss();
-
-            }
-        });
-
-
-        alertDialog.show();
-        alertDialog.setCanceledOnTouchOutside(true);
-
-
-    }
-
-    private void joinStudentInGroup(String communityId, String studentName, String community_name_recommendation, String community_logo_recommendation) {
-
-        DocumentReference reference = db.collection("Communities").document(communityId).collection("Students").document(uid);
-
-        ItemStudents studentDetails = new ItemStudents(uid, studentName, profileImageUrlChatList);
-        reference.set(studentDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Intent communityIntent = new Intent(CourseDetailsActivity.this, CommunityChatPageActivity.class);
-                communityIntent.putExtra("community_id", courseId);
-                communityIntent.putExtra("community_name", courseName);
-                communityIntent.putExtra("community_logo", courseLogo);
-                communityIntent.putExtra("activity", "community_list");
-                startActivity(communityIntent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                Log.e("Student saved", "student saved");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("Student saved failed", "student not saved");
-
-            }
-        });
-
-    }
-
 
     private void getProfileData() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

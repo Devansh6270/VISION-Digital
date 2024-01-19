@@ -7,6 +7,15 @@ public class ItemOption {
     String selected_ans;
     String ans_status;
     String optionNo;
+    String tvOptionNo;
+
+    public String getTvOptionNo() {
+        return tvOptionNo;
+    }
+
+    public void setTvOptionNo(String tvOptionNo) {
+        this.tvOptionNo = tvOptionNo;
+    }
 
     public ItemOption(String option, String optionImageUrl, String correct_ans, String selected_ans, String ans_status, String optionNo) {
         this.option = option;

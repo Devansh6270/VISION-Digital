@@ -19,13 +19,7 @@ import java.util.ArrayList;
 
 public class AllAnalyticsPage extends AppCompatActivity {
 
-    //My Course work-------------------------------------------
-  //  ItemMyCourseAdapter itemMyCourseAdapter;
-//    ItemAnalyticsAdapter itemAnalyticsAdapter;
-//    RecyclerView myAnalyticsListView;
-//
-//
-//    ArrayList<ItemAnalytics> analytics;
+
 
 
     ItemAllAnalyticsAdapter itemAnalyticsAdapter;

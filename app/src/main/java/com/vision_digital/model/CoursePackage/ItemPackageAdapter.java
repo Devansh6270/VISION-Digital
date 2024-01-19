@@ -59,6 +59,7 @@ public class ItemPackageAdapter  extends RecyclerView.Adapter<ItemPackageViewHol
                     courseIntent.putExtra("image",packageList.get(position).getImage());
                     courseIntent.putExtra("fromActivity","homePage");
                     courseIntent.putExtra("forTask","learn");
+                    courseIntent.putExtra("packageId",packageList.get(position).getId());
                     context.startActivity(courseIntent);
                 }
             });

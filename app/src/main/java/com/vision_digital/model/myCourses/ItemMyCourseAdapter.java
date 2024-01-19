@@ -12,10 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.vision_digital.TestSeries.OngoingTestActivity;
 import com.vision_digital.TestSeries.model.testResultNew.NewResultActivity;
 import com.vision_digital.activities.CourseDetailsActivity;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class ItemMyCourseAdapter extends RecyclerView.Adapter<ItemMyCourseViewHo
                     Log.e("click","click");
 
                     if(myCourseList.get(position).getType().equals("TestSeries")) {
-                        Intent courseIntent = new Intent(context, TestDetailsActivity.class);
+                        Intent courseIntent = new Intent(context, OngoingTestActivity.class);
                         courseIntent.putExtra("desc", "");
                         courseIntent.putExtra("price", "");
                         courseIntent.putExtra("testType", "single");
@@ -103,6 +103,7 @@ public class ItemMyCourseAdapter extends RecyclerView.Adapter<ItemMyCourseViewHo
                         courseIntent.putExtra("image",myCourseList.get(position).getImage());
                         courseIntent.putExtra("fromActivity","homePage");
                         courseIntent.putExtra("forTask","explore");
+                        courseIntent.putExtra("packageId"," ");
                         context.startActivity(courseIntent);
                     }
                 }

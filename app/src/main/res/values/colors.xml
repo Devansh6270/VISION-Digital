@@ -22,5 +22,13 @@
     <color name="pie_chart_green_dark">#02B894</color>
     <color name="grey_light">#D1D3D3</color>
     <color name="yellow_vision">#fff212</color>
+    <color name="textColor">#3E3E3E</color>
+    <color name="red">#FF0000</color>
+    <color name="light_silver">#F9F9F9</color>
+    <color name="textLightColor">#ADADAD</color>
+    <color name="brownColor">#BA2525</color>
+    <color name="darkGreyColor">#454545</color>
+    <color name="playerIconColor">#FFFFFF</color>
+    <color name="playerSeekBarColor">#BA2525</color>
 
 </resources>

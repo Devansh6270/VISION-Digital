@@ -48,7 +48,7 @@ public class LogInViaPhoneActivity extends AppCompatActivity {
 //        setContentView(binding.getRoot());
         setContentView(R.layout.activity_log_in_via_phone);
 
-        sendOtpUrl=getApplicationContext().getString(R.string.apiURL4)+"sendOTPcnb";
+        sendOtpUrl=getApplicationContext().getString(R.string.apiURL)+"sendOTPcnb";
 
        // countryCodeSpinner = findViewById(R.id.countryCode);
 //        countryCodeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

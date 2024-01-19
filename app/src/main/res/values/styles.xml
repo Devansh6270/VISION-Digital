@@ -59,6 +59,27 @@
         <item name="fontFamily">@font/space_grotesk</item>
     </style>
 
+
+    <style name="LogikaNavaBold">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="fontFamily">@font/space_grotesk_bold</item>
+    </style>
+
+    <style name="LogikaNavaLight">
+        <item name="android:fontFamily">@font/space_grotesk_light</item>
+        <item name="fontFamily">@font/space_grotesk_light</item>
+    </style>
+    <style name="LogikaNavaMedium">
+        <item name="android:fontFamily">@font/space_grotesk_medium</item>
+        <item name="fontFamily">@font/space_grotesk_medium</item>
+    </style>
+
+    <style name="LogikaNavaRegular">
+        <item name="android:fontFamily">@font/space_grotesk</item>
+        <item name="fontFamily">@font/space_grotesk</item>
+    </style>
+
+
     <style name="splashTextFontB">
         <item name="android:fontFamily">@font/co_headline_bold</item>
         <item name="fontFamily">@font/co_headline_bold</item>
@@ -125,6 +146,15 @@
         <item name="cornerSizeTopLeft">20dp</item>
 
     </style>
+
+    <style name="ImageView.BottomCorner" parent="">
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
 
 
     <style name="CircularDeterminateProgressBar">

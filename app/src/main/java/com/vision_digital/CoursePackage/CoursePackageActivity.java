@@ -1,22 +1,16 @@
 package com.vision_digital.CoursePackage;
 import static android.content.ContentValues.TAG;
 
-import static com.vision_digital.activities.DashboardActivity.myCoursesList;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -24,14 +18,9 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,22 +30,10 @@ import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 import com.vision_digital.R;
-import com.vision_digital.TestSeries.TestDetailsActivity;
-import com.vision_digital.activities.CourseDetailsActivity;
-import com.vision_digital.activities.DashboardActivity;
-import com.vision_digital.coupons.ItemCoupon;
-import com.vision_digital.coupons.ItemCouponAdapter;
 import com.vision_digital.databinding.ActivityCoursePackageBinding;
 import com.vision_digital.helperClasses.JSONParser;
-import com.vision_digital.model.CoursePackage.ItemPackageAdapter;
-import com.vision_digital.model.CoursePackage.ItemPackageList;
 import com.vision_digital.model.CoursePackage.ItemTypesPackage;
 import com.vision_digital.model.CoursePackage.ItemTypesPackageAdapter;
-import com.vision_digital.model.chapters.ItemChapter;
-import com.vision_digital.model.chapters.ItemChapterAdapter;
-import com.vision_digital.model.myCourses.ItemMyCourse;
-import com.vision_digital.model.subscription.ItemSubscription;
-import com.vision_digital.model.subscription.ItemSubscriptionAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,13 +42,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -657,7 +629,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
                                    } else if (productType.equals("test")) {
                                        Log.e("LOG","IN TEST");
                                        testTypeList.add(itemPackageList);
-                                   } else if (productType.equals("testSeries")) {
+                                   } else if (productType.equals("testseries")) {
                                        Log.e("LOG","IN TEST SERIES");
                                        testSeriesTypeList.add(itemPackageList);
                                    } else if (productType.equals("notes")) {
@@ -732,11 +704,22 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
                                 binding.recyclarViewLive.setLayoutManager(linearLayoutManagerLive);
                                 binding.recyclarViewNotes.setLayoutManager(linearLayoutManagerNotes);
 
+                                // Course
                                 ItemTypesPackageAdapter itemPackageAdapter = new ItemTypesPackageAdapter(coursesTypeList,CoursePackageActivity.this);
                                 binding.recyclarViewCourse.setAdapter(itemPackageAdapter);
 
+
+                                    // Test
                                 ItemTypesPackageAdapter itemTestPackageAdapter = new ItemTypesPackageAdapter(testTypeList,CoursePackageActivity.this);
                                 binding.recyclarViewTest.setAdapter(itemTestPackageAdapter);
+
+                                // Test Series
+                                ItemTypesPackageAdapter itemTestSeriesPackageAdapter = new ItemTypesPackageAdapter(testSeriesTypeList,CoursePackageActivity.this);
+                                binding.recyclarViewTestSeries.setAdapter(itemTestSeriesPackageAdapter);
+
+                                // Live
+                                ItemTypesPackageAdapter itemLivePackageAdapter = new ItemTypesPackageAdapter(liveTypeList,CoursePackageActivity.this);
+                                binding.recyclarViewLive.setAdapter(itemLivePackageAdapter);
                             }
 
                             break;
@@ -954,7 +937,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
 
     class LogRawData extends AsyncTask<String, Void, String> {
         // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
-        String url = getApplicationContext().getString(R.string.apiURL4)+"logTransactions"; //"https://chalksnboard.com/api/v3/logTransactions";
+        String url = getApplicationContext().getString(R.string.apiURL)+"logTransactions"; //"https://chalksnboard.com/api/v3/logTransactions";
 
 
         @Override

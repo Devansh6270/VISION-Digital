@@ -1,0 +1,59 @@
+
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    &lt;!&ndash; Gradient background &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle"-->
+<!--            android:innerRadius="@dimen/dimen_16dp">-->
+<!--            <gradient-->
+<!--                android:startColor="#FFFFFFFF"-->
+<!--                android:endColor="#FFFFCCCC"-->
+<!--                android:type="linear"-->
+<!--                android:angle="90" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; Dotted red border &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle"-->
+<!--            android:innerRadius="@dimen/dimen_16dp">-->
+<!--            <solid android:color="@android:color/transparent" />-->
+<!--            <stroke-->
+<!--                android:color="#FFFF0000"-->
+<!--                android:dashWidth="5dp"-->
+<!--                android:dashGap="3dp"-->
+<!--                android:width="2dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+
+<!-- res/drawable/gradient_dotted_red_border.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient background with border radius -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <gradient
+                android:startColor="#FFFFFFFF"
+                android:endColor="#FFFFCCCC"
+                android:type="linear"
+                android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- Dotted red border -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:color="#FFFF0000"
+                android:dashWidth="5dp"
+                android:dashGap="3dp"
+                android:width="2dp" />
+        </shape>
+    </item>
+</layer-list>
+
+
+
+

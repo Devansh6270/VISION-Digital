@@ -30,7 +30,6 @@ public class ItemSectionAdapter extends RecyclerView.Adapter<ItemSectionViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ItemSectionViewHolder holder, int position) {
-
         holder.sectionTitle.setText(sectionList.get(position).getName());
 
 
