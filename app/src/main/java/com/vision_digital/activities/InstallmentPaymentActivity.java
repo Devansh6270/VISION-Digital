@@ -107,11 +107,19 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                         if (dataObj.length()==0){
                             binding.feesLayout.setVisibility(View.GONE);
                             binding.installmentMonths.setVisibility(View.GONE);
+                            binding.noInstallmentText.setVisibility(View.VISIBLE);
+                            binding.viewBorder.setVisibility(View.GONE);
+                            binding.feeStructureText.setVisibility(View.GONE);
+                            binding.rvInstallment.setVisibility(View.GONE);
                         }else {
                             JSONArray installmentArray = dataObj.getJSONArray("installment");
 
                             binding.feesLayout.setVisibility(View.VISIBLE);
                             binding.installmentMonths.setVisibility(View.VISIBLE);
+                            binding.noInstallmentText.setVisibility(View.GONE);
+                            binding.rvInstallment.setVisibility(View.VISIBLE);
+                            binding.viewBorder.setVisibility(View.VISIBLE);
+                            binding.feeStructureText.setVisibility(View.VISIBLE);
 
                             binding.tvTotalFees.setText(dataObj.getString("total_fee"));
                             binding.tvPendingAmount.setText(dataObj.getString("pending_fee"));

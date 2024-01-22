@@ -44,7 +44,6 @@ import org.json.JSONObject;
 public class SplashScreen extends AppCompatActivity implements ConnectivityReciever.ConnectivityRecieverListener {
 
     Animation left, right, fadeout;
-    TextView logoone, sigma,logotwo, logothree;
     ImageView center_chalk;
     long delay = 2000;
 
@@ -52,9 +51,7 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
     String isLogin="" , current_login_id="";
     FirebaseUser user;
     String uid = "";
-    boolean goodToGo = false;
     int sid = 0;
-    Uri deepLink;
     String deeplinkFirebase = "chalksnboard";
 
     @Override
@@ -72,10 +69,6 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
         reciever = new ConnectivityReciever();
 
 
-//        logoone = findViewById(R.id.center_logo_one);
-//        logotwo = findViewById(R.id.center_logo_two);
-//        logothree = findViewById(R.id.center_logo_three);
-//        sigma = findViewById(R.id.sigma);
         center_chalk = findViewById(R.id.center_chalk);
 
 //        Glide.with(this).load(R.drawable.title_cnb).into(title_cnb);
@@ -98,10 +91,6 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
         try {
 
             if (user != null) {
-//                SharedPreferences userIsRegisteredSuccessful = this.getSharedPreferences("CNB", MODE_PRIVATE);
-//                boolean registered = userIsRegisteredSuccessful.getBoolean("registered", false);
-//                sid = userIsRegisteredSuccessful.getInt("sid", 0);
-
 
             }
         } catch (Exception e) {

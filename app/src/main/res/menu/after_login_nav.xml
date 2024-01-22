@@ -7,14 +7,12 @@
         android:checkableBehavior="single">
 
 
-<!--        <item-->
-<!--            android:id="@+id/communities"-->
-<!--            android:icon="@drawable/ic_baseline_groups_24"-->
-<!--            android:title="ADDA" />-->
+
 
         <item
             android:id="@+id/testSeries"
             android:icon="@drawable/ic_assignment_black_24dp"
+            android:visible="false"
             android:title="Test Series" />
 
         <item
@@ -43,17 +41,12 @@
             android:icon="@drawable/ic_help_black_24dp"
             android:title="Need Help?" />
 
-<!--        <item-->
-<!--            android:id="@+id/policy"-->
-<!--            android:icon="@drawable/menu_privacy_policy"-->
-<!--            android:visible="true"-->
-<!--            android:title="Privacy Policy" />-->
+
 
         <item
             android:id="@+id/visit_us"
             android:icon="@drawable/menu_visit_website"
             android:visible="true"
-
             android:title="Visit Our Website" />
 
         <item
@@ -67,15 +60,6 @@
             android:visible="true">
 
             <menu>
-<!--                <item-->
-<!--                    android:id="@+id/rate_us"-->
-<!--                    android:icon="@drawable/ic_rate_us_24dp"-->
-<!--                    android:title="Rate Us" />-->
-
-<!--                <item-->
-<!--                    android:id="@+id/report_bug"-->
-<!--                    android:icon="@drawable/ic_bug_report_black_24dp"-->
-<!--                    android:title="Report Bug" />-->
 
                 <item
                     android:id="@+id/logout"
