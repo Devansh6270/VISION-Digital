@@ -43,17 +43,11 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
@@ -101,7 +95,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
 
     Boolean isCouponOpen = false;
 
-    //CourseContent Subscription
 
     String expiry;
     String upcoming;
@@ -147,11 +140,9 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
     public static int subsPrice = 0;
 
     Map<Integer, Long> subscriptionMap = new HashMap<>();
-    Spinner subscriptionMnthSpinner;
+
     public static int subscriptionMonths = 1;
 
-    //    RelativeLayout videoController,videoContainer;
-    boolean videoControllerVisibility = false;
 
     //Milestone resources---------
     public static ArrayList<Uri> courseMilestoneList = new ArrayList<>();
@@ -170,8 +161,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
     // Paytm------------------
     String mid = "IxDAFe91483847846332"; //Rajit
 
-    //    String mid = "TLvNGP42879274127615";
-    //    String marchentKey = "G&%UEPNTnz6&4cti";
     String marchentKey = "1BGSS5qX5OuGWITA"; //Rajit
 
 
@@ -184,18 +173,12 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
     TextView communityBtn;
     ConstraintLayout inviteBtnLayout;
 
-
-    // for community
-    private String studentName;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String profileImageUrlChatList = "";
-    private String isInCommunity = "";
     private String forTask="";
     private String packageId="";
 
     //get profile
     private String userNameString = "";
-    private String profileImageUrlString = "";
 
 
 
@@ -208,7 +191,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
         courseId = getIntent().getStringExtra("id");
         courseLogo = getIntent().getStringExtra("image");
         fromActivity = getIntent().getStringExtra("fromActivity");
-        //fromActivity = getIntent().getStringExtra("fromActivity");
         forTask=getIntent().getStringExtra("forTask");
         forTask=getIntent().getStringExtra("packageId");
 
@@ -601,7 +583,6 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
             popupForSubscribeButton();
         }
 
-        getProfileData();
     }
     public void popupForSubscribeButton(){
 
@@ -2019,7 +2000,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
 
             JSONParser jsonParser = new JSONParser(CourseDetailsActivity.this);
             String param = "student_id=" + studId + "&course_id=" + courseId + "&subscription_month=" + subscriptionMonths + "&order_id=" + orderID + "&coupon_code=" +
-                    coupon_code + "&coupon_value=" + coupon_code_values + "&amount_paid=" + total_price + "&amount_course=" + price;
+                    coupon_code + "&coupon_value=" + coupon_code_values + "&amount_paid=" + total_price + "&amount_course=" + price +  "&course_type=" + "course";
 
             Log.e("param", param);
             JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
@@ -2110,40 +2091,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
         }
     }
 
-    private void getProfileData() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference usersRef = db.collection("StudentProfile");
-        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        DocumentReference uidRef = db.collection("StudentProfile").document(String.valueOf(studId));
-                        uidRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        userNameString = document.getString("userName");
-                                        profileImageUrlString = document.getString("profileImage");
-
-                                    } else {
-                                        Log.d("No such document", "No such document");
-                                    }
-                                } else {
-                                    Log.d("get failed with", "get failed with ", task.getException());
-                                }
-                            }
-                        });
-                    }
-                } else {
-                    Log.d("Error getting documents", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-    }
 
 
     @Override

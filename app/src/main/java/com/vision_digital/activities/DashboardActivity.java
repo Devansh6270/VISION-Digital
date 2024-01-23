@@ -6,18 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
+
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -37,9 +33,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,36 +57,21 @@ import com.vision_digital.model.analytics.ItemAnalytics;
 import com.vision_digital.model.analytics.ItemAnalyticsAdapter;
 import com.vision_digital.model.continueWatchingCourseItem.CourseAdapter;
 import com.vision_digital.model.continueWatchingCourseItem.CourseItem;
-import com.vision_digital.model.liveClass.ItemLiveClass;
-import com.vision_digital.model.liveClass.ItemLiveClassViewHolder;
 import com.vision_digital.model.myCourses.ItemMyCourse;
 import com.vision_digital.model.myCourses.ItemMyCourseAdapter;
 import com.vision_digital.model.offlineResult.ItemOfflineResultAdapter;
 import com.vision_digital.model.offlineResult.ItemOfflineResultList;
-import com.vision_digital.model.otherSubject.OtherSubjectModel;
 import com.vision_digital.model.popularTeachers.ItemTeacher;
 import com.vision_digital.model.popularTeachers.ItemTeacherAdapter;
-import com.vision_digital.profile.EditProfileActivity;
 import com.vision_digital.profile.ProfileActivity;
 import com.vision_digital.signUp.LogInViaPhoneActivity;
 import com.vision_digital.transaction.TransactionHistory;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.github.mikephil.charting.data.Entry;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.yarolegovich.discretescrollview.DSVOrientation;
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
@@ -106,28 +84,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DashboardActivity extends AppCompatActivity implements ConnectivityReciever.ConnectivityRecieverListener {
 
-    private static int MICROPHONE_PERMISSION_CODE = 200;
-
     ImageView menuBtn, searchBtn, live_ViewAllBtn, popularInstitute_viewAllBtn, analytics_viewAllBtn;
     ImageView notificationBtn;
 
-    LinearLayout myCourse_viewAllBtn, popularCousre_viewAllBtn, popularTeachers_viewAllBtn, packagesViewALLBtn, offLineResultLayout ;
+    LinearLayout  popularCousre_viewAllBtn, popularTeachers_viewAllBtn, packagesViewALLBtn, offLineResultLayout ;
 
-    Button logOut;
+    CardView myCourse_viewAllBtn;
 
     public DrawerLayout mDrawer;
     private NavigationView nvDrawer;
     public static String mobileNo = "";
 
-    TextView profileName, greetingText, dashboardUserName;
-    ImageView userImage, notification;
+    TextView  dashboardUserName;
+    ImageView userImage;
     String studName;
     String studClass;
     String studSchool;
@@ -142,11 +117,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     ArrayList<Entry> spentList = new ArrayList<>();
 
     FirebaseUser user;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference;
-
-
-    final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     public static String uid;
@@ -163,15 +133,12 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     public static ArrayList<ItemAnalytics> courseAnalytics = new ArrayList<>();
 
-    public static ArrayList<OtherSubjectModel> otherSubjectModelArrayList = new ArrayList<>();
 
 
     ProgressDialog dialog;
 
-    //Live RecylerView work------------------------------------------------
     RecyclerView liveClassesList;
     int totalLiveClasses = 0;
-    FirestoreRecyclerAdapter liveClassesAdapter;
     TextView noLiveClasses;
 
     //  Package Course
@@ -184,8 +151,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     ItemMyCourseAdapter itemMyCourseAdapter;
     RecyclerView myCourseslistView;
 
-    //
-    ItemMyCourseAdapter itemPopularCoursesAdapter;
 
     ItemPopularCoursesAdapter popularCoursesAdapter;
     RecyclerView popularCourseslistView;
@@ -204,7 +169,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     List<CourseItem> courseItemList = new ArrayList<>();
 
     LinearLayout continueWatchingContainer;
-    List<String> myCoursesIdList = new ArrayList<>(8);
+
 
 
     String profileImageUrlString = "";
@@ -216,17 +181,19 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     LinearLayout packageLayout;
 
     private String mImageUri = "";
-    ArrayList<ItemOfflineResultList> offlineResultListArrayList = new ArrayList<>();
+    static  ArrayList<ItemOfflineResultList> offlineResultListArrayList = new ArrayList<>();
     ItemOfflineResultAdapter offlineResultAdapter;
     RecyclerView rvOfflineResult;
+
+    String current_login_id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        myCourseLayout = findViewById(R.id.myCourseLayout);
+
         myAnalyticsLayout = findViewById(R.id.analytics_layout);
-        myCourseslistView = findViewById(R.id.myCourseList);
+
         packageLayout = findViewById(R.id.packageLayout);
         packageRecyclerView = findViewById(R.id.recyclerPackageList);
         rvOfflineResult = findViewById(R.id.rvOfflineResult);
@@ -234,7 +201,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
         no_data_card = findViewById(R.id.no_data_card);
 
-//        logOut=findViewById(R.id.logout);
         getProfileDataUrl = getApplicationContext().getString(R.string.apiURL) + "getProfile";
         getPackageListApi = getApplicationContext().getString(R.string.apiURL) + "getProductPackageList";
 
@@ -244,7 +210,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         menuBtn = findViewById(R.id.profile_back_btn);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
@@ -264,6 +230,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         SharedPreferences userIsRegisteredSuccessful = getSharedPreferences("CNB", MODE_PRIVATE);
         boolean registered = userIsRegisteredSuccessful.getBoolean("registered", true);
         sid = userIsRegisteredSuccessful.getInt("sid", 0);
+        current_login_id = userIsRegisteredSuccessful.getString("current_login_id","");
         Log.e("aaaaaaa", "sid" + sid);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -305,7 +272,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         studSchool = studDetails.getString("schoolId", "NO_SCHOOL");
         sid = studDetails.getInt("sid", 0);
         String sidString = String.valueOf(sid);
-        getDashboardData = getApplicationContext().getString(R.string.apiURL) + "getDashboardData";
+        getDashboardData = getApplicationContext().getString(R.string.apiURL) + "getUserDashboardData";
         getOfflineResultData = getApplicationContext().getString(R.string.apiURL) +"students/"+ sidString + "/offlineresultall";
 
 
@@ -425,26 +392,16 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                         return true;
                     }
                 });
-        //working on Navigation View-----------------------profileName, GreetingText---------------------------
-//        profileName = nvDrawer.getHeaderView(0).findViewById(R.id.profileName);
+
         userImage = nvDrawer.getHeaderView(0).findViewById(R.id.userImage);
 //        profileName.setText(studName);
 
 
-//        greetingText = nvDrawer.getHeaderView(0).findViewById(R.id.greetingText);
 
         Calendar c = Calendar.getInstance();
         int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
-//        if (timeOfDay >= 0 && timeOfDay < 12) {
-//            greetingText.setText("Good Morning,");
-//        } else if (timeOfDay >= 12 && timeOfDay < 16) {
-//            greetingText.setText("Good Afternoon,");
-//        } else if (timeOfDay >= 16 && timeOfDay < 21) {
-//            greetingText.setText("Good Evening,");
-//        } else if (timeOfDay >= 21 && timeOfDay < 24) {
-//            greetingText.setText("Good Night,");
-//        }
+
 
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -465,46 +422,10 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         });
 
 
-//        CollectionReference liveClassRef = db.collection("liveClasses");
-//        liveClassRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//
-//                if (value.size() <= 0) {
-//                    noLiveClasses.setVisibility(View.VISIBLE);
-//                    liveClassesList.setVisibility(View.GONE);
-//                } else {
-//                    noLiveClasses.setVisibility(View.GONE);
-//                    liveClassesList.setVisibility(View.VISIBLE);
-//                    liveClassesList.getLayoutParams().height = 600;
-//                    liveClassesList.requestLayout();
-//                    //Toast.makeText(DashboardActivity.this, "listworking", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
         new getProfileData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new GetOfflineResult().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
-//        if (isMicrophonePresent()) {
-//            getMicrophonePermission();
-//
-//        }
-
-//        logOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(DashboardActivity.this, LogInViaPhoneActivity.class));
-//                finish();
-////                SharedPreferences.Editor editor = getSharedPreferences(CREDENTIALS, MODE_PRIVATE).edit();
-////                editor.clear();
-////                editor.apply();
-////                startActivity(new Intent(NewResultActivity.this, LogInActivity.class));
-////                finish();
-//            }
-//        });
 
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -536,8 +457,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
                     Button cancelBtn = dialogView.findViewById(R.id.cancelButton);
                     Button yesBtn = dialogView.findViewById(R.id.yesButton);
-                    TextView message = dialogView.findViewById(R.id.message);
-                    TextView title = dialogView.findViewById(R.id.title);
 
 
                     cancelBtn.setText("No");
@@ -556,7 +475,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                             a.addCategory(Intent.CATEGORY_HOME);
                             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(a);
-
 
                         }
                     });
@@ -579,8 +497,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
         SimpleDateFormat formatter, dateFormate;
         long currentTime = new Date().getTime();
-//        long diff = currentTime-time;
-//        int diffHrs = (int) TimeUnit.MILLISECONDS.toHours(diff);
+
 
         dateFormate = new SimpleDateFormat("dd");
         int currentDate = Integer.parseInt(dateFormate.format(new Date(currentTime)));
@@ -593,22 +510,12 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
             formatter = new SimpleDateFormat("dd MMM hh:mm aa");
         }
         String dateString = formatter.format(new Date(time));
-//        Calendar cal = Calendar.getInstance(new Locale("IN"));
-//        cal.setTimeInMillis(time * 1000);
-//        String date = DateFormat.format("hh:mm aa", cal).toString();
+
         return dateString;
     }
 
 
-    //Animation-------------------------
-    public void layoutAnimation(RecyclerView recycler) {
-        Context context = recycler.getContext();
-        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation);
-        recycler.setLayoutAnimation(animationController);
-        recycler.getAdapter().notifyDataSetChanged();
-        recycler.scheduleLayoutAnimation();
 
-    }
 
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
@@ -661,28 +568,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 break;
 
 
-            // for Adda
-//            case R.id.communities:
-//
-//                for (int i = 0; i < myCoursesList.size(); i++) {
-//                    String communityId = myCoursesList.get(i).getId();
-//                    String communityName = myCoursesList.get(i).getTitle();
-//                    String communityImage = myCoursesList.get(i).getImage();
-//                    CreateNewGroup(communityName, communityId, communityImage);
-//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//                }
-//                if (!userNameString.equals("")) {
-//                    Intent community = new Intent(DashboardActivity.this, CommunitiesListActivity.class);
-//                    community.putExtra("id", "id");
-//                    community.putExtra("fromActivity", "dashboard");
-//
-//                    startActivity(community);
-//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//                } else {
-//                    popupForCompleteProfile();
-//                }
-//
-//                break;
+
 
 
             case R.id.profile:
@@ -690,6 +576,18 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 profile.putExtra("instituteForProfile", instituteForProfile);
                 profile.putExtra("fromActivity", "homePage");
                 startActivity(profile);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
+
+            case R.id.offlineResult:
+                Intent offlineResult = new Intent(DashboardActivity.this, OfflineResultListActivity.class);
+                startActivity(offlineResult);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
+
+            case R.id.myCourses:
+                Intent myCourses = new Intent(DashboardActivity.this, MyCoursesActivity.class);
+                startActivity(myCourses);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
@@ -712,7 +610,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 sharingIntent.setType("text/plain");
                 String shareBody = "Download the android app :\n" +
                         " " +
-                        "https://play.google.com/store/apps/details?id=com.chalksnboard";
+                        "https://play.google.com/store/apps/details?id=com.vision_digital";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -727,17 +625,11 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 startActivity(new Intent(DashboardActivity.this, LogInViaPhoneActivity.class));
                 finishAffinity();
                 finish();
-//                SharedPreferences.Editor editor = getSharedPreferences(CREDENTIALS, MODE_PRIVATE).edit();
-//                editor.clear();
-//                editor.apply();
-//                startActivity(new Intent(NewResultActivity.this, LogInActivity.class));
-//                finish();
                 break;
             case R.id.rate_us:
                 Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
                 Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                // To count with Play market backstack, After pressing back button,
-                // to taken back to our application, we need to add following flags to intent.
+
                 goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
                         Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
                         Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
@@ -754,11 +646,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
-//            case R.id.policy:
-//                Intent policyIntent = new Intent(DashboardActivity.this, PrivacyPolicyActivity.class);
-//                startActivity(policyIntent);
-//                break;
-//
 
             default:
                 break;
@@ -790,57 +677,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     }
 
-    public void fetchLiveClasses() {
-        Log.e("LiveClass", "Live class");
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        myCoursesIdList.add("9");
-        Query query = db.collection("liveClasses").whereIn("courseId", myCoursesIdList);
-        FirestoreRecyclerOptions<ItemLiveClass> options = new FirestoreRecyclerOptions.Builder<ItemLiveClass>().setQuery(query, ItemLiveClass.class).build();
-
-        liveClassesAdapter = new FirestoreRecyclerAdapter<ItemLiveClass, ItemLiveClassViewHolder>(options) {
-            @NonNull
-            @Override
-            public ItemLiveClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_live_class, parent, false);
-
-                return new ItemLiveClassViewHolder(mView);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull ItemLiveClassViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull final ItemLiveClass model) {
-
-                holder.teacherNameTV.setText(model.getTeacherName());
-                holder.teacherQualification.setText(model.getTeacherQualification());
-                holder.classTitle.setText(model.getClassTitle());
-                Log.e("Added", "added");
-                //Toast.makeText(DashboardActivity.this, "Added", Toast.LENGTH_SHORT).show();
-                holder.startedAt.setText("Started At: " + getDate(Long.parseLong(model.getClassStartTimestamp()) * 1000));
-                if (!model.getTeacherImage().equals(""))
-                    Glide.with(DashboardActivity.this).load(model.getTeacherImage()).into(holder.teacherImage);
-                holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent goTOLiveIntent = new Intent(DashboardActivity.this, LiveVideoPlayerActivity.class);
-                        goTOLiveIntent.putExtra("ApplicationID", model.getApplicationId());
-                        goTOLiveIntent.putExtra("broadcastID", model.getBroadcastId());
-                        startActivity(goTOLiveIntent);
-                    }
-                });
-                //temp--------------------------------
-                totalLiveClasses = position;//---------------------------------
-                //-----------------------------------------
-                if (position % 2 == 0) {
-                    holder.blueCard.setVisibility(View.GONE);
-                }
-            }
-        };
-//
-//        liveClassesList.setHasFixedSize(true);
-        liveClassesList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        liveClassesList.setAdapter(liveClassesAdapter);
-        onStart();
-
-    }
 
     @Override
     protected void onPause() {
@@ -929,7 +765,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                 String biology = dataObj.getString("biology");
                                 String total = dataObj.getString("total");
                                 String percentage = dataObj.getString("percentage");
-                                String rank = dataObj.getString("rank") + "\nRank";
+                                String rank = dataObj.getString("rank");
                                 String test_date = dataObj.getString("test_date");
                                 String created_at = dataObj.getString("created_at");
                                 String updated_at = dataObj.getString("updated_at");
@@ -976,12 +812,10 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     }
 
     class GetDashboardData extends AsyncTask<String, Void, String> {
-        // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
+
 
         @Override
         protected void onPreExecute() {
-//            this.dialog.setMessage("Please wait");
-//            this.dialog.show();
         }
 
         @Override
@@ -1003,7 +837,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
             Log.e("versionCode", String.valueOf(versoncodes));
 
 
-            String param = "uid=" + uid + "&app_version=" + versoncodes + "&sid=" + sid;
+
+            String param = "uid=" + uid + "&app_version=" + versoncodes + "&sid=" + sid + "&current_login_id=" + current_login_id;
 
             Log.e("param", param);
 
@@ -1043,44 +878,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                     //No Updates
                                     //Checking User Status------------------------------
                                     String userStatus = dataObj.getString("user_status");
-                                    if (userStatus.equals("allowed")) {
-                                        //Already L
-                                        // ogged in-----------------------
-                                        JSONArray mycourses = dataObj.getJSONArray("my_courses");
-                                        if (mycourses.length() == 0) {
-                                            myCourseLayout.setVisibility(View.GONE);
-                                            myCourseslistView.setVisibility(View.GONE);
-                                            no_data_card.setVisibility(View.GONE);
-                                        } else {
-                                            myCourseslistView.setVisibility(View.VISIBLE);
-                                            myCourseLayout.setVisibility(View.VISIBLE);
-                                            no_data_card.setVisibility(View.GONE);
-                                            myCoursesList.clear();
-                                            myCoursesIdList.clear();
-                                            for (int i = 0; i < mycourses.length(); i++) {
-                                                ItemMyCourse itemMyCourse = new ItemMyCourse();
-                                                JSONObject courseObj = mycourses.getJSONObject(i);
-                                                itemMyCourse.setId(courseObj.getString("id"));
-                                                Log.e("Id", courseObj.getString("id"));
-                                                if (courseObj.getString("id").equals("8") || courseObj.getString("id").equals("15")) {
-                                                    Log.e("89 Id", courseObj.getString("id"));
+                                    if (userStatus.equals("")) {
 
-                                                } else {
-                                                    myCoursesIdList.add(courseObj.getString("id"));
-                                                    Log.e("LiveClassId", courseObj.getString("id"));
-
-                                                }
-                                                itemMyCourse.setDescription(courseObj.getString("description"));
-                                                itemMyCourse.setDuration(courseObj.getString("duration"));
-                                                itemMyCourse.setOwner_name(courseObj.getString("owner_name"));
-                                                itemMyCourse.setTitle(courseObj.getString("title"));
-                                                itemMyCourse.setImage(courseObj.getString("image"));
-                                                itemMyCourse.setOwner_qualification(courseObj.getString("owner_qualification"));
-                                                myCoursesList.add(itemMyCourse);
-//                                                myCourseListForCommunity.add(courseObj.getString("title"));
-                                            }
-
-                                        }
 
                                         JSONArray popularCourses = dataObj.getJSONArray("popular_courses");
                                         popularCoursesList.clear();
@@ -1098,13 +897,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                             popularCoursesList.add(itemMyCourse);
                                         }
 
-                                        //My courses-------------
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                                        myCourseslistView.setLayoutManager(layoutManager);
-                                        itemMyCourseAdapter = new ItemMyCourseAdapter(myCoursesList);
-                                        myCourseslistView.setAdapter(itemMyCourseAdapter);
 
-//                                        fetchLiveClasses();
 
                                         //Popular courses-------------
                                         popularCourseslistView = findViewById(R.id.popularCourseList);
@@ -1141,31 +934,15 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 //                                                    courseItem.setAccuracy(acc);
 //                                                }
                                                 courseItem.setPercentageWatched(courseObject.getDouble("percentage"));
-//                                                double per = courseObject.getDouble("percentage");
-//                                                if (per == 0) {
-//                                                    courseItem.setPercentageWatched(0.1d);
-//                                                    Log.e("per", String.valueOf(0.1));
 //
-//                                                } else {
-//                                                    courseItem.setPercentageWatched(per);
 //
-//                                                }
-//                                                courseItem.setPercentageWatched(per);
                                                 courseItem.setActualPlayDuration(courseObject.getDouble("actual_play_duration"));
                                                 courseItem.setActualMilestoneDuration(courseObject.getDouble("actual_milestone_duration"));
 
 
                                                 JSONArray requiredTime = courseObject.getJSONArray("actual_video_time");
                                                 for (int a = 0; a < requiredTime.length(); a++) {
-//
-//                                                    Long secondT = requiredTime.getLong(a);
-//                                                    long hoursT = (long) secondT / 3600;
-//                                                    long remainderT = (long) secondT - hoursT * 3600;
-//                                                    long minsT = remainderT / 60;
-////                                                    yValue1.add(new Entry(a, spentTime.getInt(a)));
-////                                                    actualList.add(new Entry(a,spentTime.getLong(a)));
-////                                                    courseItem.setActualTimeList(actualList);
-//                                                    courseItem.getActualTimeList().add(new Entry(a, minsT));
+
 
                                                     double secondT = requiredTime.getDouble(a);
                                                     int remainderT = (int) secondT % 60;
@@ -1180,10 +957,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 JSONArray spentTime = courseObject.getJSONArray("spent_video_time");
                                                 for (int b = 0; b < spentTime.length(); b++) {
 
-//                                                    Log.e("mint", String.valueOf(minsT));
-////                                                    yValue2.add(new Entry(b,minsT));
-////                                                    spentList.add(new Entry(b,requiredTime.getLong(b)));
-//                                                    courseItem.getSpentTimeList().add(new Entry(b, minsT));
 
                                                     double secondT = spentTime.getDouble(b);
                                                     int remainderT = (int) secondT % 60;
@@ -1268,84 +1041,18 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         itemInstitueAdapter = new ItemTeacherAdapter(popularInstituteList);
                                         popularInstitutelistView.setAdapter(itemInstitueAdapter);
 
-                                        // Course Analytics
-                                        JSONArray analytics = dataObj.getJSONArray("my_courses_analytics");
-                                        if (analytics.length() == 0) {
-                                            myAnalyticsLayout.setVisibility(View.GONE);
-
-                                        } else {
-                                            myAnalyticsLayout.setVisibility(View.VISIBLE);
-
-                                            courseAnalytics.clear();
-                                            for (int i = 0; i < analytics.length(); i++) {
-                                                ItemAnalytics itemMyCourse = new ItemAnalytics();
-                                                JSONObject coursesAnalyticsJSONObject = analytics.getJSONObject(i);
-                                                itemMyCourse.setId(coursesAnalyticsJSONObject.getLong("id"));
-                                                //itemMyCourse.setDescription(popularCoursesJSONObject.getString("description"));
-                                                // itemMyCourse.setDuration(popularCoursesJSONObject.getString("duration"));
-                                                itemMyCourse.setCourseOwner(coursesAnalyticsJSONObject.getString("owner_name"));
-                                                itemMyCourse.setCourseTitle(coursesAnalyticsJSONObject.getString("title"));
-                                                itemMyCourse.setImage(coursesAnalyticsJSONObject.getString("image"));
-                                                //  itemMyCourse.setOwner_qualification(popularCoursesJSONObject.getString("owner_qualification"));
-                                                courseAnalytics.add(itemMyCourse);
-                                            }
-
-                                            RecyclerView courseAnalyticRecyclerView = findViewById(R.id.analyticRecyclarView);
-                                            LinearLayoutManager linearLayoutManagerAnalytic = new LinearLayoutManager(DashboardActivity.this,
-                                                    LinearLayoutManager.HORIZONTAL, false);
-                                            courseAnalyticRecyclerView.setLayoutManager(linearLayoutManagerAnalytic);
-
-                                            ItemAnalyticsAdapter itemAnalyticsAdapter = new ItemAnalyticsAdapter(DashboardActivity.this
-                                                    , courseAnalytics);
-                                            courseAnalyticRecyclerView.setAdapter(itemAnalyticsAdapter);
-
-                                        }
 
 
-//                                        fetchLiveClasses();
+
+//
 
                                     } else if (userStatus.equals("banned")) {
                                         //Student is banned--------------------------
                                         String message = dataObj.getString("user_status_banned_message");
                                         Toast.makeText(DashboardActivity.this, message, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        //Already L
-                                        // ogged in-----------------------
-                                        JSONArray mycourses = dataObj.getJSONArray("my_courses");
-                                        if (mycourses.length() == 0) {
-                                            myCourseLayout.setVisibility(View.GONE);
-                                            myCourseslistView.setVisibility(View.GONE);
-                                            no_data_card.setVisibility(View.GONE);
-                                        } else {
-                                            myCourseslistView.setVisibility(View.VISIBLE);
-                                            myCourseLayout.setVisibility(View.VISIBLE);
-                                            no_data_card.setVisibility(View.GONE);
-                                            myCoursesList.clear();
-                                            myCoursesIdList.clear();
-                                            for (int i = 0; i < mycourses.length(); i++) {
-                                                ItemMyCourse itemMyCourse = new ItemMyCourse();
-                                                JSONObject courseObj = mycourses.getJSONObject(i);
-                                                itemMyCourse.setId(courseObj.getString("id"));
-                                                Log.e("Id", courseObj.getString("id"));
-                                                if (courseObj.getString("id").equals("8") || courseObj.getString("id").equals("15")) {
-                                                    Log.e("89 Id", courseObj.getString("id"));
 
-                                                } else {
-                                                    myCoursesIdList.add(courseObj.getString("id"));
-                                                    Log.e("LiveClassId", courseObj.getString("id"));
 
-                                                }
-                                                itemMyCourse.setDescription(courseObj.getString("description"));
-                                                itemMyCourse.setDuration(courseObj.getString("duration"));
-                                                itemMyCourse.setOwner_name(courseObj.getString("owner_name"));
-                                                itemMyCourse.setTitle(courseObj.getString("title"));
-                                                itemMyCourse.setImage(courseObj.getString("image"));
-                                                itemMyCourse.setOwner_qualification(courseObj.getString("owner_qualification"));
-                                                myCoursesList.add(itemMyCourse);
-//                                                myCourseListForCommunity.add(courseObj.getString("title"));
-                                            }
-
-                                        }
 
                                         JSONArray popularCourses = dataObj.getJSONArray("popular_courses");
                                         popularCoursesList.clear();
@@ -1399,39 +1106,17 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 courseItem.setCourseDuration(courseObject.getDouble("course_duration"));
 //                                                courseItem.setTotalPlayDuration(courseObject.getDouble("total_play_duration"));
                                                 courseItem.setAccuracy(courseObject.getDouble("accuracy"));
-//                                                double acc = courseObject.getDouble("accuracy");
-//                                                if (acc == 0) {
-//                                                    courseItem.setAccuracy(0.1d);
-//                                                    Log.e("acc", String.valueOf(0.1));
-//                                                } else {
-//                                                    courseItem.setAccuracy(acc);
-//                                                }
+
                                                 courseItem.setPercentageWatched(courseObject.getDouble("percentage"));
-//                                                double per = courseObject.getDouble("percentage");
-//                                                if (per == 0) {
-//                                                    courseItem.setPercentageWatched(0.1d);
-//                                                    Log.e("per", String.valueOf(0.1));
-//
-//                                                } else {
-//                                                    courseItem.setPercentageWatched(per);
-//
-//                                                }
-//                                                courseItem.setPercentageWatched(per);
+
+
                                                 courseItem.setActualPlayDuration(courseObject.getDouble("actual_play_duration"));
                                                 courseItem.setActualMilestoneDuration(courseObject.getDouble("actual_milestone_duration"));
 
 
                                                 JSONArray requiredTime = courseObject.getJSONArray("actual_video_time");
                                                 for (int a = 0; a < requiredTime.length(); a++) {
-//
-//                                                    Long secondT = requiredTime.getLong(a);
-//                                                    long hoursT = (long) secondT / 3600;
-//                                                    long remainderT = (long) secondT - hoursT * 3600;
-//                                                    long minsT = remainderT / 60;
-////                                                    yValue1.add(new Entry(a, spentTime.getInt(a)));
-////                                                    actualList.add(new Entry(a,spentTime.getLong(a)));
-////                                                    courseItem.setActualTimeList(actualList);
-//                                                    courseItem.getActualTimeList().add(new Entry(a, minsT));
+
 
                                                     double secondT = requiredTime.getDouble(a);
                                                     int remainderT = (int) secondT % 60;
@@ -1446,10 +1131,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 JSONArray spentTime = courseObject.getJSONArray("spent_video_time");
                                                 for (int b = 0; b < spentTime.length(); b++) {
 
-//                                                    Log.e("mint", String.valueOf(minsT));
-////                                                    yValue2.add(new Entry(b,minsT));
-////                                                    spentList.add(new Entry(b,requiredTime.getLong(b)));
-//                                                    courseItem.getSpentTimeList().add(new Entry(b, minsT));
+
 
                                                     double secondT = spentTime.getDouble(b);
                                                     int remainderT = (int) secondT % 60;
@@ -1773,149 +1455,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     }
 
 
-    private void popupForCompleteProfile() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(DashboardActivity.this);
-        // ...Irrelevant code for customizing the buttons and title
-        LayoutInflater inflater = DashboardActivity.this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.exit_popup, null);
-        dialogBuilder.setView(dialogView);
-
-        //Alert Dialog Layout work
-        final AlertDialog alertDialog = dialogBuilder.create();
-//                TextView priceDetails = dialogView.findViewById(R.id.priceDetails);
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        Button cancelBtn = dialogView.findViewById(R.id.cancelButton);
-        Button yesBtn = dialogView.findViewById(R.id.yesButton);
-        TextView message = dialogView.findViewById(R.id.message);
-        TextView title = dialogView.findViewById(R.id.title);
 
 
-        title.setText("Choose your username");
-        message.setText("And more details about you");
-        yesBtn.setText("Yes");
-        cancelBtn.setText("Not now");
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-        yesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent community = new Intent(DashboardActivity.this, EditProfileActivity.class);
-                community.putExtra("ForCommunity", "yes");
-                community.putExtra("instituteForProfile", instituteForProfile);
-                community.putExtra("fromActivity", "homePage");
-                startActivity(community);
-                alertDialog.dismiss();
-
-
-            }
-        });
-
-
-        alertDialog.show();
-        alertDialog.setCanceledOnTouchOutside(true);
-
-    }
-
-    private void CreateNewGroup(String communityName, String communityId, String
-            communityImage) {
-        HashMap<String, Object> community = new HashMap<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        FieldValue msgTime = FieldValue.serverTimestamp();
-        DocumentReference documentReference = db.collection("Communities").document(communityId);
-
-
-//        ItemCommunityModel community_details = new ItemCommunityModel(communityId, communityName, communityImage);
-//
-//        documentReference.set(community_details).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//
-//
-//                Log.e("community Success", "Success");
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.e("Community Failed", e.toString());
-//            }
-//        });
-
-        DocumentReference docRef = db.collection("Communities").document(communityId).collection("LastChat").document("last_chat");
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-
-                    } else {
-//                        community.put("community_id", communityId);
-//                        commun ity.put("community_name", communityName);
-//                        community.put("community_image_url", communityImage);
-//                        community.put("lastChat", "");
-//                        community.put("lastChatTime", msgTime);
-//
-//                        documentReference.set(community).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//
-//                                Log.e(TAG, "onSuccess: Communities Created");
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//
-//                            }
-//                        });
-
-                    }
-                } else {
-                    Log.d("LOGGER", "get failed with ", task.getException());
-                }
-            }
-        });
-//        community.put("community_id", communityId);
-//        community.put("community_name", communityName);
-//        community.put("community_image_url", communityImage);
-//        community.put("lastChat", "");
-//        community.put("lastChatTime", msgTime);
-//
-//        documentReference.set(community).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//
-//                Log.e(TAG, "onSuccess: Communities Created");
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//
-//            }
-//        });
-
-    }
-
-
-    private boolean isMicrophonePresent() {
-        if (this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_MICROPHONE)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void getMicrophonePermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, MICROPHONE_PERMISSION_CODE);
-        }
-    }
 
     class getProfileData extends AsyncTask<String, Void, String> {
 

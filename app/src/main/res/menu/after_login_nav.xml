@@ -8,6 +8,17 @@
 
 
 
+        <item
+            android:id="@+id/myCourses"
+            android:icon="@drawable/book"
+            android:visible="true"
+            android:title="My Courses" />
+
+        <item
+            android:id="@+id/offlineResult"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:visible="true"
+            android:title="Offline Result" />
 
         <item
             android:id="@+id/testSeries"
@@ -17,7 +28,7 @@
 
         <item
             android:id="@+id/certificates"
-            android:icon="@drawable/certificate"
+            android:icon="@drawable/installment"
             android:visible="true"
             android:title="Installments" />
 
@@ -25,6 +36,10 @@
             android:id="@+id/profile"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Profile" />
+
+
+
+
 
         <item
             android:id="@+id/transaction"

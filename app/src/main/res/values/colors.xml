@@ -30,5 +30,6 @@
     <color name="darkGreyColor">#454545</color>
     <color name="playerIconColor">#FFFFFF</color>
     <color name="playerSeekBarColor">#BA2525</color>
+    <color name="themeColor">#393E59</color>
 
 </resources>

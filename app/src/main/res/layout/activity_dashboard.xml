@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#F7F8FF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -201,74 +201,46 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <RelativeLayout
-                                android:id="@+id/myCourseLayout"
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/MyCoursesViewAllBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="16dp"
-                                android:orientation="horizontal">
+                                android:elevation="@dimen/dimen_32dp"
+                                android:layout_margin="@dimen/dimen_12dp"
+                                app:cardCornerRadius="@dimen/dimen_32dp">
 
-                                <TextView
-                                    style="@style/Nohemi_Bold"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="My Course"
-                                    android:textSize="16sp"
-                                    android:textColor="#393E59" />
                                 <LinearLayout
-                                    android:id="@+id/MyCoursesViewAllBtn"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_centerInParent="true"
                                     android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginStart="@dimen/dimen_16dp"
+                                        app:tint="#771E1E"
+                                        android:src="@drawable/book"/>
 
                                     <TextView
                                         style="@style/Nohemi_Bold"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
-                                        android:gravity="center"
-                                        android:text="See All"
-                                        android:layout_marginEnd="5dp"
-                                        android:textSize="14sp"
-                                        android:textColor="#393E59" />
-
-                                    <ImageView
-                                        android:layout_width="18dp"
-                                        android:layout_height="18dp"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:src="@drawable/ic_forword" />
+                                        android:padding="@dimen/dimen_16dp"
+                                        android:text="My Courses"
+                                        android:layout_gravity="center"
+                                        android:textSize="16sp"
+                                        android:textColor="#771E1E" />
                                 </LinearLayout>
 
-                            </RelativeLayout>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/myCourseList"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/layoutModule1"
-                                android:layoutAnimation="@anim/layout_animation"
-                                android:visibility="visible" />
 
-                            <TextView
-                                android:id="@+id/noCoursesSubscribed"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="No ongoing live classes for you."
-                                android:textAlignment="center"
-                                android:textColor="@color/colorPrimary"
-                                android:visibility="gone" />
-                        </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+
 
                         <LinearLayout
                             android:id="@+id/packageLayout"
