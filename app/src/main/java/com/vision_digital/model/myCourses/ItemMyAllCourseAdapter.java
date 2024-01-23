@@ -16,7 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.vision_digital.CoursePackage.CoursePackageActivity;
 import com.vision_digital.R;
+import com.vision_digital.TestSeries.AllTestPageActivity;
 import com.vision_digital.activities.CourseDetailsActivity;
 import com.vision_digital.liveClass.LiveDetailsActivity;
 
@@ -64,10 +66,25 @@ public class ItemMyAllCourseAdapter extends RecyclerView.Adapter<ItemMyAllCourse
                         Intent courseIntent = new Intent(context, LiveDetailsActivity.class);
                         courseIntent.putExtra("id", myCourseList.get(position).getId());
                         context.startActivity(courseIntent);
-                    }else if (type.equals("recorded")){
+                    }else if (type.equals("course")){
                         Intent courseIntent = new Intent(context, CourseDetailsActivity.class);
                         courseIntent.putExtra("id", myCourseList.get(position).getId());
-                        courseIntent.putExtra("title", myCourseList.get(position).getName());
+                        courseIntent.putExtra("image", myCourseList.get(position).getImage());
+                        courseIntent.putExtra("fromActivity", "Dashboard");
+                        courseIntent.putExtra("forTask", "Explore");
+                        context.startActivity(courseIntent);
+                    }
+                    else if (type.equals("package")){
+                        Intent courseIntent = new Intent(context, CoursePackageActivity.class);
+                        courseIntent.putExtra("id", myCourseList.get(position).getId());
+                        courseIntent.putExtra("image", myCourseList.get(position).getImage());
+                        context.startActivity(courseIntent);
+                    }
+
+                    else if(myCourseList.get(position).getType().equals("testseries")){
+                        Intent courseIntent = new Intent(context, AllTestPageActivity.class);
+                        courseIntent.putExtra("id", myCourseList.get(position).getId());
+                        courseIntent.putExtra("subscriptionValidity", " ");
                         context.startActivity(courseIntent);
                     }
 

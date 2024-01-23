@@ -192,7 +192,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
         courseLogo = getIntent().getStringExtra("image");
         fromActivity = getIntent().getStringExtra("fromActivity");
         forTask=getIntent().getStringExtra("forTask");
-        forTask=getIntent().getStringExtra("packageId");
+
 
         Log.e("courseId", courseId);
 

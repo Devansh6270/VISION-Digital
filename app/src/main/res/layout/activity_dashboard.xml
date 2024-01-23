@@ -21,20 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--        <TextView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"-->
-                <!--            android:text="Beta Version"-->
-                <!--            android:layout_alignParentBottom="true"-->
-                <!--            android:textAlignment="center"-->
-                <!--            android:layout_gravity="center"-->
-                <!--            android:layout_margin="16dp"/>-->
-
-                <!--        <ImageView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="match_parent"-->
-                <!--            android:scaleType="fitXY"-->
-                <!--            android:src="@drawable/registration_background" />-->
 
                 <RelativeLayout
                     android:id="@+id/dashboardToolbar"
@@ -184,6 +170,9 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
+
+
+
                         <LinearLayout
                             android:id="@+id/continueWatchingContainer"
                             android:layout_width="match_parent"
@@ -202,11 +191,19 @@
                         </LinearLayout>
 
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerLiveClassesList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layoutAnimation="@anim/layout_animation"
+                            android:paddingTop="2dp"
+                            android:visibility="visible" />
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/MyCoursesViewAllBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:elevation="@dimen/dimen_32dp"
+                                app:cardBackgroundColor="#FCF1F1"
                                 android:layout_margin="@dimen/dimen_12dp"
                                 app:cardCornerRadius="@dimen/dimen_32dp">
 
@@ -242,11 +239,13 @@
 
 
 
+
                         <LinearLayout
                             android:id="@+id/packageLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -450,6 +449,33 @@
                                 android:layoutAnimation="@anim/layout_animation"
                                 android:paddingTop="2dp"
                                 android:visibility="visible" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <com.smarteist.autoimageslider.SliderView
+                                    android:id="@+id/slider"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_centerInParent="true"
+                                    app:sliderAnimationDuration="600"
+                                    app:sliderAutoCycleDirection="back_and_forth"
+                                    app:sliderIndicatorAnimationDuration="600"
+                                    app:sliderIndicatorEnabled="true"
+                                    app:layout_constraintDimensionRatio="H,16:9"
+                                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                                    app:sliderIndicatorMargin="15dp"
+                                    app:sliderIndicatorOrientation="horizontal"
+                                    app:sliderIndicatorPadding="3dp"
+                                    app:sliderIndicatorRadius="1dp"
+                                    android:layout_marginBottom="@dimen/dimen_24dp"
+                                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:sliderIndicatorUnselectedColor="#FFF"
+                                    app:sliderScrollTimeInSec="1" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <!--                            <TextView-->
                             <!--                                android:id="@+id/noPopularCourse"-->

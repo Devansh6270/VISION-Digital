@@ -45,6 +45,7 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.smarteist.autoimageslider.SliderView;
 import com.vision_digital.TestSeries.TestSeriesDashboardActivity;
 import com.vision_digital.R;
 import com.vision_digital.helperClasses.JSONParser;
@@ -52,11 +53,15 @@ import com.vision_digital.internetConnectivity.ConnectivityReciever;
 import com.vision_digital.internetConnectivity.MyApplication;
 import com.vision_digital.model.CoursePackage.ItemPackageAdapter;
 import com.vision_digital.model.CoursePackage.ItemPackageList;
+import com.vision_digital.model.ImageSlider.SliderAdapter;
+import com.vision_digital.model.ImageSlider.SliderModel;
 import com.vision_digital.model.PopularCourses.ItemPopularCoursesAdapter;
 import com.vision_digital.model.analytics.ItemAnalytics;
 import com.vision_digital.model.analytics.ItemAnalyticsAdapter;
 import com.vision_digital.model.continueWatchingCourseItem.CourseAdapter;
 import com.vision_digital.model.continueWatchingCourseItem.CourseItem;
+import com.vision_digital.model.liveClass.GoingOnLive.GoingOnLiveAdapter;
+import com.vision_digital.model.liveClass.GoingOnLive.GoingOnLiveModel;
 import com.vision_digital.model.myCourses.ItemMyCourse;
 import com.vision_digital.model.myCourses.ItemMyCourseAdapter;
 import com.vision_digital.model.offlineResult.ItemOfflineResultAdapter;
@@ -182,10 +187,17 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     private String mImageUri = "";
     static  ArrayList<ItemOfflineResultList> offlineResultListArrayList = new ArrayList<>();
+    static  ArrayList<GoingOnLiveModel> liveClassesLists = new ArrayList<>();
+    GoingOnLiveAdapter goingOnLiveAdapter;
     ItemOfflineResultAdapter offlineResultAdapter;
     RecyclerView rvOfflineResult;
 
     String current_login_id="";
+
+    SliderView sliderView;
+
+    ArrayList<SliderModel> sliderModelList = new ArrayList<>();
+    RecyclerView recyclerLiveClassList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +210,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         packageRecyclerView = findViewById(R.id.recyclerPackageList);
         rvOfflineResult = findViewById(R.id.rvOfflineResult);
         offLineResultLayout = findViewById(R.id.offlineResultLayout);
+        sliderView=findViewById(R.id.slider);
+         recyclerLiveClassList = findViewById(R.id.recyclerLiveClassesList);
 
         no_data_card = findViewById(R.id.no_data_card);
 
@@ -493,26 +507,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     }
 
 
-    private String getDate(long time) {
 
-        SimpleDateFormat formatter, dateFormate;
-        long currentTime = new Date().getTime();
-
-
-        dateFormate = new SimpleDateFormat("dd");
-        int currentDate = Integer.parseInt(dateFormate.format(new Date(currentTime)));
-        int msgDate = Integer.parseInt(dateFormate.format(new Date(time)));
-
-        Log.e("timeAgo", "" + currentDate);
-        if (currentDate == msgDate) {
-            formatter = new SimpleDateFormat("hh:mm aa");
-        } else {
-            formatter = new SimpleDateFormat("dd MMM hh:mm aa");
-        }
-        String dateString = formatter.format(new Date(time));
-
-        return dateString;
-    }
 
 
 
@@ -879,6 +874,72 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                     //Checking User Status------------------------------
                                     String userStatus = dataObj.getString("user_status");
                                     if (userStatus.equals("")) {
+
+                                        // Live Class
+
+                                        JSONArray currentLiveClass = dataObj.getJSONArray("current_live_class");
+                                        sliderModelList.clear();
+                                        if (currentLiveClass.length()==0){
+                                            sliderView.setVisibility(View.GONE);
+                                        }else {
+                                            for (int i = 0; i < currentLiveClass.length(); i++) {
+                                                GoingOnLiveModel goingOnLiveModel = new GoingOnLiveModel();
+                                                JSONObject packageJSONObject = currentLiveClass.getJSONObject(i);
+                                                goingOnLiveModel.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                                goingOnLiveModel.setCourseId(String.valueOf(packageJSONObject.getInt("live_course_id")));
+                                                goingOnLiveModel.setLiveDate(packageJSONObject.getString("live_date"));
+                                                goingOnLiveModel.setLiveTime(packageJSONObject.getString("live_time"));
+                                                goingOnLiveModel.setUrl(packageJSONObject.getString("live_url"));
+                                                goingOnLiveModel.setTitle(packageJSONObject.getString("live_title"));
+                                                goingOnLiveModel.setLiveStatus(packageJSONObject.getString("live_status"));
+                                                goingOnLiveModel.setLiveCurrentStatus(packageJSONObject.getString("live_current_status"));
+
+
+                                                liveClassesLists.add(goingOnLiveModel);
+                                            }
+                                            Log.e("LOG", "IN IF LOOP");
+
+
+                                            goingOnLiveAdapter = new GoingOnLiveAdapter(liveClassesLists, DashboardActivity.this);
+
+
+                                            LinearLayoutManager layoutManagerPopularCourses = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                                            recyclerLiveClassList.setLayoutManager(layoutManagerPopularCourses);
+                                            recyclerLiveClassList.setAdapter(goingOnLiveAdapter);
+
+                                        }
+
+                                        // Slider
+
+                                        JSONArray sliderArrayObj = dataObj.getJSONArray("top_banner");
+                                        sliderModelList.clear();
+                                        if (sliderArrayObj.length()==0){
+                                            sliderView.setVisibility(View.GONE);
+                                        }else {
+                                            for (int i = 0; i < sliderArrayObj.length(); i++) {
+                                                SliderModel itemSliderList = new SliderModel();
+                                                JSONObject packageJSONObject = sliderArrayObj.getJSONObject(i);
+                                                itemSliderList.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                                itemSliderList.setTitle(packageJSONObject.getString("title"));
+                                                itemSliderList.setCourseId(String.valueOf(packageJSONObject.getInt("course_id")));
+                                                itemSliderList.setImage(packageJSONObject.getString("image"));
+                                                itemSliderList.setCourseType(packageJSONObject.getString("course_type"));
+                                                sliderModelList.add(itemSliderList);
+                                            }
+                                            Log.e("LOG", "IN IF LOOP");
+
+
+                                            SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList, DashboardActivity.this);
+                                            sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+                                            sliderView.setSliderAdapter(sliderAdapter);
+                                            sliderView.setScrollTimeInSec(3);
+                                            sliderView.setAutoCycle(true);
+                                            sliderView.startAutoCycle();
+
+                                        }
+
+
+                                        // Popular Course
 
 
                                         JSONArray popularCourses = dataObj.getJSONArray("popular_courses");
