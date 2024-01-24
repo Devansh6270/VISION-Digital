@@ -125,7 +125,6 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                             binding.tvPendingAmount.setText(dataObj.getString("pending_fee"));
                             String id = String.valueOf(dataObj.getInt("id"));
                             String batch = dataObj.getString("batch");
-                            String admno = dataObj.getString("admno");
                             String total_installment = dataObj.getString("total_installment");
                             binding.edtMonth.setText(total_installment);
 

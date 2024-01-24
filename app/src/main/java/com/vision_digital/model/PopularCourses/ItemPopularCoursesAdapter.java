@@ -88,18 +88,8 @@ public class ItemPopularCoursesAdapter extends RecyclerView.Adapter<PopularCours
             }
 
 
-            holder.buyNowBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent courseIntent = new Intent(context, CourseDetailsActivity.class);
-                    courseIntent.putExtra("id", myCourseList.get(position).getId());
-                    courseIntent.putExtra("image",myCourseList.get(position).getImage());
-                    courseIntent.putExtra("fromActivity","homePage");
-                    courseIntent.putExtra("forTask","subscription");
-                    context.startActivity(courseIntent);
-                }
-            });
-            holder.exploreBtn.setOnClickListener(new View.OnClickListener() {
+
+            holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.e("click","click");
@@ -126,6 +116,7 @@ public class ItemPopularCoursesAdapter extends RecyclerView.Adapter<PopularCours
                         context.startActivity(courseIntent);
                     }
                 }
+
             });
 //            holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
 //                @Override

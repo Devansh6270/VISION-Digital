@@ -19,8 +19,6 @@ import com.vision_digital.model.CoursePackage.ItemPackageAdapter;
 public class AllPackageActivity extends AppCompatActivity {
 
     ItemPackageAdapter itemPackageAdapter;
-    RecyclerView recyclerView;
-    ImageView backBtn;
 
     ActivityAllPackageBinding binding;
 
@@ -29,6 +27,8 @@ public class AllPackageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding= DataBindingUtil.setContentView(this,R.layout.activity_all_package);
+
+
 
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {

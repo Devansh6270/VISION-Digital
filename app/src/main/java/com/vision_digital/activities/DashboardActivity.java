@@ -98,9 +98,9 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     ImageView menuBtn, searchBtn, live_ViewAllBtn, popularInstitute_viewAllBtn, analytics_viewAllBtn;
     ImageView notificationBtn;
 
-    LinearLayout  popularCousre_viewAllBtn, popularTeachers_viewAllBtn, packagesViewALLBtn, offLineResultLayout ;
+    LinearLayout  popularCousre_viewAllBtn, popularTeachers_viewAllBtn, offLineResultLayout ;
 
-    CardView myCourse_viewAllBtn;
+    CardView myCourse_viewAllBtn , packagesViewALLBtn;
 
     public DrawerLayout mDrawer;
     private NavigationView nvDrawer;
@@ -206,8 +206,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
         myAnalyticsLayout = findViewById(R.id.analytics_layout);
 
-        packageLayout = findViewById(R.id.packageLayout);
-        packageRecyclerView = findViewById(R.id.recyclerPackageList);
         rvOfflineResult = findViewById(R.id.rvOfflineResult);
         offLineResultLayout = findViewById(R.id.offlineResultLayout);
         sliderView=findViewById(R.id.slider);
@@ -685,8 +683,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
         new GetDashboardData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         new getProfileData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        new getPackagesList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        //register connection status listener
+
 
         MyApplication.getInstance().setConnectivityListener(this);
         registerReceiver(reciever, filter);
@@ -878,7 +875,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         // Live Class
 
                                         JSONArray currentLiveClass = dataObj.getJSONArray("current_live_class");
-                                        sliderModelList.clear();
+                                        liveClassesLists.clear();
                                         if (currentLiveClass.length()==0){
                                             sliderView.setVisibility(View.GONE);
                                         }else {
@@ -891,6 +888,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 goingOnLiveModel.setLiveTime(packageJSONObject.getString("live_time"));
                                                 goingOnLiveModel.setUrl(packageJSONObject.getString("live_url"));
                                                 goingOnLiveModel.setTitle(packageJSONObject.getString("live_title"));
+                                                goingOnLiveModel.setCourseTitle(packageJSONObject.getString("course_title"));
+                                                goingOnLiveModel.setDescription(packageJSONObject.getString("live_desc"));
                                                 goingOnLiveModel.setLiveStatus(packageJSONObject.getString("live_status"));
                                                 goingOnLiveModel.setLiveCurrentStatus(packageJSONObject.getString("live_current_status"));
 
@@ -916,6 +915,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         if (sliderArrayObj.length()==0){
                                             sliderView.setVisibility(View.GONE);
                                         }else {
+                                            sliderView.setVisibility(View.VISIBLE);
                                             for (int i = 0; i < sliderArrayObj.length(); i++) {
                                                 SliderModel itemSliderList = new SliderModel();
                                                 JSONObject packageJSONObject = sliderArrayObj.getJSONObject(i);
@@ -926,7 +926,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 itemSliderList.setCourseType(packageJSONObject.getString("course_type"));
                                                 sliderModelList.add(itemSliderList);
                                             }
-                                            Log.e("LOG", "IN IF LOOP");
+                                            Log.e("LOG", "IN IF LOOP  Banner");
 
 
                                             SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList, DashboardActivity.this);
@@ -967,6 +967,28 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         popularCoursesAdapter = new ItemPopularCoursesAdapter(popularCoursesList);
                                         popularCourseslistView.setAdapter(popularCoursesAdapter);
 
+                                        // Packages
+
+
+                                        JSONArray popularPackageArr = dataObj.getJSONArray("popular_package");
+                                        packageLists.clear();
+                                        if (popularPackageArr.length() == 0) {
+
+                                        } else {
+                                            for (int i = 0; i < popularPackageArr.length(); i++) {
+                                                ItemPackageList itemPackageList = new ItemPackageList();
+                                                JSONObject packageJSONObject = popularPackageArr.getJSONObject(i);
+                                                itemPackageList.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                                itemPackageList.setTitle(packageJSONObject.getString("title"));
+                                                itemPackageList.setOwnerName(packageJSONObject.getString("owner_name"));
+                                                itemPackageList.setImage(packageJSONObject.getString("image"));
+                                                itemPackageList.setPrice(String.valueOf(packageJSONObject.getInt("price")));
+                                                packageLists.add(itemPackageList);
+                                            }
+                                            Log.e("LOG", "IN IF LOOP");
+
+                                        }
+
 //                                        Continue Watching------------------------
                                         String continueWatching1 = (dataObj.getString("continue_watching_graph"));
                                         if (!continueWatching1.equals("")) {
@@ -985,15 +1007,9 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 courseItem.setLastPlayedMilestoneId(courseObject.getString("last_mile_id"));
                                                 courseItem.setMilestoneName(courseObject.getString("milestone_name"));
                                                 courseItem.setCourseDuration(courseObject.getDouble("course_duration"));
-//                                                courseItem.setTotalPlayDuration(courseObject.getDouble("total_play_duration"));
+//
                                                 courseItem.setAccuracy(courseObject.getDouble("accuracy"));
-//                                                double acc = courseObject.getDouble("accuracy");
-//                                                if (acc == 0) {
-//                                                    courseItem.setAccuracy(0.1d);
-//                                                    Log.e("acc", String.valueOf(0.1));
-//                                                } else {
-//                                                    courseItem.setAccuracy(acc);
-//                                                }
+//
                                                 courseItem.setPercentageWatched(courseObject.getDouble("percentage"));
 //
 //
@@ -1072,35 +1088,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         itemTeacherAdapter = new ItemTeacherAdapter(popularTeachersList);
                                         popularTeacherslistView.setAdapter(itemTeacherAdapter);
 
-                                        //Fetching Popular Institute--------------------
-                                        JSONArray popular_institute = dataObj.getJSONArray("popular_schools");
-                                        popularInstituteList.clear();
-                                        popularInstitutesList.clear();
-                                        instituteForProfile.clear();
-                                        for (int i = 0; i < popular_institute.length(); i++) {
-                                            ItemTeacher itemInstitute = new ItemTeacher();
-                                            JSONObject popular_instituteJSONObjec = popular_institute.getJSONObject(i);
-                                            itemInstitute.setId(popular_instituteJSONObjec.getLong("id"));
-                                            itemInstitute.setName(popular_instituteJSONObjec.getString("name"));
-                                            itemInstitute.setCity(popular_instituteJSONObjec.getString("city"));
-                                            itemInstitute.setSubscriber(popular_instituteJSONObjec.getString("subscriber"));
-                                            itemInstitute.setCountry(popular_instituteJSONObjec.getString("country"));
-                                            itemInstitute.setMobile(popular_instituteJSONObjec.getString("mobile"));
-                                            itemInstitute.setPopularity(popular_instituteJSONObjec.getLong("popularity"));
-                                            itemInstitute.setImage(popular_instituteJSONObjec.getString("image"));
-                                            itemInstitute.setQualification(popular_instituteJSONObjec.getString("qualification"));
-                                            itemInstitute.setType("institute");
-                                            popularInstituteList.add(itemInstitute);
-                                            popularInstitutesList.add(itemInstitute);
-                                            instituteForProfile.add(popular_instituteJSONObjec.getString("name"));
-                                        }
-
-                                        instituteForProfile.add("other");
-                                        popularInstitutelistView = findViewById(R.id.popularInstituteList);
-                                        LinearLayoutManager layoutManagerPopularInstitute = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                                        popularInstitutelistView.setLayoutManager(layoutManagerPopularInstitute);
-                                        itemInstitueAdapter = new ItemTeacherAdapter(popularInstituteList);
-                                        popularInstitutelistView.setAdapter(itemInstitueAdapter);
 
 
 
@@ -1629,119 +1616,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     }
 
 
-    class getPackagesList extends AsyncTask<String, Void, String> {
 
-        @Override
-        protected void onPreExecute() {
-        }
-
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            JSONParser jsonParser = new JSONParser(DashboardActivity.this);
-            // int versionCode = BuildConfig.VERSION_CODE;
-
-
-            String param = "sid=" + sid;
-            Log.e(TAG, "param: " + param);
-            JSONObject jsonObject = jsonParser.makeHttpRequest(getPackageListApi, "POST", param);
-            if (jsonObject != null) {
-                Log.e("test-response", jsonObject.toString());
-                return jsonObject.toString();
-
-            } else {
-
-            }
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            Log.i("json", s);
-
-            if (!s.equals("")) {
-                JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(s);
-
-                    Log.e("Result : ", s);
-
-                    //Do work-----------------------------
-                    String status = jsonObject.getString("status");
-
-                    dialog.dismiss();
-                    switch (status) {
-                        case "success":
-                            //Running Fine
-                            packageLayout.setVisibility(View.VISIBLE);
-                            JSONArray dataArrayObj = jsonObject.getJSONArray("data");
-                            packageLists.clear();
-                            if (dataArrayObj.length() == 0) {
-                                packageLayout.setVisibility(View.GONE);
-                            } else {
-                                for (int i = 0; i < dataArrayObj.length(); i++) {
-                                    ItemPackageList itemPackageList = new ItemPackageList();
-                                    JSONObject packageJSONObject = dataArrayObj.getJSONObject(i);
-                                    itemPackageList.setId(String.valueOf(packageJSONObject.getInt("id")));
-                                    itemPackageList.setTitle(packageJSONObject.getString("title"));
-                                    itemPackageList.setOwnerName(packageJSONObject.getString("owner_name"));
-                                    itemPackageList.setImage(packageJSONObject.getString("image"));
-                                    itemPackageList.setPrice(String.valueOf(packageJSONObject.getInt("price")));
-                                    packageLists.add(itemPackageList);
-                                }
-                                Log.e("LOG", "IN IF LOOP");
-
-
-                                LinearLayoutManager linearLayoutManagerPackage = new LinearLayoutManager(DashboardActivity.this,
-                                        LinearLayoutManager.HORIZONTAL, false);
-                                packageRecyclerView.setLayoutManager(linearLayoutManagerPackage);
-
-                                itemPackageAdapter = new ItemPackageAdapter(packageLists, DashboardActivity.this);
-                                packageRecyclerView.setAdapter(itemPackageAdapter);
-                            }
-
-                            break;
-                        case "maintainance":
-
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(DashboardActivity.this);
-                            // ...Irrelevant code for customizing the buttons and title
-                            LayoutInflater inflater = DashboardActivity.this.getLayoutInflater();
-                            View dialogView = inflater.inflate(R.layout.under_maintanance_dialog, null);
-                            dialogBuilder.setView(dialogView);
-                            //Alert Dialog Layout work
-                            TextView maintainanceContent = dialogView.findViewById(R.id.underMaintananceContent);
-
-                            TextView btnOK = dialogView.findViewById(R.id.btnOK);
-                            btnOK.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    finishAndRemoveTask();
-                                }
-                            });
-                            AlertDialog alertDialog = dialogBuilder.create();
-                            alertDialog.show();
-                            alertDialog.setCanceledOnTouchOutside(false);
-                            break;
-                        case "failure":
-//
-                            Toast.makeText(DashboardActivity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
-                            break;
-                        default:
-                            Toast.makeText(DashboardActivity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
-                            break;
-
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     public static String cleanImageUrl(String imageUrl) {
         Pattern pattern = Pattern.compile("\\\\/");

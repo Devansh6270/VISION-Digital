@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardView"
-    android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_width="240dp"
+    android:layout_height="100dp"
     android:layout_margin="@dimen/dimen_8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/dimen_16dp">
@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/dimen_2dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -21,14 +22,14 @@
 
             <TextView
                 android:id="@+id/title"
-                style="@style/LogikaNavaMedium"
+                style="@style/LogikaNavaBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="6dp"
                 android:maxLines="2"
                 android:text="What is science? Start Leanring it"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dimen_16dp" />
+                android:textSize="@dimen/dimen_12dp" />
 
             <TextView
                 android:id="@+id/courseName"
@@ -38,7 +39,7 @@
                 android:maxLines="1"
                 android:text="Physics"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/dimen_16sp" />
+                android:textSize="11sp" />
 
 
             <TextView
@@ -46,25 +47,38 @@
                 style="@style/LogikaNavaRegular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:maxLines="2"
                 android:text="23:23 PM"
                 android:textColor="@color/brownColor"
-                android:textSize="@dimen/dimen_12sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
-       <TextView
-           style="@style/LogikaNavaRegular"
-           android:id="@+id/startBtn"
-           android:layout_width="66dp"
-           android:gravity="center"
-           android:layout_gravity="center"
-           android:layout_height="30dp"
-           android:text="Start"
-           android:layout_marginEnd="@dimen/dimen_12dp"
-           android:textColor="@color/white"
-           android:background="@drawable/bg_live_class_btn"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/startBtn"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:lottie_rawRes="@raw/live"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+        <TextView
+            android:id="@+id/upcoming"
+            style="@style/LogikaNavaBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="2dp"
+            android:maxLines="1"
+            android:layout_gravity="center"
+            android:text="Upcoming.."
+            android:textColor="@color/green"
+            android:textSize="14sp" />
+
 
     </LinearLayout>
     

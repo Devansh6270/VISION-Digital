@@ -260,6 +260,11 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_live_class.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_live_class_date.xml">
         <config>
           <theme>@style/AppTheme</theme>
@@ -306,6 +311,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_play_live_class.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_popular_courses.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
@@ -392,28 +402,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14eaaadb-ad15-488d-966a-16e4fef5ef9a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/ImageSlider/SliderAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/ImageSlider/SliderModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/GoingOnLive/GoingOnLiveAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/GoingOnLive/GoingOnLiveModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_live_class_btn.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ongoing_live.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_slider.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_live.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_package.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/live.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/InstituteDetailsActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/CourseDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/CourseDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/AllPackageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/AllPackageActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/DashboardActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyAllCourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/myCourses/ItemMyAllCourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/InstallmentPaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/activities/InstallmentPaymentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemAllPopularCourseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemAllPopularCourseAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemPopularCoursesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/ItemPopularCoursesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/PopularCoursesViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/PopularCourses/PopularCoursesViewHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/GoingOnLive/GoingOnLiveAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vision_digital/model/liveClass/GoingOnLive/GoingOnLiveAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_all_popular_course.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_all_popular_course.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_ongoing_live.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ongoing_live.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_popular_courses.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_popular_courses.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -460,7 +471,7 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "nihal__branch",
-    "last_opened_file_path": "C:/Users/NIHAL RAM TRIPATHI/AndroidStudioProjects/Flutter Project/VISION-Digital/app/src/main/res/layout",
+    "last_opened_file_path": "C:/Users/NIHAL RAM TRIPATHI/AndroidStudioProjects/Flutter Project/VISION-Digital/app/src/main/res/raw",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -469,9 +480,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\raw" />
       <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\layout" />
       <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\java\com\vision_digital\model" />
-      <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\raw" />
       <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app\src\main\res\drawable" />
       <recent name="C:\Users\NIHAL RAM TRIPATHI\AndroidStudioProjects\Flutter Project\VISION-Digital\app" />
     </key>

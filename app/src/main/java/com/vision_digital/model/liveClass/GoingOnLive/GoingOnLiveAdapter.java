@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.vision_digital.R;
 import com.vision_digital.activities.videoPlayer.YouTubeVideoPlayerActivity;
 import com.vision_digital.model.liveClass.Classroom.ItemLiveClassesDateWise;
@@ -52,14 +53,22 @@ public class GoingOnLiveAdapter extends RecyclerView.Adapter<GoingOnLiveAdapter.
             String youtubeEmbedUrl = goingOnLiveModelList.get(position).getUrl();
 
             String videoId = extractVideoIdFromEmbedUrl(youtubeEmbedUrl);
+            String liveStatus=goingOnLiveModelList.get(position).getLiveCurrentStatus();
 
+            if (liveStatus.equals("true")){
+                holder.startBtn.setVisibility(View.VISIBLE);
+                holder.upcoming.setVisibility(View.GONE);
+            }else {
+                holder.startBtn.setVisibility(View.GONE);
+                holder.upcoming.setVisibility(View.VISIBLE);
+            }
 
-            holder.startBtn.setOnClickListener(new View.OnClickListener() {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.e("click","click");
                     if (goingOnLiveModelList.get(position).liveCurrentStatus.equals("false")){
-                        Toast.makeText(context, "Please Subscribe the Course!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, goingOnLiveModelList.get(position).getLiveStatus(), Toast.LENGTH_SHORT).show();
                     }else {
                         Intent i = new Intent(context, YouTubeVideoPlayerActivity.class);
                         i.putExtra("videoId",videoId);
@@ -69,6 +78,7 @@ public class GoingOnLiveAdapter extends RecyclerView.Adapter<GoingOnLiveAdapter.
                     }
                 }
             });
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -92,7 +102,8 @@ public class GoingOnLiveAdapter extends RecyclerView.Adapter<GoingOnLiveAdapter.
 
     public class goingOnLiveViewHolder extends RecyclerView.ViewHolder{
 
-        TextView  title , courseName , liveTime , startBtn;
+        TextView  title , courseName , liveTime , upcoming;
+        LottieAnimationView  startBtn;
 
         CardView  cardView;
 
@@ -103,6 +114,7 @@ public class GoingOnLiveAdapter extends RecyclerView.Adapter<GoingOnLiveAdapter.
             liveTime=itemView.findViewById(R.id.time);
             startBtn=itemView.findViewById(R.id.startBtn);
             cardView=itemView.findViewById(R.id.cardView);
+            upcoming=itemView.findViewById(R.id.upcoming);
         }
     }
 }

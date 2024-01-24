@@ -16,7 +16,7 @@ public class PopularCoursesViewHolder extends RecyclerView.ViewHolder {
     public TextView teacherNameTV,classTitle,teacherQualification,startedAt, price;
     public ImageView blueCard, teacherImage;
     public CardView itemLiveClass;
-    Button exploreBtn , buyNowBtn;
+
     public PopularCoursesViewHolder(@NonNull View itemView) {
         super(itemView);
         teacherImage = itemView.findViewById(R.id.courseImg);
@@ -25,8 +25,7 @@ public class PopularCoursesViewHolder extends RecyclerView.ViewHolder {
         teacherQualification = itemView.findViewById(R.id.techQuali);
         startedAt = itemView.findViewById(R.id.startedAt);
         price=itemView.findViewById(R.id.price);
-        exploreBtn=itemView.findViewById(R.id.exploreBtn);
-        buyNowBtn=itemView.findViewById(R.id.buyNow);
+
 
         itemLiveClass = itemView.findViewById(R.id.itemPopularLiveClass);
 
