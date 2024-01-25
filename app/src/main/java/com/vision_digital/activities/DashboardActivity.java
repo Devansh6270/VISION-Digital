@@ -48,6 +48,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.smarteist.autoimageslider.SliderView;
 import com.vision_digital.TestSeries.TestSeriesDashboardActivity;
 import com.vision_digital.R;
+import com.vision_digital.TestSeries.model.dashboardTestSeries.DashTestSeriesModel;
 import com.vision_digital.helperClasses.JSONParser;
 import com.vision_digital.internetConnectivity.ConnectivityReciever;
 import com.vision_digital.internetConnectivity.MyApplication;
@@ -100,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     LinearLayout  popularCousre_viewAllBtn, popularTeachers_viewAllBtn, offLineResultLayout ;
 
-    CardView myCourse_viewAllBtn , packagesViewALLBtn;
+    CardView myCourse_viewAllBtn , packagesViewALLBtn , testSeriesViewAllBtn;
 
     public DrawerLayout mDrawer;
     private NavigationView nvDrawer;
@@ -199,6 +200,9 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
     ArrayList<SliderModel> sliderModelList = new ArrayList<>();
     RecyclerView recyclerLiveClassList;
 
+   static ArrayList<DashTestSeriesModel> testSeriesList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,6 +214,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         offLineResultLayout = findViewById(R.id.offlineResultLayout);
         sliderView=findViewById(R.id.slider);
          recyclerLiveClassList = findViewById(R.id.recyclerLiveClassesList);
+        testSeriesViewAllBtn = findViewById(R.id.testSeriesViewAllBtn);
 
         no_data_card = findViewById(R.id.no_data_card);
 
@@ -318,6 +323,14 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(DashboardActivity.this, PopularCoursesActivity.class));
+            }
+        });
+
+        testSeriesViewAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, AllTestSeriesListActivity.class));
+
             }
         });
         myCourse_viewAllBtn.setOnClickListener(new View.OnClickListener() {
@@ -984,6 +997,28 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                                 itemPackageList.setImage(packageJSONObject.getString("image"));
                                                 itemPackageList.setPrice(String.valueOf(packageJSONObject.getInt("price")));
                                                 packageLists.add(itemPackageList);
+                                            }
+                                            Log.e("LOG", "IN IF LOOP");
+
+                                        }
+
+                                        // TestSeries
+
+
+                                        JSONArray testSeriesArr = dataObj.getJSONArray("popular_testseries_courses");
+                                        testSeriesList.clear();
+                                        if (popularPackageArr.length() == 0) {
+
+                                        } else {
+                                            for (int i = 0; i < testSeriesArr.length(); i++) {
+                                                DashTestSeriesModel dashTestSeriesModel = new DashTestSeriesModel();
+                                                JSONObject packageJSONObject = testSeriesArr.getJSONObject(i);
+                                                dashTestSeriesModel.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                                dashTestSeriesModel.setTitle(packageJSONObject.getString("title"));
+                                                dashTestSeriesModel.setImage(packageJSONObject.getString("image"));
+                                                dashTestSeriesModel.setActualPrice(String.valueOf(packageJSONObject.getInt("actual_price")));
+                                                dashTestSeriesModel.setSellingPrice(String.valueOf(packageJSONObject.getInt("selling_price")));
+                                                testSeriesList.add(dashTestSeriesModel);
                                             }
                                             Log.e("LOG", "IN IF LOOP");
 

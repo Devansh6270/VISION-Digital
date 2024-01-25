@@ -39,6 +39,9 @@
         android:vmSafeMode="true"
         tools:targetApi="q">
         <activity
+            android:name=".activities.AllTestSeriesListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.OfflineResultListActivity"
             android:exported="false" />
         <activity
@@ -62,7 +65,6 @@
         <activity
             android:name=".signUp.VisionStudentActivity"
             android:exported="false" />
-
         <activity
             android:name=".liveClass.LiveClassRoomActivity"
             android:exported="false" />
@@ -91,7 +93,6 @@
         <activity
             android:name=".InstituteDetailsActivity"
             android:exported="false" />
-
         <activity
             android:name=".profile.EditProfileActivity"
             android:exported="false" />
@@ -148,11 +149,9 @@
             android:label="@string/title_activity_ongoing_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".TestSeries.TestSeriesDashboardActivity"
             android:exported="false" />
-
         <activity
             android:name=".activities.PopularCoursesActivity"
             android:exported="false">

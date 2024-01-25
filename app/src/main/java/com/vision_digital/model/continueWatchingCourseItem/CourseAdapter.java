@@ -288,8 +288,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.mchart.getAxisLeft().setDrawGridLinesBehindData(true);
         holder.mchart.setClickable(false);
         holder.mchart.setDrawMarkers(false);
-        holder.mchart.getAxisLeft().setTextColor(Color.parseColor("#ffffff"));
-        holder.mchart.getAxisLeft().setAxisLineColor(Color.parseColor("#FFF212"));
+        holder.mchart.getAxisLeft().setTextColor(Color.parseColor("#000000"));
+        holder.mchart.getAxisLeft().setAxisLineColor(Color.parseColor("#771E1E"));
 
         final ArrayList<String> axiss = new ArrayList<>();
         for (int a = 0; a < courseItemList.get(position).getActualTimeList().size(); a++) {
@@ -303,16 +303,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         xAxis.setAxisLineWidth(2f);
         xAxis.setGranularity(1f);
         xAxis.setDrawGridLines(false);
-        xAxis.setAxisLineColor(Color.parseColor("#FFF212"));
+        xAxis.setAxisLineColor(Color.parseColor("#771E1E"));
         xAxis.setLabelRotationAngle(0);
-        xAxis.setTextColor(Color.parseColor("#ffffff"));
+        xAxis.setTextColor(Color.parseColor("#000000"));
 
 
         YAxis leftYAxis = holder.mchart.getAxisLeft();
-        leftYAxis.setTextColor(Color.parseColor("#ffffff")); // Set label text color
+        leftYAxis.setTextColor(Color.parseColor("#000000")); // Set label text color
 
         YAxis rightYAxis = holder.mchart.getAxisRight();
-        rightYAxis.setTextColor(Color.parseColor("#ffffff")); // Set label text color
+        rightYAxis.setTextColor(Color.parseColor("#000000")); // Set label text color
 
 //        xAxis.setValueFormatter(new IndexAxisValueFormatter(axiss));
 
@@ -322,7 +322,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         LineDataSet set1, set2;
 
         set1 = new LineDataSet(courseItemList.get(position).getActualTimeList(), "Required time");
-        set1.setColor(Color.parseColor("#ffffff"));
+        set1.setColor(Color.parseColor("#000000"));
         set1.setDrawCircleHole(false);
         set1.setLineWidth(1.8f);
         set1.setDrawValues(false);
@@ -339,7 +339,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
 
         set2 = new LineDataSet(courseItemList.get(position).getSpentTimeList(), "Spent time");
-        set2.setColor(Color.parseColor("#FFF212"));
+        set2.setColor(Color.parseColor("#771E1E"));
         set2.setDrawCircleHole(false);
         set2.setLineWidth(2.5f);
 //        set1.setCircleRadius(0);

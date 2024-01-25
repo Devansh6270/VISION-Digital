@@ -155,6 +155,14 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="ImageView.FullCorner" parent="">
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
 
 
     <style name="CircularDeterminateProgressBar">

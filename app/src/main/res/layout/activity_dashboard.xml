@@ -333,7 +333,7 @@
 
                             </androidx.cardview.widget.CardView>
                             <androidx.cardview.widget.CardView
-                                android:id="@+id/testViewAllBtn"
+                                android:id="@+id/testSeriesViewAllBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
                                 android:elevation="@dimen/dimen_32dp"
@@ -446,6 +446,7 @@
                                 android:layout_below="@+id/layoutModule1"
                                 android:layoutAnimation="@anim/layout_animation"
                                 android:paddingTop="2dp"
+                                android:layout_marginBottom="@dimen/dimen_8dp"
                                 android:visibility="visible" />
 
                             <TextView
@@ -459,7 +460,8 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_12dp">
 
                                 <com.smarteist.autoimageslider.SliderView
                                     android:id="@+id/slider"
@@ -474,8 +476,8 @@
                                     app:sliderIndicatorGravity="center_horizontal|bottom"
                                     app:sliderIndicatorMargin="15dp"
                                     app:sliderIndicatorOrientation="horizontal"
-                                    app:sliderIndicatorPadding="3dp"
-                                    app:sliderIndicatorRadius="1dp"
+                                    app:sliderIndicatorPadding="2dp"
+                                    app:sliderIndicatorRadius="2dp"
                                     android:layout_marginBottom="@dimen/dimen_24dp"
                                     app:sliderIndicatorSelectedColor="#5A5A5A"
                                     app:layout_constraintStart_toStartOf="parent"
