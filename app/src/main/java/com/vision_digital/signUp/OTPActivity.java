@@ -368,6 +368,7 @@ public class OTPActivity extends AppCompatActivity {
                             if (userStatus.equals("registered")) {
                                 SharedPreferences.Editor editor = getSharedPreferences("CNB", MODE_PRIVATE).edit();
                                 editor.putInt("sid", dataObj.getInt("id"));
+                                editor.putString("enrollno", dataObj.getString("enrollno"));
                                 editor.putString("profileName",dataObj.getString("name"));
                                 editor.putString("isLogin","Yes");
                                 editor.putString("mobileNo",dataObj.getString("mobile"));

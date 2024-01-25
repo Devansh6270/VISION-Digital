@@ -16,15 +16,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/round_shape"
         android:elevation="8dp"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back_ios_24"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="66dp"
         android:gravity="center"
         android:layout_marginRight="8dp"
         android:orientation="vertical">
@@ -33,7 +32,7 @@
             style="@style/Nohemi_Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other Courses"
+            android:text="Popular Courses"
             android:textColor="#393E59"
             android:layout_margin="16sp"
             android:textSize="24dp" />

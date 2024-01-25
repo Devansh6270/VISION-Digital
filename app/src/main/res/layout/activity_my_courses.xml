@@ -4,60 +4,274 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pagebackgroundblue"
+    android:background="@color/white"
     tools:context=".activities.MyCoursesActivity">
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="-110dp"-->
-<!--        android:src="@drawable/green_new_back" />-->
 
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="-110dp"-->
-<!--        android:src="@drawable/pink_new_back" />-->
 
-    <ImageView
-        android:id="@+id/backBtn"
-        android:elevation="8dp"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:background="@drawable/round_shape"
-        android:src="@drawable/ic_back"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-         />
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_ios_24"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="16dp"
+                />
+
+            <TextView
+                style="@style/LogikaNavaBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:fontFamily="@font/space_grotesk_bold"
+                android:text="My Courses"
+                android:textColor="@color/textColor"
+                android:textSize="21sp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="8dp"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/Nohemi_Medium"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16sp"
-            android:fontFamily="@font/space_grotesk_bold"
-            android:text="My Courses"
-            android:textColor="#393E59"
-            android:textSize="24dp" />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/allCourseBtn"
+                    style="@style/LogikaNavaRegular"
+                    android:layout_width="54dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dimen_12dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="All"
+                    android:background="@drawable/bg_red_round_button"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/liveCourseBtn"
+                    style="@style/LogikaNavaRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dimen_12dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="Live"
+                    android:background="@drawable/bg_category_my_course"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+
+
+
+                <TextView
+                    android:id="@+id/recordedCourseBtn"
+                    style="@style/LogikaNavaRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dimen_12dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="Course"
+                    android:background="@drawable/bg_category_my_course"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/packageBtn"
+                    style="@style/LogikaNavaRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dimen_12dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="Package"
+                    android:background="@drawable/bg_category_my_course"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/testSeriesBtn"
+                    style="@style/LogikaNavaRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/dimen_12dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="Test Series"
+                    android:background="@drawable/bg_category_my_course"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+
+
+
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/emptyCourseListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieEmptyBox"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.279"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_box" />
+
+            <TextView
+                android:id="@+id/textEmptyBox"
+                style="@style/LogikaNavaBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:gravity="center"
+                android:fontFamily="@font/space_grotesk_bold"
+                android:text="No Course is Subscribe Yet!"
+                android:textColor="@color/grey"
+                android:textSize="21sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lottieEmptyBox"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/exploreCoursesBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="24dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardBackgroundColor="@color/themeColor"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true">
+
+                <TextView
+                    style="@style/LogikaNavaBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16sp"
+                    android:fontFamily="@font/space_grotesk_bold"
+                    android:text="Explore Courses"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myCoursesList"
+            android:id="@+id/myCoursesAllList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myCoursesLiveList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myCoursesRecordedList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/packageCourseList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myCourseTestSeriesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
 
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

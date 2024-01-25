@@ -123,44 +123,6 @@ public class AgoraCallingActivity extends AppCompatActivity {
         }
         return true;
     }
-    // Java
-//    private void initializeAndJoinChannel() {
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        uid = user.getUid();
-//        Log.e("uid",uid);
-//        try {
-//
-//
-//            mRtcEngine = RtcEngine.create(getBaseContext(), getString(R.string.agora_app_id), mRtcEventHandler);
-//            mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-//
-////
-////            if(user is admin)
-////            mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
-////            else{
-////                mRtcEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE)
-////            }
-//
-//        } catch (Exception e) {
-//            Log.e("exption","exception");
-//            throw new RuntimeException(e.toString());
-//        }
-//
-//        mRtcEngine.joinChannel("", channelName, "1234", sid);
-//        Toast.makeText(this, "Channel joined", Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, mRtcEngine.getCallId(), Toast.LENGTH_SHORT).show();
-//        txt.setText(mRtcEngine.getCallId());
-//
-//        //listview will be hidden for normal user.
-////        mRtcEngine.muteRemoteAudioStream(456,false);
-//
-//
-//        mRtcEngine.enableAudio();
-//
-//    }
-
-
-    // Java
     protected void onDestroy() {
         super.onDestroy();
         mRtcEngine.leaveChannel();

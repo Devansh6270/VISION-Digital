@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- com.app.sigma.classes -->
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -23,7 +23,7 @@
         tools:node="remove" />
 
     <application
-        android:name="com.vision_digital.internetConnectivity.MyApplication"
+        android:name=".internetConnectivity.MyApplication"
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:exported="true"
@@ -38,6 +38,12 @@
         android:usesCleartextTraffic="true"
         android:vmSafeMode="true"
         tools:targetApi="q">
+        <activity
+            android:name=".activities.InstallmentOrderListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OfflineResultListActivity"
+            android:exported="false" />
         <activity
             android:name=".TestSeries.SubjectivePaperDetailActivity"
             android:exported="false" />
@@ -60,9 +66,6 @@
             android:name=".signUp.VisionStudentActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.IPayActivity"
-            android:exported="false" />
-        <activity
             android:name=".liveClass.LiveClassRoomActivity"
             android:exported="false" />
         <activity
@@ -72,7 +75,6 @@
             android:name=".activities.videoPlayer.YouTubeVideoPlayerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
-
         <activity
             android:name=".activities.AllAnalyticsPage"
             android:exported="false" />
@@ -83,7 +85,7 @@
             android:name=".CertificateActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.oboardingScreen.IntroActivity"
+            android:name=".oboardingScreen.IntroActivity"
             android:exported="false" />
         <activity
             android:name=".activities.PrivacyPolicyActivity"
@@ -92,13 +94,8 @@
             android:name=".InstituteDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".AgoraCallingActivity"
+            android:name=".profile.EditProfileActivity"
             android:exported="false" />
-
-        <activity
-            android:name="com.vision_digital.profile.EditProfileActivity"
-            android:exported="false" />
-
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -111,13 +108,13 @@
         </provider>
 
         <activity
-            android:name="com.vision_digital.profile.ProfileActivity"
+            android:name=".profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.transaction.TransactionDetails"
+            android:name=".transaction.TransactionDetails"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.transaction.TransactionHistory"
+            android:name=".transaction.TransactionHistory"
             android:exported="false" />
         <activity
             android:name=".activities.PdfRenderActivity"
@@ -135,31 +132,25 @@
             android:name=".activities.TopperTwentyRegistration"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.TestSeries.ShowResultActivity"
+            android:name=".TestSeries.ShowResultActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.TestSeries.ResultActivity"
+            android:name=".TestSeries.ResultActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.thirdPartyRegistration.ThirdPartyRegistrationActivity"
+            android:name=".thirdPartyRegistration.ThirdPartyRegistrationActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.TestSeries.model.testResultNew.NewResultActivity"
+            android:name=".TestSeries.model.testResultNew.NewResultActivity"
             android:exported="false" />
         <activity
-            android:name="com.vision_digital.TestSeries.OngoingTestActivity"
+            android:name=".TestSeries.OngoingTestActivity"
             android:exported="false"
             android:label="@string/title_activity_ongoing_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vision_digital.TestSeries.TestDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.vision_digital.TestSeries.TestSeriesDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.QuestionBtwMilestoneActivity"
+            android:name=".TestSeries.TestSeriesDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".activities.PopularCoursesActivity"
@@ -199,7 +190,7 @@
         </activity>
 
         <service
-            android:name="com.vision_digital.services.FirebaseMessageReceiver"
+            android:name=".services.FirebaseMessageReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -283,7 +274,6 @@
                 <data
                     android:host="chalksnboard.com"
                     android:scheme="https" />
-
                 <data android:pathPattern="/.*" />
             </intent-filter>
         </activity>
@@ -310,8 +300,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-
         </activity>
 
         <meta-data

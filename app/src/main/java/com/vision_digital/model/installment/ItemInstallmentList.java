@@ -4,6 +4,24 @@ public class ItemInstallmentList {
     String installmentNumber, dueDate, amount, pendingAmount, date;
     String id, fee_id, admno, status, payment_alert, payment_status, payment_history;
 
+    public String getOnlyInstallmentId() {
+        return onlyInstallmentId;
+    }
+
+    public void setOnlyInstallmentId(String onlyInstallmentId) {
+        this.onlyInstallmentId = onlyInstallmentId;
+    }
+
+    String onlyInstallmentId, onlyDueDate;
+
+    public String getOnlyDueDate() {
+        return onlyDueDate;
+    }
+
+    public void setOnlyDueDate(String onlyDueDate) {
+        this.onlyDueDate = onlyDueDate;
+    }
+
     public String getId() {
         return id;
     }

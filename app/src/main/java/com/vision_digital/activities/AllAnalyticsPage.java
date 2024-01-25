@@ -13,9 +13,6 @@ import android.widget.ImageView;
 
 import com.vision_digital.R;
 import com.vision_digital.model.analytics.ItemAllAnalyticsAdapter;
-import com.vision_digital.model.analytics.ItemAnalytics;
-
-import java.util.ArrayList;
 
 public class AllAnalyticsPage extends AppCompatActivity {
 
@@ -25,8 +22,6 @@ public class AllAnalyticsPage extends AppCompatActivity {
     ItemAllAnalyticsAdapter itemAnalyticsAdapter;
     RecyclerView myAnalyticsListView;
 
-
-    ArrayList<ItemAnalytics> analytics;
 
     ImageView backBtn;
 
@@ -45,12 +40,6 @@ public class AllAnalyticsPage extends AppCompatActivity {
                 }
             });
 
-//        myAnalyticsListView = findViewById(R.id.myAnalyticsList);
-//        LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);
-//        myAnalyticsListView.setLayoutManager(layoutManager);
-//
-//        itemAnalyticsAdapter = new ItemAnalyticsAdapter(getApplicationContext(),courseAnalytics);
-//        myAnalyticsListView.setAdapter(itemAnalyticsAdapter);
 
         myAnalyticsListView = findViewById(R.id.myAnalyticsList);
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);

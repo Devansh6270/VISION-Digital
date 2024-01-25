@@ -90,8 +90,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
     //Payment-------------------
     // Paytm------------------
     String mid = "IxDAFe91483847846332"; //Rajit
-    //    String mid = "TLvNGP42879274127615";
-//                                String marchentKey = "G&%UEPNTnz6&4cti";
+
     String marchentKey = "1BGSS5qX5OuGWITA"; //Rajit
 
     String timeDuration;
@@ -764,7 +763,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
 
     class MakePackageSubscription extends AsyncTask<String, Void, String> {
 
-        String url = getApplicationContext().getString(R.string.apiURL)+"makePackageSubscription";
+        String url = getApplicationContext().getString(R.string.apiURL)+"makeCourseSubscription";
 
 
         @Override
@@ -777,7 +776,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
         protected String doInBackground(String... params) {
 
             JSONParser jsonParser = new JSONParser(CoursePackageActivity.this);
-            String param = "sid=" + sid + "&package_id=" + packageId + "&subscription_month=" + 1 + "&order_id=" + orderID +
+            String param = "student_id=" + sid + "&course_id=" + packageId + "&course_type="+ "package" +"&subscription_month=" + 1 + "&order_id=" + orderID +
                     "&coupon_code=" +
                     coupon_code_test + "&coupon_value=" + coupon_code_values + "&amount_paid=" + total_price + "&amount_course=" + price;
             ;
@@ -811,7 +810,6 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
                     //Do work-----------------------------
 
                     String status = jsonObject.getString("status");
-                    String message =jsonObject.getString("message");
 //                    Toast.makeText(CourseDetailsActivity.this, "" + data, Toast.LENGTH_SHORT).show();
                     if (status.equals("success")) {
                         //Undermaintance

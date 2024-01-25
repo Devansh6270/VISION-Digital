@@ -7,29 +7,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.vision_digital.TestSeries.OngoingTestActivity;
-import com.vision_digital.TestSeries.model.testResultNew.NewResultActivity;
-import com.vision_digital.activities.CourseDetailsActivity;
+import com.vision_digital.CoursePackage.CoursePackageActivity;
 import com.vision_digital.R;
+import com.vision_digital.TestSeries.AllTestPageActivity;
+import com.vision_digital.activities.CourseDetailsActivity;
+import com.vision_digital.liveClass.LiveDetailsActivity;
 
 import java.util.List;
 
 public class ItemMyAllCourseAdapter extends RecyclerView.Adapter<ItemMyAllCourseAdapter.ItemMyCourseViewHolder> {
 
-    List<ItemMyCourse> myCourseList;
+    List<ItemSubscribedCourse> myCourseList;
     Context context;
 
-    public ItemMyAllCourseAdapter(List<ItemMyCourse> myCourseList) {
+    public ItemMyAllCourseAdapter(List<ItemSubscribedCourse> myCourseList, Context context) {
         this.myCourseList = myCourseList;
+        this.context = context;
     }
 
     @NonNull
@@ -37,109 +39,59 @@ public class ItemMyAllCourseAdapter extends RecyclerView.Adapter<ItemMyAllCourse
     public ItemMyCourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         return new ItemMyCourseViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_all_live_classes, parent, false));
+                .inflate(R.layout.item_package_course__card, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemMyCourseViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         try {
-            holder.teacherNameTV.setText(myCourseList.get(position).getOwner_name());
-            holder.teacherQualification.setText("");
-            //            holder.teacherQualification.setText(myCourseList.get(position).getOwner_qualification());
+            holder.packageTitle.setText(myCourseList.get(position).getName());
 
-            holder.classTitle.setText(myCourseList.get(position).getTitle());
+            Glide.with(context).load(myCourseList.get(position).getImage()).into(holder.packageImage);
 
-            long second = Long.parseLong(myCourseList.get(position).getDuration());
-            int hours = (int) second / 3600;
-            int remainder = (int) second - hours * 3600;
-            int mins = remainder / 60;
-//            holder.startedAt.setText("Duration: " + Integer.parseInt(myCourseList.get(position).getDuration()) / 3600 + " Hrs");
-
-            if (myCourseList.get(position).getDuration().equals("")){
-                holder.startedAt.setVisibility(View.GONE);
-
-            }else{
-                holder.startedAt.setVisibility(View.GONE);
+            String type=myCourseList.get(position).getType();
 
 
-                if (hours < 10 && mins < 10) {
-                    holder.startedAt.setText("Duration: 0" + hours + ":0" + mins + " Hrs");
-                } else if (hours == 0 && mins < 10) {
-                    holder.startedAt.setText("Duration: 00" + ":0" + mins + " Hrs");
-
-                } else if (hours == 0 && mins > 10) {
-                    holder.startedAt.setText("Duration: 00" + ":" + mins + " Hrs");
-
-                } else if (hours > 10 && mins < 10) {
-                    holder.startedAt.setText("Duration: " + hours + ":0" + mins + " Hrs");
-
-                } else if (hours < 10 && mins > 10) {
-                    holder.startedAt.setText("Duration: 0" + hours + ":" + mins + " Hrs");
-
-                } else {
-                    holder.startedAt.setText("Duration: " + hours + ":" + mins + " Hrs");
-                }
-            }
+            holder.packagePrice.setVisibility(View.GONE);
 
 
-            Glide.with(context).load(myCourseList.get(position).getImage())
-                    .into(holder.teacherImage);
-
-            holder.letsLearn.setOnClickListener(new View.OnClickListener() {
+            holder.describeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.e("click","click");
+                    // Handle the click event for the forwordBtn here
+                    // You can start a new activity or perform any other action
+                    Log.e("click", "forwardBtn clicked");
 
-                    if(myCourseList.get(position).getType().equals("TestSeries")) {
-                        Intent courseIntent = new Intent(context, OngoingTestActivity.class);
-                        courseIntent.putExtra("desc", "");
-                        courseIntent.putExtra("price", "");
-                        courseIntent.putExtra("testType", "single");
+                    if (type.equals("live")){
+                        Intent courseIntent = new Intent(context, LiveDetailsActivity.class);
                         courseIntent.putExtra("id", myCourseList.get(position).getId());
                         context.startActivity(courseIntent);
-                    }else if(myCourseList.get(position).getType().equals("PostTestSeries")){
-                        Intent courseIntent = new Intent(context, NewResultActivity.class);
-                        courseIntent.putExtra("id", myCourseList.get(position).getId());
-                        context.startActivity(courseIntent);
-                    }
-                    else {
+                    }else if (type.equals("course")){
                         Intent courseIntent = new Intent(context, CourseDetailsActivity.class);
                         courseIntent.putExtra("id", myCourseList.get(position).getId());
-                        Log.e("CourseID",myCourseList.get(position).getId());
-                        courseIntent.putExtra("image",myCourseList.get(position).getImage());
-                        courseIntent.putExtra("fromActivity","homePage");
-                        courseIntent.putExtra("forTask","explore");
-                        courseIntent.putExtra("forTask","explore");
+                        courseIntent.putExtra("image", myCourseList.get(position).getImage());
+                        courseIntent.putExtra("fromActivity", "Dashboard");
+                        courseIntent.putExtra("forTask", "Explore");
                         context.startActivity(courseIntent);
                     }
+                    else if (type.equals("package")){
+                        Intent courseIntent = new Intent(context, CoursePackageActivity.class);
+                        courseIntent.putExtra("id", myCourseList.get(position).getId());
+                        courseIntent.putExtra("image", myCourseList.get(position).getImage());
+                        context.startActivity(courseIntent);
+                    }
+
+                    else if(myCourseList.get(position).getType().equals("testseries")){
+                        Intent courseIntent = new Intent(context, AllTestPageActivity.class);
+                        courseIntent.putExtra("id", myCourseList.get(position).getId());
+                        courseIntent.putExtra("subscriptionValidity", " ");
+                        context.startActivity(courseIntent);
+                    }
+
+
                 }
             });
-//            holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.e("click","click");
-//
-//                    if(myCourseList.get(position).getType().equals("TestSeries")) {
-//                        Intent courseIntent = new Intent(context, TestDetailsActivity.class);
-//                        courseIntent.putExtra("desc", "");
-//                        courseIntent.putExtra("price", "");
-//                        courseIntent.putExtra("testType", "single");
-//                        courseIntent.putExtra("id", myCourseList.get(position).getId());
-//                        context.startActivity(courseIntent);
-//                    }else if(myCourseList.get(position).getType().equals("PostTestSeries")){
-//                        Intent courseIntent = new Intent(context, NewResultActivity.class);
-//                        courseIntent.putExtra("id", myCourseList.get(position).getId());
-//                        context.startActivity(courseIntent);
-//                    }
-//                    else {
-//                        Intent courseIntent = new Intent(context, CourseDetailsActivity.class);
-//                        courseIntent.putExtra("id", myCourseList.get(position).getId());
-//                        courseIntent.putExtra("image",myCourseList.get(position).getImage());
-//                        courseIntent.putExtra("fromActivity","homePage");
-//                        context.startActivity(courseIntent);
-//                    }
-//                }
-//            });
+
 
         }catch(Exception e){
             e.printStackTrace();
@@ -153,20 +105,20 @@ public class ItemMyAllCourseAdapter extends RecyclerView.Adapter<ItemMyAllCourse
 
     public class ItemMyCourseViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView teacherNameTV,classTitle,teacherQualification,startedAt;
-        public ImageView blueCard, teacherImage;
-        public CardView itemLiveClass;
-        public Button letsLearn;
+
+        TextView packagePrice , packageDescription, packageTitle;
+        ImageView packageImage;
+        ImageView forwordBtn;
+        LinearLayout describeLayout;
         public ItemMyCourseViewHolder(@NonNull View itemView) {
             super(itemView);
-            teacherImage = itemView.findViewById(R.id.teacherImg);
-            teacherNameTV = itemView.findViewById(R.id.teacherName);
-            classTitle = itemView.findViewById(R.id.classTitle);
-            teacherQualification = itemView.findViewById(R.id.techQuali);
-            startedAt = itemView.findViewById(R.id.startedAt);
-            letsLearn=itemView.findViewById(R.id.letsLearnBtn);
+            packageTitle=itemView.findViewById(R.id.packageTitle);
+            packageDescription=itemView.findViewById(R.id.packageDescription);
+            packagePrice=itemView.findViewById(R.id.packageDate);
+            packageImage=itemView.findViewById(R.id.packageImg);
 
-            itemLiveClass = itemView.findViewById(R.id.itemLiveClass);
+
+            describeLayout = itemView.findViewById(R.id.describeLayout);
 
         }
     }

@@ -30,9 +30,9 @@
                 android:layout_marginTop="@dimen/dimen_8dp"
                 android:layout_marginEnd="@dimen/dimen_8dp"
                 android:layout_marginBottom="@dimen/dimen_8dp"
-                android:background="@drawable/round_shape"
                 android:elevation="8dp"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back_ios_24"
+                app:tint="@color/white" />
 
             <ImageView
                 android:id="@+id/sharButtonCourseDetail"

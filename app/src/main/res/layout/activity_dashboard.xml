@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#F7F8FF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,20 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--        <TextView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="wrap_content"-->
-                <!--            android:text="Beta Version"-->
-                <!--            android:layout_alignParentBottom="true"-->
-                <!--            android:textAlignment="center"-->
-                <!--            android:layout_gravity="center"-->
-                <!--            android:layout_margin="16dp"/>-->
-
-                <!--        <ImageView-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="match_parent"-->
-                <!--            android:scaleType="fitXY"-->
-                <!--            android:src="@drawable/registration_background" />-->
 
                 <RelativeLayout
                     android:id="@+id/dashboardToolbar"
@@ -184,6 +170,9 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
+
+
+
                         <LinearLayout
                             android:id="@+id/continueWatchingContainer"
                             android:layout_width="match_parent"
@@ -201,80 +190,62 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerLiveClassesList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:id="@+id/myCourseLayout"
+                            android:layoutAnimation="@anim/layout_animation"
+                            android:paddingTop="2dp"
+                            android:visibility="visible" />
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/MyCoursesViewAllBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="16dp"
-                                android:orientation="horizontal">
+                                android:elevation="@dimen/dimen_32dp"
+                                app:cardBackgroundColor="#FCF1F1"
+                                android:layout_margin="@dimen/dimen_12dp"
+                                app:cardCornerRadius="@dimen/dimen_32dp">
 
-                                <TextView
-                                    style="@style/Nohemi_Bold"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="My Course"
-                                    android:textSize="16sp"
-                                    android:textColor="#393E59" />
                                 <LinearLayout
-                                    android:id="@+id/MyCoursesViewAllBtn"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_centerInParent="true"
                                     android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginStart="@dimen/dimen_16dp"
+                                        app:tint="#771E1E"
+                                        android:src="@drawable/book"/>
 
                                     <TextView
                                         style="@style/Nohemi_Bold"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
-                                        android:gravity="center"
-                                        android:text="See All"
-                                        android:layout_marginEnd="5dp"
-                                        android:textSize="14sp"
-                                        android:textColor="#393E59" />
-
-                                    <ImageView
-                                        android:layout_width="18dp"
-                                        android:layout_height="18dp"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_centerVertical="true"
-                                        android:src="@drawable/ic_forword" />
+                                        android:padding="@dimen/dimen_16dp"
+                                        android:text="My Courses"
+                                        android:layout_gravity="center"
+                                        android:textSize="16sp"
+                                        android:textColor="#771E1E" />
                                 </LinearLayout>
 
-                            </RelativeLayout>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/myCourseList"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/layoutModule1"
-                                android:layoutAnimation="@anim/layout_animation"
-                                android:visibility="visible" />
 
-                            <TextView
-                                android:id="@+id/noCoursesSubscribed"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="No ongoing live classes for you."
-                                android:textAlignment="center"
-                                android:textColor="@color/colorPrimary"
-                                android:visibility="gone" />
-                        </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+
+
 
                         <LinearLayout
                             android:id="@+id/packageLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -478,6 +449,33 @@
                                 android:layoutAnimation="@anim/layout_animation"
                                 android:paddingTop="2dp"
                                 android:visibility="visible" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <com.smarteist.autoimageslider.SliderView
+                                    android:id="@+id/slider"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_centerInParent="true"
+                                    app:sliderAnimationDuration="600"
+                                    app:sliderAutoCycleDirection="back_and_forth"
+                                    app:sliderIndicatorAnimationDuration="600"
+                                    app:sliderIndicatorEnabled="true"
+                                    app:layout_constraintDimensionRatio="H,16:9"
+                                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                                    app:sliderIndicatorMargin="15dp"
+                                    app:sliderIndicatorOrientation="horizontal"
+                                    app:sliderIndicatorPadding="3dp"
+                                    app:sliderIndicatorRadius="1dp"
+                                    android:layout_marginBottom="@dimen/dimen_24dp"
+                                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:sliderIndicatorUnselectedColor="#FFF"
+                                    app:sliderScrollTimeInSec="1" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <!--                            <TextView-->
                             <!--                                android:id="@+id/noPopularCourse"-->

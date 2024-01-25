@@ -44,7 +44,6 @@ import org.json.JSONObject;
 public class SplashScreen extends AppCompatActivity implements ConnectivityReciever.ConnectivityRecieverListener {
 
     Animation left, right, fadeout;
-    TextView logoone, sigma,logotwo, logothree;
     ImageView center_chalk;
     long delay = 2000;
 
@@ -52,9 +51,7 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
     String isLogin="" , current_login_id="";
     FirebaseUser user;
     String uid = "";
-    boolean goodToGo = false;
     int sid = 0;
-    Uri deepLink;
     String deeplinkFirebase = "chalksnboard";
 
     @Override
@@ -72,10 +69,6 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
         reciever = new ConnectivityReciever();
 
 
-//        logoone = findViewById(R.id.center_logo_one);
-//        logotwo = findViewById(R.id.center_logo_two);
-//        logothree = findViewById(R.id.center_logo_three);
-//        sigma = findViewById(R.id.sigma);
         center_chalk = findViewById(R.id.center_chalk);
 
 //        Glide.with(this).load(R.drawable.title_cnb).into(title_cnb);
@@ -98,10 +91,6 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
         try {
 
             if (user != null) {
-//                SharedPreferences userIsRegisteredSuccessful = this.getSharedPreferences("CNB", MODE_PRIVATE);
-//                boolean registered = userIsRegisteredSuccessful.getBoolean("registered", false);
-//                sid = userIsRegisteredSuccessful.getInt("sid", 0);
-
 
             }
         } catch (Exception e) {
@@ -225,7 +214,18 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
                                         //Student is banned--------------------------
                                         String message = dataObj.getString("user_status_banned_message");
                                         Toast.makeText(SplashScreen.this, message, Toast.LENGTH_SHORT).show();
-                                    } else if (userStatus.equals("not_registered")) {
+                                    } else if (userStatus.equals("logout_user")) {
+                                        String message = dataObj.getString("message");
+                                        Toast.makeText(SplashScreen.this, message, Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(SplashScreen.this, LogInViaPhoneActivity.class);
+                                        i.putExtra("deeplinkFirebase",deeplinkFirebase);
+                                        startActivity(i);
+                                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                                        finish();
+
+                        }
+                                    else if (userStatus.equals("not_registered")) {
 //                                        startActivity(new Intent(SplashScreen.this, RegistrationActivity.class));
 //                                        finish();
                                         new Handler().postDelayed(new Runnable() {

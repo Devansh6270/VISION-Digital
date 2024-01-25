@@ -96,19 +96,42 @@
 
             </LinearLayout>
 
-            <TextView
-                style="@style/Nohemi_Regular"
-                android:id="@+id/tvRank"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:background="@drawable/intersect"
-                android:layout_alignParentEnd="true"
-                android:gravity="center"
-                android:textColor="@color/black"
+            <LinearLayout
+                android:layout_width="66dp"
+                android:layout_height="66dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="@dimen/dimen_12dp"
-                tools:text="21 \n Rank" />
+                android:gravity="center"
+                android:background="@drawable/intersect"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    style="@style/Nohemi_Bold"
+                    android:id="@+id/tvRank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_16dp"
+                    tools:text="21" />
+
+                <TextView
+                    style="@style/Nohemi_Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Rank"
+                    android:visibility="visible"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_12sp" />
+
+
+            </LinearLayout>
+
+
+
 
             <LinearLayout
                 android:id="@+id/llSubjects"
