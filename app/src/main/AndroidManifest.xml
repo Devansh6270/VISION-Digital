@@ -42,9 +42,6 @@
             android:name=".activities.InstallmentOrderListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AllTestSeriesListActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.OfflineResultListActivity"
             android:exported="false" />
         <activity

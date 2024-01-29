@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.vision_digital.R;
 import com.vision_digital.databinding.ActivityInstallmentPaymentBinding;
 import com.vision_digital.helperClasses.JSONParser;
+import com.vision_digital.model.InstallmentOrderList.ItemInstallmentOrderList;
 import com.vision_digital.model.installment.ItemInstallmentAdapter;
 import com.vision_digital.model.installment.ItemInstallmentList;
 
@@ -28,8 +29,9 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
 
     ActivityInstallmentPaymentBinding binding;
     ArrayList<ItemInstallmentList> arrayListInstallment = new ArrayList<>();
+   static ArrayList<ItemInstallmentOrderList> arrayListOrder = new ArrayList<>();
     ItemInstallmentAdapter itemInstallmentAdapter;
-    String sid;
+    String sid, enrollno;
     String getInstallment;
     private ProgressDialog dialog;
     @Override
@@ -40,7 +42,10 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
 
         //setContentView(R.layout.activity_installment_payment);
         sid = getIntent().getStringExtra("sid");
-        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+sid+"/fee";
+
+        enrollno = getIntent().getStringExtra("enrollno");
+        Log.e("enrollno", enrollno);
+        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+enrollno+"/fee";
 
 
         binding.profileBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,10 +56,11 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
         });
 
         new GetInstallmentData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
     }
 
     class GetInstallmentData extends AsyncTask<String, Void, String> {
-
 
         @Override
         protected void onPreExecute() {
@@ -100,10 +106,6 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                     Log.e("Status", status.toString());
                     if (status.equals("true")){
 
-
-
-
-
                         if (dataObj.length()==0){
                             binding.feesLayout.setVisibility(View.GONE);
                             binding.installmentMonths.setVisibility(View.GONE);
@@ -112,8 +114,8 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                             binding.feeStructureText.setVisibility(View.GONE);
                             binding.rvInstallment.setVisibility(View.GONE);
                         }else {
-                            JSONArray installmentArray = dataObj.getJSONArray("installment");
 
+                            JSONArray installmentArray = dataObj.getJSONArray("installment");
                             binding.feesLayout.setVisibility(View.VISIBLE);
                             binding.installmentMonths.setVisibility(View.VISIBLE);
                             binding.noInstallmentText.setVisibility(View.GONE);
@@ -125,17 +127,23 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                             binding.tvPendingAmount.setText(dataObj.getString("pending_fee"));
                             String id = String.valueOf(dataObj.getInt("id"));
                             String batch = dataObj.getString("batch");
+//                            String admno = dataObj.getString("admno");
                             String total_installment = dataObj.getString("total_installment");
                             binding.edtMonth.setText(total_installment);
 
 
                             arrayListInstallment.clear();
+                            arrayListOrder.clear();
 
                             for (int i = 0; i<installmentArray.length(); i++){
                                 ItemInstallmentList itemInstallmentList = new ItemInstallmentList();
                                 JSONObject installDataObj = installmentArray.getJSONObject(i);
                                 itemInstallmentList.setInstallmentNumber(String.valueOf(installDataObj.getInt("installment"))+" Installment");
+// ==========================WE HAVE TO FORWARD INSTALLMENT ID ONLY IN NEXT ACTIVITY THAT IS WHY STORING IN NEW GETTER SETTER===============
+                                itemInstallmentList.setOnlyInstallmentId(String.valueOf(installDataObj.getInt("installment")));
                                 itemInstallmentList.setDueDate("Pay by "+installDataObj.getString("due_date"));
+// ==========================WE HAVE TO SHOW DUE DATE ONLY IN ADAPTER THAT IS WHY STORING IN NEW GETTER SETTER===============
+                                itemInstallmentList.setOnlyDueDate(installDataObj.getString("due_date"));
 //                            itemInstallmentList.setDate(installDataObj.getString(""));
                                 itemInstallmentList.setAmount(String.valueOf(installDataObj.getInt("amount")));
                                 itemInstallmentList.setPendingAmount(String.valueOf(installDataObj.getInt("pending")));
@@ -152,7 +160,22 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                                 itemInstallmentList.setPayment_alert(payment_alert);
                                 String payment_status= installDataObj.getString("payment_status");
                                 itemInstallmentList.setPayment_status(payment_status);
-                                JSONArray payment_history= installDataObj.getJSONArray("payment_history");
+//                                JSONArray payment_history= installDataObj.getJSONArray("payment_history");
+//
+//
+//                                for (int j=0; j<payment_history.length(); j++){
+//                                    ItemInstallmentOrderList orderList = new ItemInstallmentOrderList();
+//                                    JSONObject orderDataObj = payment_history.getJSONObject(j);
+//                                    orderList.setId(String.valueOf(orderDataObj.getInt("id")));
+//                                    orderList.setAmount(String.valueOf(orderDataObj.getInt("amount")));
+//                                    orderList.setInstallment(String.valueOf(orderDataObj.getInt("installment")));
+//                                    orderList.setOrder_id(orderDataObj.getString("order_id"));
+//                                    orderList.setPaid_date(orderDataObj.getString("paid_date"));
+//                                    orderList.setPayment_type(orderDataObj.getString("payment_type"));
+//                                    orderList.setStatus(orderDataObj.getString("status"));
+//
+//                                    arrayListOrder.add(orderList);
+//                                }
 
 
                                 arrayListInstallment.add(itemInstallmentList);
@@ -164,13 +187,12 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
                             itemInstallmentAdapter = new ItemInstallmentAdapter(InstallmentPaymentActivity.this, arrayListInstallment);
                             binding.rvInstallment.setAdapter(itemInstallmentAdapter);
 
+
+
+
                             Log.e("INSTALLMENT DATA", installmentArray.toString());
 
                         }
-
-
-
-
 
 
                     } else if (status.equals("false")) {
