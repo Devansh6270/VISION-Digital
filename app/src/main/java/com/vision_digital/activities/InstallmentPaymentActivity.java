@@ -62,7 +62,6 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
 
     class GetInstallmentData extends AsyncTask<String, Void, String> {
 
-
         @Override
         protected void onPreExecute() {
             dialog.setMessage("Please wait");
