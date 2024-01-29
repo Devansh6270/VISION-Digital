@@ -39,6 +39,9 @@
         android:vmSafeMode="true"
         tools:targetApi="q">
         <activity
+            android:name=".activities.InstallmentOrderListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.AllTestSeriesListActivity"
             android:exported="false" />
         <activity
