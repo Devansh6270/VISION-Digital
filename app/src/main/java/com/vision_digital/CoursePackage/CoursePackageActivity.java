@@ -576,6 +576,8 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
 
                             JSONObject dataObj = jsonObject.getJSONObject("data");
 
+
+                            String packageid= String.valueOf(dataObj.getInt("id"));
                             packageName=dataObj.getString("title");
                             image=dataObj.getString("image");
                             ownerImage=dataObj.getString("owner_image");
@@ -615,6 +617,7 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
                                     ItemTypesPackage itemPackageList = new ItemTypesPackage();
                                     JSONObject packageJSONObject = productList.getJSONObject(i);
 
+                                    itemPackageList.setPackageId(packageid);
                                     itemPackageList.setProductId(String.valueOf(packageJSONObject.getInt("product_id")));
                                     itemPackageList.setProductType(packageJSONObject.getString("product_type"));
                                     itemPackageList.setProductName(packageJSONObject.getString("product_name"));

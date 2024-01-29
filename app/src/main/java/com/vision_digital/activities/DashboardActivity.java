@@ -101,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     LinearLayout  popularCousre_viewAllBtn, popularTeachers_viewAllBtn, offLineResultLayout ;
 
-    CardView myCourse_viewAllBtn , packagesViewALLBtn , testSeriesViewAllBtn;
+    CardView myCourse_viewAllBtn , packagesViewALLBtn , testSeriesViewAllBtn , liveClassViewAllBtn;
 
     public DrawerLayout mDrawer;
     private NavigationView nvDrawer;
@@ -197,10 +197,16 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
     SliderView sliderView;
 
+    static String enrollno;
+
     ArrayList<SliderModel> sliderModelList = new ArrayList<>();
+
+
     RecyclerView recyclerLiveClassList;
 
    static ArrayList<DashTestSeriesModel> testSeriesList = new ArrayList<>();
+
+    static ArrayList<DashTestSeriesModel> liveClassList = new ArrayList<>();
 
 
     @Override
@@ -248,6 +254,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         boolean registered = userIsRegisteredSuccessful.getBoolean("registered", true);
         sid = userIsRegisteredSuccessful.getInt("sid", 0);
         current_login_id = userIsRegisteredSuccessful.getString("current_login_id","");
+        enrollno = userIsRegisteredSuccessful.getString("enrollno","");
         Log.e("aaaaaaa", "sid" + sid);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -319,6 +326,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         //viewAll
         popularCousre_viewAllBtn = findViewById(R.id.popularCoursesViewAllBtn);
         myCourse_viewAllBtn = findViewById(R.id.MyCoursesViewAllBtn);
+        liveClassViewAllBtn=findViewById(R.id.liveClassViewAllBtn);
         popularCousre_viewAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -330,6 +338,13 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, AllTestSeriesListActivity.class));
+
+            }
+        });
+        liveClassViewAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, AllLiveClassActivity.class));
 
             }
         });
@@ -1024,6 +1039,25 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
 
                                         }
 
+                                        JSONArray liveClassesArr = dataObj.getJSONArray("popular_live_courses");
+                                        liveClassList.clear();
+                                        if (liveClassesArr.length() == 0) {
+
+                                        } else {
+                                            for (int i = 0; i < liveClassesArr.length(); i++) {
+                                                DashTestSeriesModel dashTestSeriesModel = new DashTestSeriesModel();
+                                                JSONObject packageJSONObject = liveClassesArr.getJSONObject(i);
+                                                dashTestSeriesModel.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                                dashTestSeriesModel.setTitle(packageJSONObject.getString("title"));
+                                                dashTestSeriesModel.setImage(packageJSONObject.getString("image"));
+                                                dashTestSeriesModel.setActualPrice(String.valueOf(packageJSONObject.getInt("actual_price")));
+                                                dashTestSeriesModel.setSellingPrice(String.valueOf(packageJSONObject.getInt("selling_price")));
+                                                liveClassList.add(dashTestSeriesModel);
+                                            }
+                                            Log.e("LOG", "IN IF LOOP");
+
+                                        }
+
 //                                        Continue Watching------------------------
                                         String continueWatching1 = (dataObj.getString("continue_watching_graph"));
                                         if (!continueWatching1.equals("")) {
@@ -1152,12 +1186,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                             itemMyCourse.setOwner_qualification(popularCoursesJSONObject.getString("owner_qualification"));
                                             popularCoursesList.add(itemMyCourse);
                                         }
-
-                                        //My courses-------------
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                                        myCourseslistView.setLayoutManager(layoutManager);
-                                        itemMyCourseAdapter = new ItemMyCourseAdapter(myCoursesList);
-                                        myCourseslistView.setAdapter(itemMyCourseAdapter);
 
 //                                        fetchLiveClasses();
 

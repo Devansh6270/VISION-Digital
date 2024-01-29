@@ -83,6 +83,8 @@ public class LiveDetailsActivity extends AppCompatActivity  {
 
     String couponCode = "";
 
+    String packageId="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +94,7 @@ public class LiveDetailsActivity extends AppCompatActivity  {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         courseId = getIntent().getStringExtra("id");
+        packageId = getIntent().getStringExtra("packageId");
 
         SharedPreferences studDetails = getSharedPreferences("CNB", MODE_PRIVATE);
         studId = studDetails.getInt("sid", 0);
@@ -366,7 +369,7 @@ public class LiveDetailsActivity extends AppCompatActivity  {
             Log.e("versionCode", String.valueOf(versoncodes));
 
 
-            String param = "student_id=" + sid + "&live_course_id=" + courseId;
+            String param = "student_id=" + sid + "&live_course_id=" + courseId+"&package_id="+packageId;
 
             Log.e("param", param);
 

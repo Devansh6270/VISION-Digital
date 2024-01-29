@@ -298,11 +298,13 @@ public class VisionStudentActivity extends AppCompatActivity {
                         case "success":
                             //Running Fine
                             JSONObject dataObj = jsonObject.getJSONObject("data");
+                            Log.e("EnrollNo",binding.registerNo.getText().toString().trim());
 
                             String message = dataObj.getString("message");
                             SharedPreferences.Editor editor = getSharedPreferences("CNB", MODE_PRIVATE).edit();
                             editor.putBoolean("registered", true);
                             editor.putString("profileName", name);
+                            editor.putString("enrollno", binding.registerNo.getText().toString().trim());
                             editor.putString("current_login_id", dataObj.getString("current_login_id"));                            editor.apply();
                             Toast.makeText(VisionStudentActivity.this, message, Toast.LENGTH_SHORT).show();
 

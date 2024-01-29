@@ -77,27 +77,30 @@ public class ItemTypesPackageAdapter extends RecyclerView.Adapter<ItemTypesPacka
                         courseIntent.putExtra("image",itemList.get(position).getProductImage());
                         courseIntent.putExtra("fromActivity","homePage");
                         courseIntent.putExtra("forTask","learn");
-                        courseIntent.putExtra("packageId",itemList.get(position).getProductId());
+                        courseIntent.putExtra("packageId",itemList.get(position).getPackageId());
                         context.startActivity(courseIntent);
                     } else if (type.equals("test")) {
                         Intent courseIntent = new Intent(context, OngoingTestActivity.class);
                         courseIntent.putExtra("id", itemList.get(position).getProductId());
                         courseIntent.putExtra("testType", itemList.get(position).getProductId());
                         courseIntent.putExtra("price", itemList.get(position).getProductId());
-                        courseIntent.putExtra("desc", itemList.get(position).getProductId());
+                        courseIntent.putExtra("desc", itemList.get(position).getPackageId());
+                        courseIntent.putExtra("packageId",itemList.get(position).getPackageId());
                         context.startActivity(courseIntent);
                     }
                     else if (type.equals("testseries")) {
                         Intent courseIntent = new Intent(context, AllTestPageActivity.class);
                         courseIntent.putExtra("id", itemList.get(position).getProductId());
                         courseIntent.putExtra("testType", itemList.get(position).getProductId());
-                        courseIntent.putExtra("price", itemList.get(position).getProductId());
+                        courseIntent.putExtra("price", itemList.get(position).getPackageId());
                         courseIntent.putExtra("subscriptionValidity","");
+                        courseIntent.putExtra("packageId",itemList.get(position).getPackageId());
                         context.startActivity(courseIntent);
                     }
                     else if (type.equals("live")) {
                         Intent courseIntent = new Intent(context, LiveDetailsActivity.class);
                         courseIntent.putExtra("id", itemList.get(position).getProductId());
+                        courseIntent.putExtra("packageId",itemList.get(position).getPackageId());
                         context.startActivity(courseIntent);
                     }
 

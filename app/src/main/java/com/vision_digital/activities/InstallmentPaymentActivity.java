@@ -1,5 +1,7 @@
 package com.vision_digital.activities;
 
+import static com.vision_digital.activities.DashboardActivity.enrollno;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +33,7 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
     ArrayList<ItemInstallmentList> arrayListInstallment = new ArrayList<>();
    static ArrayList<ItemInstallmentOrderList> arrayListOrder = new ArrayList<>();
     ItemInstallmentAdapter itemInstallmentAdapter;
-    String sid, enrollno;
+    String sid;
     String getInstallment;
     private ProgressDialog dialog;
     @Override
@@ -43,7 +45,7 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_installment_payment);
         sid = getIntent().getStringExtra("sid");
 
-        enrollno = getIntent().getStringExtra("enrollno");
+        //enrollno = getIntent().getStringExtra("enrollno");
         Log.e("enrollno", enrollno);
         getInstallment = "http://v.chalksnboard.com/api/v4/students/"+enrollno+"/fee";
 

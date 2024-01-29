@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vision_digital.R;
 
 public class ItemPackageViewHolder extends RecyclerView.ViewHolder {
-    public TextView teacherNameTV,classTitle,teacherQualification,startedAt, letsLearnBtn;
-    public ImageView blueCard, teacherImage;
+    public TextView teacherNameTV,classTitle;
+    public ImageView  teacherImage;
     public CardView itemLiveClass;
-    public Button  exploreBtn;
 
     public ItemPackageViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,10 +22,6 @@ public class ItemPackageViewHolder extends RecyclerView.ViewHolder {
         teacherImage = itemView.findViewById(R.id.teacherImg);
         teacherNameTV = itemView.findViewById(R.id.teacherName);
         classTitle = itemView.findViewById(R.id.classTitle);
-        teacherQualification = itemView.findViewById(R.id.techQuali);
-        startedAt = itemView.findViewById(R.id.startedAt);
-      //  letsLearnBtn=itemView.findViewById(R.id.letsLearnBtn);
-        exploreBtn=itemView.findViewById(R.id.letsLearnBtn);
 
         itemLiveClass = itemView.findViewById(R.id.itemLiveClass);
     }

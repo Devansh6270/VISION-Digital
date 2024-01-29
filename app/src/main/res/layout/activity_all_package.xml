@@ -52,7 +52,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/packagesList"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"

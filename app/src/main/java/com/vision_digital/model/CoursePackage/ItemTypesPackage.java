@@ -1,6 +1,8 @@
 package com.vision_digital.model.CoursePackage;
 
 public class ItemTypesPackage {
+
+    String packageId;
     String productId;
     String productType;
     String productName;
@@ -12,7 +14,8 @@ public class ItemTypesPackage {
     public ItemTypesPackage() {
     }
 
-    public ItemTypesPackage(String productId, String productType, String productName, String productImage, String status) {
+    public ItemTypesPackage(String packageId,String productId, String productType, String productName, String productImage, String status) {
+        this.packageId=packageId;
         this.productId = productId;
         this.productType = productType;
         this.productName = productName;
@@ -58,5 +61,13 @@ public class ItemTypesPackage {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPackageId() {
+        return packageId;
+    }
+
+    public void setPackageId(String packageId) {
+        this.packageId = packageId;
     }
 }

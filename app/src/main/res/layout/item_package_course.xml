@@ -47,7 +47,7 @@
                 android:id="@+id/classTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minLines="2"
+                android:minLines="1"
                 android:maxLines="2"
                 android:text="POSH(Prevention, Prohibition
 and Redressal Act, 2013)"

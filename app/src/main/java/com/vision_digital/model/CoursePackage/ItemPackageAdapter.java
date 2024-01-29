@@ -40,8 +40,6 @@ public class ItemPackageAdapter  extends RecyclerView.Adapter<ItemPackageViewHol
     public void onBindViewHolder(@NonNull ItemPackageViewHolder holder,@SuppressLint("RecyclerView") final int position) {
         try {
             holder.teacherNameTV.setText(packageList.get(position).getOwnerName());
-            holder.teacherQualification.setText("");
-            //            holder.teacherQualification.setText(myCourseList.get(position).getOwner_qualification());
 
             holder.classTitle.setText(packageList.get(position).getTitle());
 
@@ -49,7 +47,7 @@ public class ItemPackageAdapter  extends RecyclerView.Adapter<ItemPackageViewHol
             Glide.with(context).load(packageList.get(position).getImage())
                     .into(holder.teacherImage);
 
-            holder.exploreBtn.setOnClickListener(new View.OnClickListener() {
+            holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.e("click","click");
@@ -61,22 +59,9 @@ public class ItemPackageAdapter  extends RecyclerView.Adapter<ItemPackageViewHol
                     courseIntent.putExtra("forTask","learn");
                     courseIntent.putExtra("packageId",packageList.get(position).getId());
                     context.startActivity(courseIntent);
-                }
+                    }
+
             });
-//            holder.itemLiveClass.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.e("click","click");
-//
-//                        Intent courseIntent = new Intent(context, CoursePackageActivity.class);
-//                        courseIntent.putExtra("id", packageList.get(position).getId());
-//                        courseIntent.putExtra("image",packageList.get(position).getImage());
-//                        courseIntent.putExtra("fromActivity","homePage");
-//                        courseIntent.putExtra("forTask","learn");
-//                        context.startActivity(courseIntent);
-//                    }
-//
-//            });
         }catch(Exception e){
             e.printStackTrace();
         }
