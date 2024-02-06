@@ -7,17 +7,42 @@
     android:orientation="vertical"
     tools:context=".activities.OfflineResultListActivity">
 
-    <ImageView
-        android:id="@+id/ic_back"
-        android:elevation="8dp"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_back_ios_24"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/toolbar_background">
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="@dimen/dimen_6dp"
+            android:paddingTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/dimen_12dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvToolBarTitle"
+            style="@style/Nohemi_Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_4dp"
+            android:text="Offline Result"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOfflineResult"

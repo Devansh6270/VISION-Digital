@@ -605,7 +605,19 @@ public class CoursePackageActivity extends AppCompatActivity implements PaytmPay
                             }
                             if (productList.length()==0){
 
+                                binding.tabCourseLayout.setVisibility(View.GONE);
+                                binding.tabTestSeriesLayout.setVisibility(View.GONE);
+                                binding.tabTestLayout.setVisibility(View.GONE);
+                                binding.tabLiveLayout.setVisibility(View.GONE);
+                                binding.tabNotesLayout.setVisibility(View.GONE);
+
                             }else{
+
+                                binding.tabCourseLayout.setVisibility(View.VISIBLE);
+                                binding.tabTestSeriesLayout.setVisibility(View.VISIBLE);
+                                binding.tabTestLayout.setVisibility(View.VISIBLE);
+                                binding.tabLiveLayout.setVisibility(View.VISIBLE);
+                                binding.tabNotesLayout.setVisibility(View.VISIBLE);
 
                                 coursesTypeList.clear();
                                 testTypeList.clear();

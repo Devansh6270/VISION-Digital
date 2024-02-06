@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ public class MyCoursesActivity extends AppCompatActivity {
     String getSubscribeCoursesUrl="";
 
     ConstraintLayout emptyCourseListLayout;
+    LinearLayout llTabMenu;
 
     CardView exploreCourseBtn;
 
@@ -68,6 +71,7 @@ public class MyCoursesActivity extends AppCompatActivity {
     List<ItemSubscribedCourse> itemPackageCourseList = new ArrayList<>();
 
     ArrayList<ItemTestSeriesAvailabilityList> itemTestSeriesAvailabilityLists = new ArrayList<>();
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +90,7 @@ public class MyCoursesActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         emptyCourseListLayout=findViewById(R.id.emptyCourseListLayout);
         exploreCourseBtn=findViewById(R.id.exploreCoursesBtn);
+        llTabMenu=findViewById(R.id.llTabMenu);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -332,141 +337,146 @@ public class MyCoursesActivity extends AppCompatActivity {
 
                             JSONObject dataObj =jsonObject.getJSONObject("data");
 
-
-                            // Live
-
-                            JSONArray liveCourses = dataObj.getJSONArray("live");
-
-                            if (liveCourses.length() == 0) {
+                            if (dataObj.length()==0){
                                 emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                llTabMenu.setVisibility(View.GONE);
                             } else {
                                 emptyCourseListLayout.setVisibility(View.GONE);
-                                itemSubscribedLiveCourseList.clear();
-                                itemSubscribedAllCourseList.clear();
-                                for (int i = 0; i < liveCourses.length(); i++) {
-                                    ItemSubscribedCourse itemLiveCoursesList = new ItemSubscribedCourse();
-                                    JSONObject packageJSONObject = liveCourses.getJSONObject(i);
-                                    itemLiveCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
-                                    itemLiveCoursesList.setName(packageJSONObject.getString("name"));
-                                    itemLiveCoursesList.setImage(packageJSONObject.getString("image"));
-                                    itemLiveCoursesList.setType("live");
-                                    itemSubscribedLiveCourseList.add(itemLiveCoursesList);
-                                    itemSubscribedAllCourseList.add(itemLiveCoursesList);
+                                llTabMenu.setVisibility(View.VISIBLE);
 
+
+                                // Live
+
+                                JSONArray liveCourses = dataObj.getJSONArray("live");
+
+                                if (liveCourses.length() == 0) {
+                                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                } else {
+                                    emptyCourseListLayout.setVisibility(View.GONE);
+                                    itemSubscribedLiveCourseList.clear();
+                                    itemSubscribedAllCourseList.clear();
+                                    for (int i = 0; i < liveCourses.length(); i++) {
+                                        ItemSubscribedCourse itemLiveCoursesList = new ItemSubscribedCourse();
+                                        JSONObject packageJSONObject = liveCourses.getJSONObject(i);
+                                        itemLiveCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                        itemLiveCoursesList.setName(packageJSONObject.getString("name"));
+                                        itemLiveCoursesList.setImage(packageJSONObject.getString("image"));
+                                        itemLiveCoursesList.setType("live");
+                                        itemSubscribedLiveCourseList.add(itemLiveCoursesList);
+                                        itemSubscribedAllCourseList.add(itemLiveCoursesList);
+
+
+                                    }
+
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
+                                    // LinearLayoutManager layoutManager = new GridLayoutManager(AllVideoCoursesActivity.this, 2);
+                                    myCoursesLiveListView.setLayoutManager(layoutManager);
+                                    itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedLiveCourseList, MyCoursesActivity.this);
+                                    myCoursesLiveListView.setAdapter(itemMyAllCourseAdapter);
 
                                 }
 
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
-                                // LinearLayoutManager layoutManager = new GridLayoutManager(AllVideoCoursesActivity.this, 2);
-                                myCoursesLiveListView.setLayoutManager(layoutManager);
-                                itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedLiveCourseList, MyCoursesActivity.this);
-                                myCoursesLiveListView.setAdapter(itemMyAllCourseAdapter);
 
-                            }
+                                //  Recorded
 
 
+                                JSONArray recordedCourses = dataObj.getJSONArray("course");
 
+                                if (recordedCourses.length() == 0) {
+                                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                } else {
+                                    emptyCourseListLayout.setVisibility(View.GONE);
+                                    itemSubscribedRecordedCourseList.clear();
+                                    for (int i = 0; i < recordedCourses.length(); i++) {
+                                        ItemSubscribedCourse itemRecordedCoursesList = new ItemSubscribedCourse();
+                                        JSONObject packageJSONObject = recordedCourses.getJSONObject(i);
+                                        itemRecordedCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                        itemRecordedCoursesList.setName(packageJSONObject.getString("name"));
+                                        itemRecordedCoursesList.setImage(packageJSONObject.getString("image"));
+                                        itemRecordedCoursesList.setType("course");
+                                        itemSubscribedRecordedCourseList.add(itemRecordedCoursesList);
+                                        itemSubscribedAllCourseList.add(itemRecordedCoursesList);
 
-                            //  Recorded
-
-
-                            JSONArray recordedCourses = dataObj.getJSONArray("course");
-
-                            if (recordedCourses.length() == 0) {
-                                emptyCourseListLayout.setVisibility(View.VISIBLE);
-                            } else {
-                                emptyCourseListLayout.setVisibility(View.GONE);
-                                itemSubscribedRecordedCourseList.clear();
-                                for (int i = 0; i < recordedCourses.length(); i++) {
-                                    ItemSubscribedCourse itemRecordedCoursesList = new ItemSubscribedCourse();
-                                    JSONObject packageJSONObject = recordedCourses.getJSONObject(i);
-                                    itemRecordedCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
-                                    itemRecordedCoursesList.setName(packageJSONObject.getString("name"));
-                                    itemRecordedCoursesList.setImage(packageJSONObject.getString("image"));
-                                    itemRecordedCoursesList.setType("course");
-                                    itemSubscribedRecordedCourseList.add(itemRecordedCoursesList);
-                                    itemSubscribedAllCourseList.add(itemRecordedCoursesList);
-
+                                    }
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
+                                    myCoursesRecordedListView.setLayoutManager(layoutManager);
+                                    itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedRecordedCourseList, MyCoursesActivity.this);
+                                    myCoursesRecordedListView.setAdapter(itemMyAllCourseAdapter);
                                 }
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
-                                myCoursesRecordedListView.setLayoutManager(layoutManager);
-                                itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedRecordedCourseList, MyCoursesActivity.this);
-                                myCoursesRecordedListView.setAdapter(itemMyAllCourseAdapter);
-                            }
 
 
-                            // Package
+                                // Package
 
-                            JSONArray packageCourses = dataObj.getJSONArray("package");
+                                JSONArray packageCourses = dataObj.getJSONArray("package");
 
-                            if (packageCourses.length() == 0) {
-                                emptyCourseListLayout.setVisibility(View.VISIBLE);
-                            } else {
-                                emptyCourseListLayout.setVisibility(View.GONE);
-                                itemPackageCourseList.clear();
-                                for (int i = 0; i < packageCourses.length(); i++) {
-                                    ItemSubscribedCourse itemPackageCoursesList = new ItemSubscribedCourse();
-                                    JSONObject packageJSONObject = packageCourses.getJSONObject(i);
-                                    itemPackageCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
-                                    itemPackageCoursesList.setName(packageJSONObject.getString("name"));
-                                    itemPackageCoursesList.setImage(packageJSONObject.getString("image"));
-                                    itemPackageCoursesList.setType("package");
-                                    itemSubscribedAllCourseList.add(itemPackageCoursesList);
-                                    itemPackageCourseList.add(itemPackageCoursesList);
+                                if (packageCourses.length() == 0) {
+                                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                } else {
+                                    emptyCourseListLayout.setVisibility(View.GONE);
+                                    itemPackageCourseList.clear();
+                                    for (int i = 0; i < packageCourses.length(); i++) {
+                                        ItemSubscribedCourse itemPackageCoursesList = new ItemSubscribedCourse();
+                                        JSONObject packageJSONObject = packageCourses.getJSONObject(i);
+                                        itemPackageCoursesList.setId(String.valueOf(packageJSONObject.getInt("id")));
+                                        itemPackageCoursesList.setName(packageJSONObject.getString("name"));
+                                        itemPackageCoursesList.setImage(packageJSONObject.getString("image"));
+                                        itemPackageCoursesList.setType("package");
+                                        itemSubscribedAllCourseList.add(itemPackageCoursesList);
+                                        itemPackageCourseList.add(itemPackageCoursesList);
 
+                                    }
+                                    Log.e("Package", "HERE is adding package data");
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
+                                    packageListView.setLayoutManager(layoutManager);
+                                    itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemPackageCourseList, MyCoursesActivity.this);
+                                    packageListView.setAdapter(itemMyAllCourseAdapter);
                                 }
-                                Log.e("Package","HERE is adding package data");
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
-                                packageListView.setLayoutManager(layoutManager);
-                                itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemPackageCourseList, MyCoursesActivity.this);
-                                packageListView.setAdapter(itemMyAllCourseAdapter);
-                            }
 
 
-                            // All  Courses
+                                // All  Courses
 
-                            if(itemSubscribedAllCourseList.size()==0){
-                                emptyCourseListLayout.setVisibility(View.VISIBLE);
-                            }else{
-                                emptyCourseListLayout.setVisibility(View.GONE);
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
-                                myCoursesAllListView.setLayoutManager(layoutManager);
-                                itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedAllCourseList, MyCoursesActivity.this);
-                                myCoursesAllListView.setAdapter(itemMyAllCourseAdapter);
-                            }
-
-
-
-                            //  Test Series
-                            JSONArray testSeries = dataObj.getJSONArray("testseries");
-                            if (testSeries.length() == 0) {
-                                //emptyCourseListLayout.setVisibility(View.VISIBLE);
-                            } else {
-                                emptyCourseListLayout.setVisibility(View.GONE);
-                                itemTestSeriesAvailabilityLists.clear();
-                                for (int i = 0; i < testSeries.length(); i++) {
-                                    ItemTestSeriesAvailabilityList itemSubscribedTestSeries = new ItemTestSeriesAvailabilityList();
-                                    JSONObject courseObj = testSeries.getJSONObject(i);
-                                    itemSubscribedTestSeries.setId(String.valueOf(courseObj.getInt("id")));
-                                    itemSubscribedTestSeries.setTitle(courseObj.getString("title"));
-                                    itemSubscribedTestSeries.setCourseType(courseObj.getString("course_type"));
-                                    itemSubscribedTestSeries.setTestSchedulePDFURl(courseObj.getString("testseries_schedule_pdf"));
-                                    itemSubscribedTestSeries.setStartTime(courseObj.getString("start_date"));
-                                    itemSubscribedTestSeries.setEndTime(courseObj.getString("end_date"));
-                                    itemSubscribedTestSeries.setCategoryName(courseObj.getString("category_name"));
-                                    itemSubscribedTestSeries.setCategoryImage(courseObj.getString("category_image"));
-                                    itemSubscribedTestSeries.setSub_category_name(courseObj.getString("sub_category_name"));
-                                    itemSubscribedTestSeries.setTotal_test_count(String.valueOf(courseObj.getInt("total_test_count")));
-                                    // itemSubscribedTestSeries.setShortDesc(courseObj.getString("short_desc"));
-
-                                    itemTestSeriesAvailabilityLists.add(itemSubscribedTestSeries);
-
-
+                                if (itemSubscribedAllCourseList.size() == 0) {
+                                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                } else {
+                                    emptyCourseListLayout.setVisibility(View.GONE);
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
+                                    myCoursesAllListView.setLayoutManager(layoutManager);
+                                    itemMyAllCourseAdapter = new ItemMyAllCourseAdapter(itemSubscribedAllCourseList, MyCoursesActivity.this);
+                                    myCoursesAllListView.setAdapter(itemMyAllCourseAdapter);
                                 }
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
-                                myCoursesTestSeriesListView.setLayoutManager(layoutManager);
-                                ItemTestSeriesAvailabilityAdapter itemTestSeriesAvailabilityAdapter = new ItemTestSeriesAvailabilityAdapter(MyCoursesActivity.this, itemTestSeriesAvailabilityLists);
-                                myCoursesTestSeriesListView.setAdapter(itemTestSeriesAvailabilityAdapter);
+
+
+                                //  Test Series
+                                JSONArray testSeries = dataObj.getJSONArray("testseries");
+                                if (testSeries.length() == 0) {
+                                    //emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                } else {
+                                    emptyCourseListLayout.setVisibility(View.GONE);
+                                    itemTestSeriesAvailabilityLists.clear();
+                                    for (int i = 0; i < testSeries.length(); i++) {
+                                        ItemTestSeriesAvailabilityList itemSubscribedTestSeries = new ItemTestSeriesAvailabilityList();
+                                        JSONObject courseObj = testSeries.getJSONObject(i);
+                                        itemSubscribedTestSeries.setId(String.valueOf(courseObj.getInt("id")));
+                                        itemSubscribedTestSeries.setTitle(courseObj.getString("title"));
+                                        itemSubscribedTestSeries.setCourseType(courseObj.getString("course_type"));
+                                        itemSubscribedTestSeries.setTestSchedulePDFURl(courseObj.getString("testseries_schedule_pdf"));
+                                        itemSubscribedTestSeries.setStartTime(courseObj.getString("start_date"));
+                                        itemSubscribedTestSeries.setEndTime(courseObj.getString("end_date"));
+                                        itemSubscribedTestSeries.setCategoryName(courseObj.getString("category_name"));
+                                        itemSubscribedTestSeries.setCategoryImage(courseObj.getString("category_image"));
+                                        itemSubscribedTestSeries.setSub_category_name(courseObj.getString("sub_category_name"));
+                                        itemSubscribedTestSeries.setTotal_test_count(String.valueOf(courseObj.getInt("total_test_count")));
+                                        // itemSubscribedTestSeries.setShortDesc(courseObj.getString("short_desc"));
+
+                                        itemTestSeriesAvailabilityLists.add(itemSubscribedTestSeries);
+
+
+                                    }
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyCoursesActivity.this, LinearLayoutManager.VERTICAL, false);
+                                    myCoursesTestSeriesListView.setLayoutManager(layoutManager);
+                                    ItemTestSeriesAvailabilityAdapter itemTestSeriesAvailabilityAdapter = new ItemTestSeriesAvailabilityAdapter(MyCoursesActivity.this, itemTestSeriesAvailabilityLists);
+                                    myCoursesTestSeriesListView.setAdapter(itemTestSeriesAvailabilityAdapter);
+                                }
                             }
 
 

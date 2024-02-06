@@ -589,9 +589,6 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 break;
 
 
-
-
-
             case R.id.profile:
                 Intent profile = new Intent(DashboardActivity.this, ProfileActivity.class);
                 profile.putExtra("instituteForProfile", instituteForProfile);

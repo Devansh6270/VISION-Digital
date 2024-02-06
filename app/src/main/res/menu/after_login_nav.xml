@@ -6,8 +6,6 @@
         android:visible="true"
         android:checkableBehavior="single">
 
-
-
         <item
             android:id="@+id/myCourses"
             android:icon="@drawable/book"
@@ -37,12 +35,9 @@
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Profile" />
 
-
-
-
-
         <item
             android:id="@+id/transaction"
+            android:visible="false"
             android:icon="@drawable/ic_baseline_mobile_friendly_24"
             android:title="Transactions" />
 

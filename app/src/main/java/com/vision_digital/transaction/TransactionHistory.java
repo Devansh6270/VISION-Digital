@@ -33,6 +33,7 @@ public class TransactionHistory extends AppCompatActivity {
     ItemTransactionAdapter itemTransactionAdapter;
     RecyclerView transactionRecycler;
     ImageView backBtn;
+    TextView tvNoTransactionHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class TransactionHistory extends AppCompatActivity {
         studId  = getIntent().getStringExtra("student_id");
         transactionRecycler = findViewById(R.id.transactionRecycler);
         backBtn = findViewById(R.id.backBtn);
+        tvNoTransactionHistory = findViewById(R.id.tvNoTransactionHistory);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,27 +109,33 @@ public class TransactionHistory extends AppCompatActivity {
 
                             tansactionArrayList.clear();
                             JSONArray transactionContent = jsonObject.getJSONArray("data");
-                            for (int i = 0; i < transactionContent.length(); i++) {
+
+                            if (transactionContent.length()==0){
+                                tvNoTransactionHistory.setVisibility(View.VISIBLE);
+                                transactionRecycler.setVisibility(View.GONE);
+                            }else {
+                                tvNoTransactionHistory.setVisibility(View.GONE);
+                                transactionRecycler.setVisibility(View.VISIBLE);
+
+                                for (int i = 0; i < transactionContent.length(); i++) {
 //                                JSONObject contentSubscribe = courseContent.getJSONObject(i);
-                                ItemTansaction transactionHistory = new ItemTansaction();
-                                JSONObject transactionObject = transactionContent.getJSONObject(i);
+                                    ItemTansaction transactionHistory = new ItemTansaction();
+                                    JSONObject transactionObject = transactionContent.getJSONObject(i);
 
-                                transactionHistory.setOrderId(transactionObject.getString("order_id"));
-                               // transactionHistory.setStatus(transactionObject.getString("cos_status"));
-                                transactionHistory.setStatus(transactionObject.getString("response_message"));
-                                transactionHistory.setAmount(transactionObject.getString("paid_amount"));
-                                transactionHistory.setId(transactionObject.getString("id"));
-                                transactionHistory.setDate(transactionObject.getString("created_at"));
-                                tansactionArrayList.add(transactionHistory);
+                                    transactionHistory.setOrderId(transactionObject.getString("order_id"));
+                                    // transactionHistory.setStatus(transactionObject.getString("cos_status"));
+                                    transactionHistory.setStatus(transactionObject.getString("response_message"));
+                                    transactionHistory.setAmount(transactionObject.getString("paid_amount"));
+                                    transactionHistory.setId(transactionObject.getString("id"));
+                                    transactionHistory.setDate(transactionObject.getString("created_at"));
+                                    tansactionArrayList.add(transactionHistory);
 
+                                }
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(TransactionHistory.this, LinearLayoutManager.VERTICAL, false);
+                                transactionRecycler.setLayoutManager(layoutManager);
+                                itemTransactionAdapter = new ItemTransactionAdapter(tansactionArrayList);
+                                transactionRecycler.setAdapter(itemTransactionAdapter);
                             }
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(TransactionHistory.this, LinearLayoutManager.VERTICAL, false);
-                            transactionRecycler.setLayoutManager(layoutManager);
-                            itemTransactionAdapter = new ItemTransactionAdapter(tansactionArrayList);
-                            transactionRecycler.setAdapter(itemTransactionAdapter);
-
-
-
 
                             break;
                         case "maintenance":
