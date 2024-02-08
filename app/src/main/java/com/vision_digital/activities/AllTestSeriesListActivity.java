@@ -34,11 +34,23 @@ public class AllTestSeriesListActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(AllTestSeriesListActivity.this, LinearLayoutManager.VERTICAL, false);
+        if (testSeriesList.size()==0){
+            binding.tvNoTestSeries.setVisibility(View.VISIBLE);
+            binding.testSeriesList.setVisibility(View.GONE);
+            binding.lottieEmptyBox.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvNoTestSeries.setVisibility(View.GONE);
+            binding.testSeriesList.setVisibility(View.VISIBLE);
+            binding.lottieEmptyBox.setVisibility(View.GONE);
 
-        binding.testSeriesList.setLayoutManager(layoutManager);
-        DashTestSeriesAdapter dashTestSeriesAdapter = new DashTestSeriesAdapter(testSeriesList,AllTestSeriesListActivity.this);
-        binding.testSeriesList.setAdapter(dashTestSeriesAdapter);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(AllTestSeriesListActivity.this, LinearLayoutManager.VERTICAL, false);
+
+            binding.testSeriesList.setLayoutManager(layoutManager);
+            DashTestSeriesAdapter dashTestSeriesAdapter = new DashTestSeriesAdapter(testSeriesList,AllTestSeriesListActivity.this);
+            binding.testSeriesList.setAdapter(dashTestSeriesAdapter);
+        }
+
+
 
 
 

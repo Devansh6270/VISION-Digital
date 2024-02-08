@@ -1,6 +1,6 @@
 package com.vision_digital.activities;
 
-import static com.vision_digital.activities.DashboardActivity.enrollno;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -34,7 +34,7 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
    static ArrayList<ItemInstallmentOrderList> arrayListOrder = new ArrayList<>();
     ItemInstallmentAdapter itemInstallmentAdapter;
     String sid;
-    String getInstallment;
+    String getInstallment, enrollNo;
     private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +45,9 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_installment_payment);
         sid = getIntent().getStringExtra("sid");
 
-        //enrollno = getIntent().getStringExtra("enrollno");
-        Log.e("enrollno", enrollno);
-        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+enrollno+"/fee";
+        enrollNo = getIntent().getStringExtra("enrollNo");
+        Log.e("enrollno", enrollNo);
+        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+enrollNo+"/fee";
 
 
         binding.profileBackBtn.setOnClickListener(new View.OnClickListener() {

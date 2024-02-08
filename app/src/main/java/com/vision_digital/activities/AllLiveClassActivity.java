@@ -35,9 +35,21 @@ public class AllLiveClassActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(AllLiveClassActivity.this, LinearLayoutManager.VERTICAL, false);
 
-        binding.liveClassList.setLayoutManager(layoutManager);
-        adapter = new ItemDashLiveClassAdapter(liveClassList,AllLiveClassActivity.this);
-        binding.liveClassList.setAdapter(adapter);
+        if (liveClassList.size()==0){
+            binding.tvNoLiveClasses.setVisibility(View.VISIBLE);
+            binding.liveClassList.setVisibility(View.GONE);
+            binding.lottieEmptyBox.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvNoLiveClasses.setVisibility(View.GONE);
+            binding.lottieEmptyBox.setVisibility(View.GONE);
+            binding.liveClassList.setVisibility(View.VISIBLE);
+
+            binding.liveClassList.setLayoutManager(layoutManager);
+            adapter = new ItemDashLiveClassAdapter(liveClassList,AllLiveClassActivity.this);
+            binding.liveClassList.setAdapter(adapter);
+        }
+
+
 
 
     }

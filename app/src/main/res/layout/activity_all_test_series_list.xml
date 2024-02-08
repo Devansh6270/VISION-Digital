@@ -13,15 +13,30 @@
         android:orientation="vertical"
         tools:context=".activities.AllTestSeriesListActivity">
 
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_back_ios_24"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_ios_24"/>
+
+            <TextView
+                style="@style/Nohemi_Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Series"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,22 +47,32 @@
             android:layout_marginRight="8dp"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/Nohemi_Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Test Series"
-                android:layout_margin="16sp"
-                android:textColor="@color/colorText"
-                android:textSize="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/testSeriesList"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:paddingLeft="2dp"
+                android:visibility="visible"
                 android:paddingRight="2dp"
                 android:layout_height="match_parent"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieEmptyBox"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_box" />
+
+            <TextView
+                android:id="@+id/tvNoTestSeries"
+                style="@style/Nohemi_Bold"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No test series available yet !!"
+                android:gravity="center_horizontal"/>
 
         </LinearLayout>
 

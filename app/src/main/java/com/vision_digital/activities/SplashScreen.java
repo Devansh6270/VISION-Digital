@@ -209,14 +209,14 @@ public class SplashScreen extends AppCompatActivity implements ConnectivityRecie
                                         //Already Logged in-----------------------
 
                                         checkLoginStatus();
-
                                     } else if (userStatus.equals("banned")) {
                                         //Student is banned--------------------------
                                         String message = dataObj.getString("user_status_banned_message");
                                         Toast.makeText(SplashScreen.this, message, Toast.LENGTH_SHORT).show();
                                     } else if (userStatus.equals("logout_user")) {
                                         String message = dataObj.getString("message");
-                                        Toast.makeText(SplashScreen.this, message, Toast.LENGTH_LONG).show();
+//                                        Toast.makeText(SplashScreen.this, message, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SplashScreen.this, "Logged out, as you logged in from an another device!", Toast.LENGTH_LONG).show();
                                         Intent i = new Intent(SplashScreen.this, LogInViaPhoneActivity.class);
                                         i.putExtra("deeplinkFirebase",deeplinkFirebase);
                                         startActivity(i);

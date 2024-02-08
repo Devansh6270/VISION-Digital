@@ -53,9 +53,29 @@
                 android:id="@+id/liveClassList"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
+                android:visibility="visible"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
                 android:layout_height="match_parent"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieEmptyBox"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/empty_box" />
+
+            <TextView
+                android:id="@+id/tvNoLiveClasses"
+                style="@style/Nohemi_Bold"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No live classes available yet !!"
+                android:gravity="center_horizontal"/>
+
+
 
         </LinearLayout>
 

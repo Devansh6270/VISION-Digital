@@ -27,7 +27,7 @@
         <item
             android:id="@+id/certificates"
             android:icon="@drawable/installment"
-            android:visible="true"
+            android:visible="false"
             android:title="Installments" />
 
         <item

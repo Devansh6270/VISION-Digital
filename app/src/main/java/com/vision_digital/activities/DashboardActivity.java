@@ -567,6 +567,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                 certificate.putExtra("instituteForProfile", instituteForProfile);
                 certificate.putExtra("fromActivity", "homePage");
                 certificate.putExtra("sid", String.valueOf(sid));
+                certificate.putExtra("enrollNo", enrollno);
                 String stuId2 = String.valueOf(sid);
 
                 certificate.putExtra("student_id", stuId2);

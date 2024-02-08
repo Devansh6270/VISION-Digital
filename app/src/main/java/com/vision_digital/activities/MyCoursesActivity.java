@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -105,6 +106,14 @@ public class MyCoursesActivity extends AppCompatActivity {
 //                startActivity(new Intent(MyCoursesActivity.this, AllVideoCoursesActivity.class));
 //            }
 //        });
+
+        exploreCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyCoursesActivity.this, DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         dialog = new ProgressDialog(MyCoursesActivity.this);
         dialog.setMessage("Loading");
