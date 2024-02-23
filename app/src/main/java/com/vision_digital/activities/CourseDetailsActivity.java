@@ -308,6 +308,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+
                 final Spinner subscriptionsMonthsSpinner = dialogView.findViewById(R.id.subscriptionsMonthsSpinner);
                 coupons_available_spinner = dialogView.findViewById(R.id.coupons_available_spinner);
 
@@ -423,7 +424,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements PaytmPay
                 });
 
                 alertDialog.show();
-                alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.setCanceledOnTouchOutside(true);
 
             }
 
