@@ -27,12 +27,13 @@
         <item
             android:id="@+id/certificates"
             android:icon="@drawable/installment"
-            android:visible="false"
+            android:visible="true"
             android:title="Installments" />
 
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_person_black_24dp"
+            android:visible="false"
             android:title="Profile" />
 
         <item
@@ -56,7 +57,7 @@
         <item
             android:id="@+id/visit_us"
             android:icon="@drawable/menu_visit_website"
-            android:visible="true"
+            android:visible="false"
             android:title="Visit Our Website" />
 
         <item

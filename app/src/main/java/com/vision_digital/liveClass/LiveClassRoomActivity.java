@@ -285,6 +285,8 @@ public class LiveClassRoomActivity extends AppCompatActivity {
                                 Log.e("Notes live", notesContentDataObjArray.toString());
                                 if (notesContentDataObjArray.length() == 0){
                                     binding.notesLiveClassroomContentRecyclerView.setVisibility(View.GONE);
+                                    binding.tvNotes.setVisibility(View.GONE);
+
                                 } else {
                                     binding.notesLiveClassroomContentRecyclerView.setVisibility(View.VISIBLE);
                                     arrayListNotes.clear();

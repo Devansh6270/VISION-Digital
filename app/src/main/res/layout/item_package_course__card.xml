@@ -1,110 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-
+    android:layout_margin="@dimen/dimen_8dp"
+    android:clickable="true"
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:id="@+id/describeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/coursesCard"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"
-        android:layout_marginTop="14dp"
-        android:layout_marginRight="10sp"
-        android:layout_marginBottom="5dp"
-        app:cardCornerRadius="12dp">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:backgroundTint="#ffffff"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_4dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/packageImg"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_width="120dp"
+            android:layout_height="90dp"
             android:background="@drawable/image_round_corner"
             android:scaleType="fitXY"
+            app:shapeAppearanceOverlay="@style/roundimageview"
             android:src="@drawable/nobita"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/roundimageview" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:padding="@dimen/dimen_8dp"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/packageTitle"
-                style="@style/LogikaNavaBold"
-                android:layout_width="match_parent"
+                style="@style/Nohemi_Medium"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:maxLines="1"
-                android:text="Section 1"
-                android:textColor="@color/darkGreyColor"
-                android:textSize="@dimen/dimen_16dp" />
+                android:maxLines="2"
+                android:minLines="1"
+                tools:text="POSH(Prevention, Prohibition
+and Redressal Act, 2013)"
+                android:textColor="@color/themeBlue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/forwordBtn"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_right_gray_arrow"
-                app:tint="@color/darkGreyColor" />
+            <TextView
+                style="@style/Nohemi_Light"
+                android:id="@+id/packageDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:minLines="1"
+                android:layout_marginTop="8dp"
+                tools:text="POSH"
+                android:textColor="@color/themeBlue"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/classTitle"
+                app:layout_constraintTop_toBottomOf="@+id/classTitle" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/packageDate"-->
+<!--                        style="@style/LogikaNavaMedium"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="@dimen/dimen_16dp"-->
+<!--                        android:layout_marginBottom="@dimen/dimen_8dp"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="8sp"-->
+<!--                        tools:ignore="WebViewLayout" />-->
 
         </LinearLayout>
 
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--    xmlns:tools="http://schemas.android.com/tools"-->
+        <!--    android:layout_width="match_parent"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    android:orientation="horizontal">-->
 
-        <TextView
-            android:id="@+id/packageDescription"
-            style="@style/LogikaNavaRegular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_16dp"
-            android:layout_marginBottom="@dimen/dimen_4dp"
-            android:maxLines="4"
-            android:visibility="gone"
-            android:text="Nulla id dictum libero. Mauris egestas felis ac
-            dui porttitor vestibulum.kfjfjfjjdfnjjknjfnj
-            fdjfnjnjfnjfgj
-            \n
-             Nullam congue, lectus sit amet \n egestas feds"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/packageDate"
-            style="@style/LogikaNavaMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_16dp"
-            android:layout_marginBottom="@dimen/dimen_8dp"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="8sp"
-            tools:ignore="WebViewLayout" />
+
+        <!--    <LinearLayout-->
+        <!--        android:id="@+id/describeLayout"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:orientation="horizontal">-->
+
+
+        <!--    <androidx.cardview.widget.CardView-->
+        <!--        android:id="@+id/coursesCard"-->
+        <!--        android:layout_width="100dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="10sp"-->
+        <!--        android:layout_marginTop="14dp"-->
+        <!--        android:layout_marginRight="10sp"-->
+        <!--        android:layout_marginBottom="5dp"-->
+        <!--        app:cardCornerRadius="12dp">-->
+
+        <!--        <com.google.android.material.imageview.ShapeableImageView-->
+        <!--            android:id="@+id/packageImg"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="80dp"-->
+        <!--            android:background="@drawable/image_round_corner"-->
+        <!--            android:scaleType="fitXY"-->
+        <!--            android:src="@drawable/nobita"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:shapeAppearanceOverlay="@style/roundimageview" />-->
+
+        <!--    </androidx.cardview.widget.CardView>-->
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="8dp"-->
+        <!--        android:orientation="vertical">-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/packageTitle"-->
+        <!--                style="@style/LogikaNavaBold"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="15dp"-->
+        <!--                android:layout_marginEnd="8dp"-->
+        <!--                android:layout_marginBottom="8dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:maxLines="1"-->
+        <!--                android:text="Section 1"-->
+        <!--                android:textColor="@color/darkGreyColor"-->
+        <!--                android:textSize="@dimen/dimen_16dp" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/forwordBtn"-->
+        <!--                android:layout_width="18dp"-->
+        <!--                android:layout_height="18dp"-->
+        <!--                android:layout_marginTop="15dp"-->
+        <!--                android:layout_marginEnd="16dp"-->
+        <!--                android:src="@drawable/ic_right_gray_arrow"-->
+        <!--                app:tint="@color/darkGreyColor" />-->
+
+        <!--        </LinearLayout>-->
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/packageDescription"-->
+        <!--            style="@style/LogikaNavaRegular"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="@dimen/dimen_16dp"-->
+        <!--            android:layout_marginBottom="@dimen/dimen_4dp"-->
+        <!--            android:maxLines="4"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:text="Nulla id dictum libero. Mauris egestas felis ac-->
+        <!--            dui porttitor vestibulum.kfjfjfjjdfnjjknjfnj-->
+        <!--            fdjfnjnjfnjfgj-->
+        <!--            \n-->
+        <!--             Nullam congue, lectus sit amet \n egestas feds"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="12sp" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/packageDate"-->
+        <!--            style="@style/LogikaNavaMedium"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="@dimen/dimen_16dp"-->
+        <!--            android:layout_marginBottom="@dimen/dimen_8dp"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="8sp"-->
+        <!--            tools:ignore="WebViewLayout" />-->
+        <!--    </LinearLayout>-->
+        <!--    </LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+
+
+
+
+
+
     </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

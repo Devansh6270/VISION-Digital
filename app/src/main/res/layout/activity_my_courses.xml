@@ -7,8 +7,6 @@
     android:background="@color/white"
     tools:context=".activities.MyCoursesActivity">
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -76,13 +74,13 @@
                     android:layout_width="54dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
+                    android:background="@drawable/bg_red_round_button"
                     android:gravity="center"
                     android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingBottom="@dimen/dimen_6dp"
                     android:text="All"
-                    android:background="@drawable/bg_red_round_button"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -92,16 +90,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
+                    android:background="@drawable/bg_category_my_course"
                     android:gravity="center"
                     android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingBottom="@dimen/dimen_6dp"
                     android:text="Live"
-                    android:background="@drawable/bg_category_my_course"
                     android:textColor="@color/grey"
                     android:textSize="14sp" />
-
 
 
                 <TextView
@@ -110,13 +107,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
+                    android:background="@drawable/bg_category_my_course"
                     android:gravity="center"
                     android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingBottom="@dimen/dimen_6dp"
                     android:text="Course"
-                    android:background="@drawable/bg_category_my_course"
                     android:textColor="@color/grey"
                     android:textSize="14sp" />
 
@@ -126,13 +123,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
+                    android:background="@drawable/bg_category_my_course"
                     android:gravity="center"
                     android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingBottom="@dimen/dimen_6dp"
                     android:text="Package"
-                    android:background="@drawable/bg_category_my_course"
                     android:textColor="@color/grey"
                     android:textSize="14sp" />
 
@@ -143,24 +140,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8sp"
+                    android:background="@drawable/bg_category_my_course"
                     android:gravity="center"
                     android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingEnd="@dimen/dimen_12dp"
                     android:paddingBottom="@dimen/dimen_6dp"
                     android:text="Test Series"
-                    android:background="@drawable/bg_category_my_course"
                     android:textColor="@color/grey"
                     android:textSize="14sp" />
-
-
-
 
 
             </LinearLayout>
 
         </HorizontalScrollView>
-
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -192,7 +185,7 @@
                 android:layout_margin="16sp"
                 android:gravity="center"
                 android:fontFamily="@font/space_grotesk_bold"
-                android:text="No Course is Subscribe Yet!"
+                android:text="No data available"
                 android:textColor="@color/grey"
                 android:textSize="21sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,6 +194,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/exploreCoursesBtn"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardElevation="10dp"
@@ -232,15 +226,109 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llTabMenu"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="@dimen/dimen_12dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/allCourseBtn"-->
+<!--                    style="@style/LogikaNavaRegular"-->
+<!--                    android:layout_width="54dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8sp"-->
+<!--                    android:background="@drawable/bg_red_round_button"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/dimen_12dp"-->
+<!--                    android:paddingTop="@dimen/dimen_6dp"-->
+<!--                    android:paddingEnd="@dimen/dimen_12dp"-->
+<!--                    android:paddingBottom="@dimen/dimen_6dp"-->
+<!--                    android:text="All"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/liveCourseBtn"-->
+<!--                    style="@style/LogikaNavaRegular"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8sp"-->
+<!--                    android:background="@drawable/bg_category_my_course"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/dimen_12dp"-->
+<!--                    android:paddingTop="@dimen/dimen_6dp"-->
+<!--                    android:paddingEnd="@dimen/dimen_12dp"-->
+<!--                    android:paddingBottom="@dimen/dimen_6dp"-->
+<!--                    android:text="Live"-->
+<!--                    android:textColor="@color/grey"-->
+<!--                    android:textSize="14sp" />-->
 
 
+<!--                <TextView-->
+<!--                    android:id="@+id/recordedCourseBtn"-->
+<!--                    style="@style/LogikaNavaRegular"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8sp"-->
+<!--                    android:background="@drawable/bg_category_my_course"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/dimen_12dp"-->
+<!--                    android:paddingTop="@dimen/dimen_6dp"-->
+<!--                    android:paddingEnd="@dimen/dimen_12dp"-->
+<!--                    android:paddingBottom="@dimen/dimen_6dp"-->
+<!--                    android:text="Course"-->
+<!--                    android:textColor="@color/grey"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/packageBtn"-->
+<!--                    style="@style/LogikaNavaRegular"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8sp"-->
+<!--                    android:background="@drawable/bg_category_my_course"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/dimen_12dp"-->
+<!--                    android:paddingTop="@dimen/dimen_6dp"-->
+<!--                    android:paddingEnd="@dimen/dimen_12dp"-->
+<!--                    android:paddingBottom="@dimen/dimen_6dp"-->
+<!--                    android:text="Package"-->
+<!--                    android:textColor="@color/grey"-->
+<!--                    android:textSize="14sp" />-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/testSeriesBtn"-->
+<!--                    style="@style/LogikaNavaRegular"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8sp"-->
+<!--                    android:background="@drawable/bg_category_my_course"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/dimen_12dp"-->
+<!--                    android:paddingTop="@dimen/dimen_6dp"-->
+<!--                    android:paddingEnd="@dimen/dimen_12dp"-->
+<!--                    android:paddingBottom="@dimen/dimen_6dp"-->
+<!--                    android:text="Test Series"-->
+<!--                    android:textColor="@color/grey"-->
+<!--                    android:textSize="14sp" />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--        </HorizontalScrollView>-->
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myCoursesAllList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myCoursesLiveList"

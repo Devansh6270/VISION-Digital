@@ -40,17 +40,16 @@
                         android:layout_marginLeft="16dp"
                          />
 
-
                     <ImageView
                         android:id="@+id/searchBtn"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:background="@drawable/round_shape"
                         android:src="@drawable/ic_search"
+                        android:visibility="gone"
                         android:elevation="12dp"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@id/notificationR"
-                         />
+                        android:layout_toLeftOf="@id/notificationR" />
 
                     <RelativeLayout
                         android:id="@+id/notificationR"

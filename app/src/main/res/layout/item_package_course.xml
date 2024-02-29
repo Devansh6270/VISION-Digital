@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:minLines="1"
                 android:maxLines="2"
-                android:text="POSH(Prevention, Prohibition
+                tools:text="POSH(Prevention, Prohibition
 and Redressal Act, 2013)"
                 android:textColor="@color/themeBlue"
                 android:textSize="14sp"
@@ -64,7 +64,7 @@ and Redressal Act, 2013)"
                 android:maxLines="1"
                 android:minLines="1"
                 android:layout_marginTop="8dp"
-                android:text="POSH"
+                tools:text="POSH"
                 android:textColor="@color/themeBlue"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/classTitle"

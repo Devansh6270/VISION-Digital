@@ -155,7 +155,14 @@ public class MyCoursesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 myCoursesLiveListView.setVisibility(View.GONE);
                 myCoursesRecordedListView.setVisibility(View.GONE);
-                myCoursesAllListView.setVisibility(View.VISIBLE);
+//                myCoursesAllListView.setVisibility(View.VISIBLE);
+                if (itemSubscribedAllCourseList.size() == 0){
+                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                    myCoursesAllListView.setVisibility(View.GONE);
+                } else {
+                    myCoursesAllListView.setVisibility(View.VISIBLE);
+                    emptyCourseListLayout.setVisibility(View.GONE);
+                }
                 myCoursesTestSeriesListView.setVisibility(View.GONE);
                 packageListView.setVisibility(View.GONE);
 
@@ -182,7 +189,14 @@ public class MyCoursesActivity extends AppCompatActivity {
         liveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myCoursesLiveListView.setVisibility(View.VISIBLE);
+//                myCoursesLiveListView.setVisibility(View.VISIBLE);
+                if (itemSubscribedLiveCourseList.size() == 0){
+                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                    myCoursesLiveListView.setVisibility(View.GONE);
+                } else {
+                    myCoursesLiveListView.setVisibility(View.VISIBLE);
+                    emptyCourseListLayout.setVisibility(View.GONE);
+                }
                 myCoursesRecordedListView.setVisibility(View.GONE);
                 myCoursesAllListView.setVisibility(View.GONE);
                 myCoursesTestSeriesListView.setVisibility(View.GONE);
@@ -212,7 +226,14 @@ public class MyCoursesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myCoursesLiveListView.setVisibility(View.GONE);
-                myCoursesRecordedListView.setVisibility(View.VISIBLE);
+//                myCoursesRecordedListView.setVisibility(View.VISIBLE);
+                if (itemSubscribedRecordedCourseList.size() == 0){
+                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                    myCoursesRecordedListView.setVisibility(View.GONE);
+                } else {
+                    myCoursesRecordedListView.setVisibility(View.VISIBLE);
+                    emptyCourseListLayout.setVisibility(View.GONE);
+                }
                 myCoursesAllListView.setVisibility(View.GONE);
                 myCoursesTestSeriesListView.setVisibility(View.GONE);
                 packageListView.setVisibility(View.GONE);
@@ -241,7 +262,14 @@ public class MyCoursesActivity extends AppCompatActivity {
                 myCoursesLiveListView.setVisibility(View.GONE);
                 myCoursesRecordedListView.setVisibility(View.GONE);
                 myCoursesAllListView.setVisibility(View.GONE);
-                myCoursesTestSeriesListView.setVisibility(View.VISIBLE);
+//                myCoursesTestSeriesListView.setVisibility(View.VISIBLE);
+                if (itemTestSeriesAvailabilityLists.size() == 0){
+                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                    myCoursesTestSeriesListView.setVisibility(View.GONE);
+                } else {
+                    myCoursesTestSeriesListView.setVisibility(View.VISIBLE);
+                    emptyCourseListLayout.setVisibility(View.GONE);
+                }
                 packageListView.setVisibility(View.GONE);
 
                 allBtn.setBackgroundResource(R.drawable.bg_category_my_course);
@@ -267,7 +295,14 @@ public class MyCoursesActivity extends AppCompatActivity {
         packageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                packageListView.setVisibility(View.VISIBLE);
+//                packageListView.setVisibility(View.VISIBLE);
+                if (itemPackageCourseList.size() == 0){
+                    emptyCourseListLayout.setVisibility(View.VISIBLE);
+                    packageListView.setVisibility(View.GONE);
+                } else {
+                    packageListView.setVisibility(View.VISIBLE);
+                    emptyCourseListLayout.setVisibility(View.GONE);
+                }
                 myCoursesLiveListView.setVisibility(View.GONE);
                 myCoursesRecordedListView.setVisibility(View.GONE);
                 myCoursesAllListView.setVisibility(View.GONE);
@@ -346,12 +381,12 @@ public class MyCoursesActivity extends AppCompatActivity {
 
                             JSONObject dataObj =jsonObject.getJSONObject("data");
 
-                            if (dataObj.length()==0){
-                                emptyCourseListLayout.setVisibility(View.VISIBLE);
-                                llTabMenu.setVisibility(View.GONE);
-                            } else {
-                                emptyCourseListLayout.setVisibility(View.GONE);
-                                llTabMenu.setVisibility(View.VISIBLE);
+//                            if (dataObj.length()==0){
+//                                emptyCourseListLayout.setVisibility(View.VISIBLE);
+//                                llTabMenu.setVisibility(View.GONE);
+//                            } else {
+//                                emptyCourseListLayout.setVisibility(View.GONE);
+//                                llTabMenu.setVisibility(View.VISIBLE);
 
 
                                 // Live
@@ -360,6 +395,8 @@ public class MyCoursesActivity extends AppCompatActivity {
 
                                 if (liveCourses.length() == 0) {
                                     emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                    liveBtn.setVisibility(View.GONE);
+
                                 } else {
                                     emptyCourseListLayout.setVisibility(View.GONE);
                                     itemSubscribedLiveCourseList.clear();
@@ -393,6 +430,7 @@ public class MyCoursesActivity extends AppCompatActivity {
 
                                 if (recordedCourses.length() == 0) {
                                     emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                    recordedBtn.setVisibility(View.GONE);
                                 } else {
                                     emptyCourseListLayout.setVisibility(View.GONE);
                                     itemSubscribedRecordedCourseList.clear();
@@ -420,6 +458,7 @@ public class MyCoursesActivity extends AppCompatActivity {
 
                                 if (packageCourses.length() == 0) {
                                     emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                    packageBtn.setVisibility(View.GONE);
                                 } else {
                                     emptyCourseListLayout.setVisibility(View.GONE);
                                     itemPackageCourseList.clear();
@@ -459,6 +498,7 @@ public class MyCoursesActivity extends AppCompatActivity {
                                 JSONArray testSeries = dataObj.getJSONArray("testseries");
                                 if (testSeries.length() == 0) {
                                     //emptyCourseListLayout.setVisibility(View.VISIBLE);
+                                    testSeriesBtn.setVisibility(View.GONE);
                                 } else {
                                     emptyCourseListLayout.setVisibility(View.GONE);
                                     itemTestSeriesAvailabilityLists.clear();
@@ -486,7 +526,7 @@ public class MyCoursesActivity extends AppCompatActivity {
                                     ItemTestSeriesAvailabilityAdapter itemTestSeriesAvailabilityAdapter = new ItemTestSeriesAvailabilityAdapter(MyCoursesActivity.this, itemTestSeriesAvailabilityLists);
                                     myCoursesTestSeriesListView.setAdapter(itemTestSeriesAvailabilityAdapter);
                                 }
-                            }
+//                            }
 
 
 

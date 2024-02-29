@@ -47,7 +47,7 @@ public class InstallmentPaymentActivity extends AppCompatActivity {
 
         enrollNo = getIntent().getStringExtra("enrollNo");
         Log.e("enrollno", enrollNo);
-        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+enrollNo+"/fee";
+        getInstallment = "http://v.chalksnboard.com/api/v4/students/"+sid+"/fee";
 
 
         binding.profileBackBtn.setOnClickListener(new View.OnClickListener() {

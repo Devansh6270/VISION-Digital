@@ -298,6 +298,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
         String sidString = String.valueOf(sid);
         getDashboardData = getApplicationContext().getString(R.string.apiURL) + "getUserDashboardData";
         getOfflineResultData = getApplicationContext().getString(R.string.apiURL) +"students/"+ sidString + "/offlineresultall";
+        Log.e("offlineResult", getOfflineResultData);
 
 
         //Putting name on dasboard--------------------Hello User--------------
@@ -773,8 +774,8 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                 ItemOfflineResultList itemOfflineResult = new ItemOfflineResultList();
                                 JSONObject dataObj = dataArr.getJSONObject(i);
                                 String id = String.valueOf(dataObj.getInt("id"));
-                                String student_rollno = dataObj.getString("student_rollno");
-                                String sid = String.valueOf(dataObj.getInt("sid"));
+//                                String student_rollno = dataObj.getString("student_rollno");
+//                                String sid = String.valueOf(dataObj.getInt("sid"));
                                 String student_name = dataObj.getString("student_name");
                                 String batch_no = dataObj.getString("batch_no");
                                 String physics = dataObj.getString("physics");
@@ -1194,6 +1195,7 @@ public class DashboardActivity extends AppCompatActivity implements Connectivity
                                         popularCourseslistView.setLayoutManager(layoutManagerPopularCourses);
                                         popularCoursesAdapter = new ItemPopularCoursesAdapter(popularCoursesList);
                                         popularCourseslistView.setAdapter(popularCoursesAdapter);
+
 
 //                                        Continue Watching------------------------
                                         String continueWatching1 = (dataObj.getString("continue_watching_graph"));

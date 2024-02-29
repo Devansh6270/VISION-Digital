@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.vision_digital.R;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,6 +32,7 @@ public class LogInViaPhoneActivity extends AppCompatActivity {
     TextInputLayout eTphoneNo;
     TextInputEditText phone;
     TextView btnSendOTP;
+    String tokenId;
     Spinner countryCodeSpinner;
     String countryCode ="+91";
 
@@ -70,6 +73,20 @@ public class LogInViaPhoneActivity extends AppCompatActivity {
         deepLink = getIntent().getStringExtra("deeplinkFirebase");
 
          phoneNo = eTphoneNo.getEditText().getText().toString().trim();
+
+        FirebaseApp.initializeApp(this);
+
+        // Get the FCM registration token
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        tokenId = task.getResult();
+                        Log.d("FCM Token", "Token: " + tokenId.toString());
+                        // You can now use 'token' to send FCM messages to this device
+                    } else {
+                        Log.e("FCM Token", "Failed to get token");
+                    }
+                });
 
 
 
