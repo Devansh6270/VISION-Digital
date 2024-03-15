@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "279642656286",
-    "project_id": "vision-21d06",
-    "storage_bucket": "vision-21d06.appspot.com"
+    "project_number": "254829331052",
+    "project_id": "vision-classes-33c69",
+    "storage_bucket": "vision-classes-33c69.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279642656286:android:396debe81dd4688469280f",
+        "mobilesdk_app_id": "1:254829331052:android:a04a5910fc6faec2590e49",
         "android_client_info": {
-          "package_name": "com.vision_digital"
+          "package_name": "com.vision_classes"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAwTAff8Qa-JQdit_xZ1jCG1Odb8HCiqJI"
+          "current_key": "AIzaSyDbumqea65POx84mIdXZSs5_TKtCkUos7E"
         }
       ],
       "services": {

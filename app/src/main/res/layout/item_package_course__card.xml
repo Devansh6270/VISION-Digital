@@ -23,21 +23,19 @@
             android:layout_height="90dp"
             android:background="@drawable/image_round_corner"
             android:scaleType="fitXY"
-            app:shapeAppearanceOverlay="@style/roundimageview"
             android:src="@drawable/nobita"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundimageview" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/dimen_8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_8dp">
 
 
             <TextView
@@ -47,38 +45,46 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:minLines="1"
-                tools:text="POSH(Prevention, Prohibition
-and Redressal Act, 2013)"
                 android:textColor="@color/themeBlue"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="POSH(Prevention, Prohibition
+and Redressal Act, 2013)" />
 
             <TextView
-                style="@style/Nohemi_Light"
-                android:id="@+id/packageDate"
+                android:id="@+id/tvCourseType"
+                style="@style/LogikaNavaMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                tools:text="live"
+                android:textColor="@color/themeBlue"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/packageDate"
+                style="@style/Nohemi_Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:maxLines="1"
                 android:minLines="1"
-                android:layout_marginTop="8dp"
-                tools:text="POSH"
                 android:textColor="@color/themeBlue"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/classTitle"
-                app:layout_constraintTop_toBottomOf="@+id/classTitle" />
+                tools:text="POSH" />
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/packageDate"-->
-<!--                        style="@style/LogikaNavaMedium"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginEnd="@dimen/dimen_16dp"-->
-<!--                        android:layout_marginBottom="@dimen/dimen_8dp"-->
-<!--                        android:maxLines="1"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="8sp"-->
-<!--                        tools:ignore="WebViewLayout" />-->
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/packageDate"-->
+            <!--                        style="@style/LogikaNavaMedium"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginEnd="@dimen/dimen_16dp"-->
+            <!--                        android:layout_marginBottom="@dimen/dimen_8dp"-->
+            <!--                        android:maxLines="1"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="8sp"-->
+            <!--                        tools:ignore="WebViewLayout" />-->
 
         </LinearLayout>
 
@@ -89,7 +95,6 @@ and Redressal Act, 2013)"
         <!--    android:layout_width="match_parent"-->
         <!--    android:layout_height="wrap_content"-->
         <!--    android:orientation="horizontal">-->
-
 
 
         <!--    <LinearLayout-->
@@ -192,11 +197,6 @@ and Redressal Act, 2013)"
         <!--    </LinearLayout>-->
 
         <!--</LinearLayout>-->
-
-
-
-
-
 
 
     </LinearLayout>

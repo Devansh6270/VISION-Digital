@@ -60,7 +60,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="288dp"
@@ -234,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="16sp"
                                 android:gravity="center"
-                                android:text="Test-Series"
+                                android:text="Test Series"
                                 android:textColor="#393E59"
                                 android:textSize="14sp" />
 

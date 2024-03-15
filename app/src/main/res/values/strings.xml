@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VISION-Digital</string>
+    <string name="app_name">VISION-Classes</string>
 
 
     <string name="apiURL">http://v.chalksnboard.com/api/v4/</string>

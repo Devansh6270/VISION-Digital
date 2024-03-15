@@ -24,6 +24,21 @@
         app:use_controller="true"
         app:controller_layout_id="@layout/expo_player_layout">
 
+<!--    <com.google.android.exoplayer2.ui.PlayerView-->
+<!--        android:id="@+id/mileStoneVideoView"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        android:background="#000"-->
+<!--        android:clickable="true"-->
+<!--        android:keepScreenOn="true"-->
+<!--        app:bar_height="2dp"-->
+<!--        app:resize_mode="fit"-->
+<!--        app:played_color="@color/colorAccent"-->
+<!--        app:scrubber_color="@color/colorAccent"-->
+<!--        app:show_buffering="always"-->
+<!--        app:use_controller="true"-->
+<!--        app:controller_layout_id="@layout/expo_player_layout">-->
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

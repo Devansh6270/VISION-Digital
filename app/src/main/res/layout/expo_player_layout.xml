@@ -32,6 +32,7 @@
             android:id="@id/exo_progress"
             android:layout_width="0dp"
             android:layout_height="26dp"
+            android:visibility="visible"
             android:layout_weight="1"
             app:played_color="@color/colorPrimaryDark"
             app:unplayed_color="#B5B2B2" />

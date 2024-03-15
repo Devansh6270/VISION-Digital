@@ -420,11 +420,11 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_centerVertical="true"
+                                        android:layout_marginEnd="5dp"
                                         android:gravity="center"
                                         android:text="See All"
-                                        android:layout_marginEnd="5dp"
-                                        android:textSize="14sp"
-                                        android:textColor="#393E59" />
+                                        android:textColor="#393E59"
+                                        android:textSize="14sp" />
 
                                     <ImageView
                                         android:layout_width="@dimen/dimen_18dp"
@@ -525,11 +525,11 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_centerVertical="true"
+                                        android:layout_marginEnd="5dp"
                                         android:gravity="center"
                                         android:text="See All"
-                                        android:layout_marginEnd="5dp"
-                                        android:textSize="14sp"
-                                        android:textColor="#393E59" />
+                                        android:textColor="#393E59"
+                                        android:textSize="14sp" />
 
                                     <ImageView
                                         android:layout_width="18dp"

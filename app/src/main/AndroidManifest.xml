@@ -39,6 +39,10 @@
         android:vmSafeMode="true"
         tools:targetApi="q">
         <activity
+            android:name=".activities.videoPlayer.ExoPlayer3Activity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".activities.AllLiveClassActivity"
             android:exported="false" />
         <activity
@@ -96,14 +100,13 @@
         <activity
             android:name=".activities.PrivacyPolicyActivity"
             android:exported="false" />
-
         <activity
             android:name=".profile.EditProfileActivity"
             android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.vision_digital.android.fileprovider"
+            android:authorities="com.vision_classes.android.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

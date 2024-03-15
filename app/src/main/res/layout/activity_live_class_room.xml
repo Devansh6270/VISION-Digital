@@ -110,7 +110,7 @@
                 android:visibility="gone"
                 android:textStyle="bold"
                 android:textSize="@dimen/dimen_24dp"
-                android:text="No Classes Available"/>
+                android:text="No Classes have been scheduled for today"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
