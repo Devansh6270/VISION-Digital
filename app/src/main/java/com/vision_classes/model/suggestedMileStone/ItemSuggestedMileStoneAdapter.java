@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vision_classes.activities.DashboardActivity;
 import com.vision_classes.activities.MileStoneVideoPlayerActivity;
 import com.vision_classes.R;
+import com.vision_classes.activities.videoPlayer.ExoPlayer3Activity;
 import com.vision_classes.model.milestone.ItemMileStone;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -57,14 +58,18 @@ public class ItemSuggestedMileStoneAdapter extends RecyclerView.Adapter<ItemSugg
 
                 } else {
 
-                    Intent mileStonePlayer = new Intent(context, MileStoneVideoPlayerActivity.class);
+//                    Intent mileStonePlayer = new Intent(context, MileStoneVideoPlayerActivity.class);
+                    Intent mileStonePlayer = new Intent(context, ExoPlayer3Activity.class);
                     mileStonePlayer.putExtra("videoPosition", 0);
                     mileStonePlayer.putExtra("seekTo", 0);
-                    mileStonePlayer.putExtra("id", MileStoneVideoPlayerActivity.cid);
+//                    mileStonePlayer.putExtra("id", MileStoneVideoPlayerActivity.cid);
+                    mileStonePlayer.putExtra("id", ExoPlayer3Activity.cid);
                     mileStonePlayer.putExtra("fromMile", true);
                     mileStonePlayer.putExtra("subscriptionStatus", "subscribed");
-                    mileStonePlayer.putExtra("name", MileStoneVideoPlayerActivity.courseNameM);
-                    mileStonePlayer.putExtra("logo", MileStoneVideoPlayerActivity.courseLogoM);
+//                    mileStonePlayer.putExtra("name", MileStoneVideoPlayerActivity.courseNameM);
+//                    mileStonePlayer.putExtra("logo", MileStoneVideoPlayerActivity.courseLogoM);
+                    mileStonePlayer.putExtra("name", ExoPlayer3Activity.courseNameM);
+                    mileStonePlayer.putExtra("logo", ExoPlayer3Activity.courseLogoM);
                     mileStonePlayer.putExtra("mileUpdateType","suggested_milestone");
                     ArrayList<ItemMileStone> singleMileStoneList = new ArrayList<>();
                     singleMileStoneList.add(milestoneList.get(position));

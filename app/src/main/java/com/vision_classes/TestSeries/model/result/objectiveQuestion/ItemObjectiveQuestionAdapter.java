@@ -126,9 +126,12 @@ public class ItemObjectiveQuestionAdapter extends RecyclerView.Adapter<ItemObjec
         } else {
 //========Currently we are not using wvResult in the main screen instead of that we are using Dialog wvResult=============================
             wvResult.setVisibility(View.GONE);
+            String testHtml = "";
 //================================================================================================================================
+
             wvResult.loadDataWithBaseURL(null, solutionResult, "text/html", "UTF-8", null);
             dialogWvResult.loadDataWithBaseURL(null, solutionResult, "text/html", "UTF-8", null);
+
 
             Log.e("In ELSE",solutionResult);
             tvExplaination.setVisibility(View.VISIBLE);

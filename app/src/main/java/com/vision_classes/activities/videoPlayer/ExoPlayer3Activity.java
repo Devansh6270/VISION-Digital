@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.OptIn;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.PlaybackException;
@@ -19,6 +20,7 @@ import androidx.media3.datasource.DataSource;
 import androidx.media3.datasource.DefaultDataSource;
 import androidx.media3.datasource.DefaultDataSourceFactory;
 import androidx.media3.datasource.DefaultHttpDataSource;
+import androidx.media3.exoplayer.ExoPlaybackException;
 import androidx.media3.exoplayer.SimpleExoPlayer;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.exoplayer.source.ProgressiveMediaSource;
@@ -29,9 +31,12 @@ import androidx.media3.extractor.DefaultExtractorsFactory;
 import androidx.media3.extractor.Extractor;
 import androidx.media3.ui.PlayerControlView;
 import androidx.media3.ui.PlayerView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,10 +49,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,6 +69,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.BuildConfig;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,6 +84,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.vision_classes.R;
 import com.vision_classes.activities.DashboardActivity;
+//import com.vision_classes.activities.ExoPlayer3Activity;
+//import com.vision_classes.activities.MileStoneVideoPlayerActivity;
 import com.vision_classes.activities.MileStoneVideoPlayerActivity;
 import com.vision_classes.helperClasses.JSONParser;
 import com.vision_classes.model.chapters.ItemChapter;
@@ -84,6 +99,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ExoPlayer3Activity extends AppCompatActivity {
@@ -238,6 +254,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 //        exo_pause = layout.findViewById(R.id.exo_pause);
 //        exo_next = layout.findViewById(R.id.exo_next);
 //        exo_vr = layout.findViewById(R.id.exo_vr);
+        dialog = new ProgressDialog(ExoPlayer3Activity.this);
 
         top_constrain = findViewById(R.id.top_constrain);
         goToCommunityBtn = findViewById(R.id.goToCommunityBtn);
@@ -287,6 +304,8 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
         mileStoneArrayList = (ArrayList<ItemMileStone>) getIntent().getSerializableExtra("mileStonesList");
         chap_id = String.valueOf(getIntent().getIntExtra("chapter_id", 0));
 
+        cid = courseIdM;
+
         SharedPreferences studDetails = getSharedPreferences("CNB", MODE_PRIVATE);
         studId = studDetails.getInt("sid", 0);
 
@@ -325,6 +344,53 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                 onBackPressed();
             }
         });
+
+        closeSearchRecycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchMileStoneRecyclerView.setVisibility(View.GONE);
+                closeSearchRecycler.setVisibility(View.GONE);
+            }
+        });
+
+        searchClearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchEdt.setText("");
+            }
+        });
+        searchEdt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    InputMethodManager keyboard = (InputMethodManager) ExoPlayer3Activity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    keyboard.hideSoftInputFromWindow(searchEdt.getWindowToken(), 0);
+                    new ExoPlayer3Activity.GetSearchedMileStones().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        searchEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                searchKeyword = searchEdt.getText().toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchKeyword = searchEdt.getText().toString();
+            }
+        });
+        searchKeyword = searchEdt.getText().toString().trim();
 
 // Creating a DataSource.Factory
         DataSource.Factory dataSourceFactory = new DefaultDataSource.Factory(
@@ -373,7 +439,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
         Log.e("start time", String.valueOf(startTime));
 
 
-//        new MileStoneVideoPlayerActivity.GetSuggestedMileStones().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new ExoPlayer3Activity.GetSuggestedMileStones().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         // Adding event listener to the player
@@ -382,7 +448,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
             public void onMediaItemTransition(@Nullable MediaItem mediaItem, int reason) {
                 // Media item transition occurred
                 questionFlag = true;
-//                new GetSuggestedMileStones().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new GetSuggestedMileStones().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
             @Override
@@ -452,6 +518,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 
             @Override
             public void onPlayerError(@NonNull PlaybackException error) {
+
                 // Player error event
                 new AlertDialog.Builder(ExoPlayer3Activity.this)
                         .setTitle("Playback Error")
@@ -465,8 +532,19 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
                 Log.e("PLAYER ERROR EXO_3", error.toString());
+                Toast.makeText(ExoPlayer3Activity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        //fetching suggested milestones--------------
+        getSuggestedMilestones = getApplicationContext().getString(R.string.apiURL) + "getSuggestedMilestones";
+
+        updateListOfSuggestedMileStones();
+
+        LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        innerMileStoneList.setLayoutManager(layoutManager);
+        itemSuggestedMileStoneAdapter = new ItemSuggestedMileStoneAdapter(suggestedMileStoneList);
+        innerMileStoneList.setAdapter(itemSuggestedMileStoneAdapter);
 
         mileStoneVideoView.setControllerVisibilityListener(new PlayerControlView.VisibilityListener() {
             @Override
@@ -560,7 +638,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                     } else {
                         isDoubtSolved = "1";
                         new UpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//                        new MileStoneVideoPlayerActivity.UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        new UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }
 
                 } else {
@@ -571,6 +649,273 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
         };
         timerforgetlastposition.postDelayed(runnableTimer, 1000);
 
+
+    }
+
+    private void popupQuestion() {
+
+        popupQuestionChecker.postDelayed(new Runnable() {
+            @OptIn(markerClass = UnstableApi.class) @Override
+            public void run() {
+                //Do your work
+                if ((player.getDuration() - player.getCurrentPosition()) / 1000 == 0 && questionFlag == true) {
+
+                    Log.e("popupquestion", "run: " + player.getDuration() + "  minus  " + (player.getDuration() - player.getCurrentPosition()) / 1000);
+                    final Dialog dialog = new Dialog(ExoPlayer3Activity.this, android.R.style.Theme_Light);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.popup_question_btw_milestones);
+                    dialog.setCanceledOnTouchOutside(false);
+                    //Plotting questions
+                    TextView questionView = dialog.findViewById(R.id.question);
+                    questionView.setText(question);
+                    final TextView option1View = dialog.findViewById(R.id.option1);
+                    option1View.setText(option1);
+                    final TextView option2View = dialog.findViewById(R.id.option2);
+                    option2View.setText(option2);
+                    final TextView option3View = dialog.findViewById(R.id.option3);
+                    option3View.setText(option3);
+                    final TextView option4View = dialog.findViewById(R.id.option4);
+                    option4View.setText(option4);
+
+                    //Plotting Timer--------------
+                    final TextView timerTextView = dialog.findViewById(R.id.timmer);
+
+                    final Handler timer = new Handler(Looper.getMainLooper());
+
+                    timeLimit = questionTimeLimit;
+
+                    final Runnable runnableTimer = new Runnable() {
+                        @Override
+                        public void run() {
+                            timeLimit--;
+                            min = timeLimit / 60;
+                            sec = timeLimit % 60;
+                            String minut = String.format("%02d", min);
+                            String second = String.format("%02d", sec);
+                            timerTextView.setText(minut + ":" + second);
+
+                            Log.e("timmer", "" + timeLimit);
+
+                            if (timeLimit != 0) {
+                                timer.postDelayed(this, 1000);
+                            }
+                            if (timeLimit == 0) {
+                                final Dialog timeOverDialog = new Dialog(ExoPlayer3Activity.this);
+                                timeOverDialog.setContentView(R.layout.popup_result_question_btw_milestones);
+                                timeOverDialog.setCanceledOnTouchOutside(false);
+                                Window window = timeOverDialog.getWindow();
+                                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                                TextView learnAgainBtn = timeOverDialog.findViewById(R.id.learnAgainBtn);
+                                TextView letsProceed = timeOverDialog.findViewById(R.id.letsProceed);
+                                TextView resultMsg = timeOverDialog.findViewById(R.id.resultMgs);
+                                resultMsg.setText("Hey Buddy.. Are you there?");
+                                learnAgainBtn.setVisibility(View.VISIBLE);
+                                letsProceed.setVisibility(View.GONE);
+                                learnAgainBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.hide();
+                                        timeOverDialog.hide();
+                                        player.seekTo(0);
+                                        startTime = player.getCurrentPosition();
+                                        Log.d("startTimeLearnAg", String.valueOf(startTime));
+                                        questionFlag = true;
+                                        player.play();
+                                    }
+                                });
+
+                                timeOverDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                                    @Override
+                                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                                        if (i == KeyEvent.KEYCODE_BACK) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                });
+                                timeOverDialog.show();
+
+                            }
+
+                        }
+                    };
+                    timer.postDelayed(runnableTimer, 1000);
+
+
+                    //Implementing Click events
+                    final CardView option1Card, option2Card, option3Card, option4Card;
+                    option1Card = dialog.findViewById(R.id.option1Card);
+                    option1Card.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            timer.removeCallbacksAndMessages(null);
+                            checkAnswer(options.get(0), option1Card, option1View, dialog);
+                        }
+                    });
+                    option2Card = dialog.findViewById(R.id.option2Card);
+                    option2Card.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            timer.removeCallbacksAndMessages(null);
+                            checkAnswer(options.get(1), option2Card, option2View, dialog);
+                        }
+                    });
+                    option3Card = dialog.findViewById(R.id.option3Card);
+                    option3Card.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            timer.removeCallbacksAndMessages(null);
+                            checkAnswer(options.get(2), option3Card, option3View, dialog);
+                        }
+                    });
+                    option4Card = dialog.findViewById(R.id.option4Card);
+                    option4Card.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            timer.removeCallbacksAndMessages(null);
+                            checkAnswer(options.get(3), option4Card, option4View, dialog);
+                        }
+                    });
+
+
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                            if (i == KeyEvent.KEYCODE_BACK) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    });
+//                    dialog.show();
+                    player.pause();
+                    questionFlag = false;
+                }
+                popupQuestionChecker.postDelayed(this, 1000);
+            }
+        }, 1000);
+
+    }
+
+    private void checkAnswer(String option, CardView cardview, TextView textView, Dialog dialog) {
+        if (option.equals(answer)) {
+            cardview.setBackgroundColor(Color.GREEN);
+            textView.setTextColor(Color.WHITE);
+            popupResult(true, dialog);
+            answerResult = "correct";
+
+        } else {
+            cardview.setBackgroundColor(Color.RED);
+            textView.setTextColor(Color.WHITE);
+            popupResult(false, dialog);
+            answerResult = "incorrect";
+        }
+
+//        new UpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        new SaveQuestionResponse().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+    }
+
+    private void popupResult(boolean result, final Dialog questionDialog) {
+        final Dialog dialog = new Dialog(ExoPlayer3Activity.this);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.popup_result_question_btw_milestones);
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        TextView learnAgainBtn = dialog.findViewById(R.id.learnAgainBtn);
+        TextView letsProceed = dialog.findViewById(R.id.letsProceed);
+        TextView resultMsg = dialog.findViewById(R.id.resultMgs);
+
+        if (result) {
+            resultMsg.setText("Congratulations ! It's Right.");
+            learnAgainBtn.setVisibility(View.GONE);
+            letsProceed.setOnClickListener(new View.OnClickListener() {
+                @OptIn(markerClass = UnstableApi.class) @Override
+                public void onClick(View view) {
+                    dialog.hide();
+                    questionDialog.hide();
+                    player.play();
+                }
+            });
+
+
+        } else {
+            resultMsg.setText("Oops ! You are wrong.");
+            learnAgainBtn.setVisibility(View.VISIBLE);
+            learnAgainBtn.setOnClickListener(new View.OnClickListener() {
+                @OptIn(markerClass = UnstableApi.class) @Override
+                public void onClick(View view) {
+
+                    dialog.hide();
+                    questionDialog.hide();
+                    player.seekTo(0);
+                    questionFlag = true;
+                    duration = 0;
+                    player.play();
+                }
+            });
+            letsProceed.setOnClickListener(new View.OnClickListener() {
+                @OptIn(markerClass = UnstableApi.class) @Override
+                public void onClick(View view) {
+                    dialog.hide();
+                    questionDialog.hide();
+                    player.play();
+                }
+            });
+
+        }
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                if (i == KeyEvent.KEYCODE_BACK) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    private void updateListOfSuggestedMileStones() {
+
+//        final Handler suggestionUpdater = new Handler(Looper.getMainLooper());
+//        suggestionUpdater.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                //Do your work
+//                long videoWatchedTime = player.getCurrentPosition() / 1000;
+//                Log.e("time", "" + videoWatchedTime);
+//                if (!suggestedMileStones.isEmpty()) {
+//                    innerMileStoneList.setVisibility(View.VISIBLE);
+//                    for (ItemSuggestedMileStones itemSuggestedMileStones : suggestedMileStones) {
+//                        if (itemSuggestedMileStones.getStartedAt() < videoWatchedTime && itemSuggestedMileStones.getEndAt() > videoWatchedTime) {
+//                            for (ItemMileStone itemMileStone : itemSuggestedMileStones.getMileStoneArrayList()) {
+//                                if (!suggestedMileStoneList.contains(itemMileStone)) {
+//                                    suggestedMileStoneList.add(itemMileStone);
+//                                }
+//                            }
+//                        } else if (itemSuggestedMileStones.getStartedAt() < videoWatchedTime || itemSuggestedMileStones.getEndAt() > videoWatchedTime) {
+//                            for (ItemMileStone itemMileStone : itemSuggestedMileStones.getMileStoneArrayList()) {
+//                                if (suggestedMileStoneList.contains(itemMileStone)) {
+//                                    suggestedMileStoneList.remove(itemMileStone);
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    innerMileStoneList.setVisibility(View.GONE);
+//                }
+
+//            }
+//        }, 1000);
 
     }
 
@@ -653,7 +998,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 
         } else {
             new UpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//            new MileStoneVideoPlayerActivity.UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         }
@@ -684,7 +1029,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                 new GetChapterIdAndUpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
             } else {
-//                new MileStoneVideoPlayerActivity.UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                new UpdateSearchedQueryData().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 new UpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
             }
@@ -731,7 +1076,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
         }
 
         // Popup any pending question
-//        popupQuestion();
+        popupQuestion();
 
         // Update start time
         startTime = player.getCurrentPosition();
@@ -756,6 +1101,22 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                 }
             }
         }
+    }
+
+    public void runnableThreadIssue(){
+        // Create a Handler associated with the main thread
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+
+// Post a Runnable to the main thread to perform operations on the player
+        mainHandler.post(new Runnable() {
+            @OptIn(markerClass = UnstableApi.class) @Override
+            public void run() {
+                // Interact with the player here
+                player.setPlayWhenReady(true);
+                // Other player interactions
+            }
+        });
+
     }
 
     @OptIn(markerClass = UnstableApi.class) public void onBackPressed() {
@@ -840,14 +1201,14 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 
         @Override
         protected void onPreExecute() {
-
+//            dialog.setMessage("Please wait");
+//            dialog.show();
         }
 
         @Override
         protected String doInBackground(String... params) {
 
-//            dialog.setMessage("Please wait");
-//            dialog.show();
+
 
             JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
             int versionCode = com.vision_classes.BuildConfig.VERSION_CODE;
@@ -894,8 +1255,11 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 
                                 //Setting content--------------------
                                 JSONArray courseContent = dataObj.getJSONArray("course_content");
+                                if (courseContent.length() == 0){
+                                    onBackPressed();
+                                }
 
-//                                ProgressDialog dialogForIntent = new ProgressDialog(MileStoneVideoPlayerActivity.this);
+//                                ProgressDialog dialogForIntent = new ProgressDialog(ExoPlayer3Activity.this);
 //                                dialogForIntent.setMessage("Please wait");
 //                                dialogForIntent.show();
                                 for (int i = 0; i < courseContent.length(); i++) {
@@ -908,6 +1272,9 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                                     chapter.setSort_order(chapterObj.getString("sort_order"));
                                     chapter.setMin_month("Subscription Month: " + chapterObj.getString("min_month"));
                                     JSONArray milestones = chapterObj.getJSONArray("milestones");
+                                    if (milestones.length() == 0){
+                                        onBackPressed();
+                                    }
                                     for (int j = 0; j < milestones.length(); j++) {
 //                                        dialogForIntent.show();
                                         ItemMileStone mileStone = new ItemMileStone();
@@ -946,6 +1313,7 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
 
                                 }
 
+//                                dialog.dismiss();
                                 new UpdatePlayingStatus().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                                dialogForIntent.dismiss();
 //                                dialog.dismiss();
@@ -996,26 +1364,27 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
             }
 
             //Response reached---------------value in 's' variable
-            dialog.dismiss();
+//            dialog.dismiss();
         }
     }
 
     class UpdatePlayingStatus extends AsyncTask<String, Void, String> {
         // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
 
-        @Override
+//        private long endTime;
+        private int currentPlayerWindowIndex;
+
+        @OptIn(markerClass = UnstableApi.class) @Override
         protected void onPreExecute() {
-            dialog.setMessage("Please wait");
-            dialog.show();
+//            dialog.setMessage("Please wait");
+//            dialog.show();
+            // Access the player on the UI thread to get the required information
+            endTime = player.getCurrentPosition() / 1000;
+            currentPlayerWindowIndex = player.getCurrentWindowIndex();
         }
 
-        // student_id=160&course_id=17&milestone_id=320&play_duration=17
         @OptIn(markerClass = UnstableApi.class) @Override
         protected String doInBackground(String... params) {
-
-            endTime = player.getCurrentPosition() / 1000;
-            Log.e("endTime", String.valueOf(endTime));
-
             long startTimeDouble = startTime / 1000;
             long totalDuration = endTime - startTimeDouble;
 
@@ -1023,17 +1392,8 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
             Log.e("endTimeDouble", String.valueOf(endTime));
             Log.e("totalDuration", String.valueOf(totalDuration));
 
-            String param;
-            if (mileUpdateType.equals("search_mile_click")) {
-                param = "student_id=" + studId + "&course_id=" + courseIdM + "&milestone_id=" + to_milestone_id + "&play_duration=" + duration + "&chapter_id=" +
-                        chap_id + "&mileUpdateType=" + mileUpdateType + "&startTime=" + startTimeDouble + "&endTime=" + endTime + "&doubt_solved=" + isDoubtSolved;
-                Log.e("playingParam", param);
-            } else {
-                param = "student_id=" + studId + "&course_id=" + courseIdM + "&milestone_id=" + mileStoneArrayList.get(player.getCurrentWindowIndex()).getId() + "&play_duration=" + duration + "&chapter_id=" +
-                        chap_id + "&mileUpdateType=" + mileUpdateType + "&startTime=" + startTimeDouble + "&endTime=" + endTime + "&doubt_solved=" + isDoubtSolved;
-                Log.e("playingParam", param);
-            }
-
+            String param = "student_id=" + studId + "&course_id=" + courseIdM + "&milestone_id=" + (mileUpdateType.equals("search_mile_click") ? to_milestone_id : mileStoneArrayList.get(currentPlayerWindowIndex).getId()) + "&play_duration=" + totalDuration + "&chapter_id=" + chap_id + "&mileUpdateType=" + mileUpdateType + "&startTime=" + startTimeDouble + "&endTime=" + endTime + "&doubt_solved=" + isDoubtSolved;
+            Log.e("playingParam", param);
 
             JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
 
@@ -1042,7 +1402,6 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
             if (jsonObject != null) {
                 Log.e("test-response", jsonObject.toString());
                 return jsonObject.toString();
-
             }
             return "";
         }
@@ -1081,7 +1440,487 @@ public ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
                 Log.e("data update", "data updated");
             }
 
-            dialog.dismiss();
+//            dialog.dismiss();
+        }
+    }
+
+    class GetSuggestedMileStones extends AsyncTask<String, Void, String> {
+        // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
+
+        private int currentPlayerWindowIndex;
+        private String currentPlayerMilestoneId;
+
+        @OptIn(markerClass = UnstableApi.class)
+        @Override
+        protected void onPreExecute() {
+            // This dialog.setMessage("Please wait");
+            // This dialog.show();
+            // Access the player on the UI thread to get the current window index
+            currentPlayerWindowIndex = player.getCurrentWindowIndex();
+            if (!mileUpdateType.equals("search_mile_click")) {
+                currentPlayerMilestoneId = mileStoneArrayList.get(currentPlayerWindowIndex).getId();
+            } else {
+                currentPlayerMilestoneId = to_milestone_id;
+            }
+            editor = getSharedPreferences("mileStoneId_" + currentPlayerMilestoneId, MODE_PRIVATE).edit();
+        }
+
+        @OptIn(markerClass = UnstableApi.class)
+        @Override
+        protected String doInBackground(String... params) {
+            JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
+            int versionCode = BuildConfig.VERSION_CODE;
+
+            String param = "milestone_id=" + currentPlayerMilestoneId;
+            Log.e("param", param);
+
+            JSONObject jsonObject = jsonParser.makeHttpRequest(getSuggestedMilestones, "POST", param);
+            if (jsonObject != null) {
+                Log.d(TAG, "doInBackground: " + jsonObject);
+                return jsonObject.toString();
+            } else {
+                return "";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.i("json", s);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (!s.equals("")) {
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(s);
+
+                            Log.e("Result Question: ", s);
+
+                            //Do work-----------------------------
+                            String status = jsonObject.getString("status");
+                            final JSONObject dataObj = jsonObject.getJSONObject("data");
+                            switch (status) {
+                                case "success":
+                                    //Running Fine----
+
+                                    JSONArray milestonesArray = dataObj.getJSONArray("milestones");
+                                    suggestedMileStones.clear();
+                                    for (int i = 0; i < milestonesArray.length(); i++) {
+                                        JSONObject mileStone = milestonesArray.getJSONObject(i);
+                                        ItemSuggestedMileStones itemSuggestedMileStones = new ItemSuggestedMileStones();
+                                        itemSuggestedMileStones.setStartedAt(mileStone.getLong("startTime"));
+                                        itemSuggestedMileStones.setEndAt(mileStone.getLong("endTime"));
+                                        JSONArray linksArray = mileStone.getJSONArray("links");
+                                        ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
+                                        for (int j = 0; j < linksArray.length(); j++) {
+                                            ItemMileStone itemMileStone = new ItemMileStone();
+                                            JSONObject mileStoneObj = linksArray.getJSONObject(j);
+                                            itemMileStone.setId(mileStoneObj.getString("id"));
+                                            itemMileStone.setTitle(mileStoneObj.getString("title"));
+                                            itemMileStone.setDuration(mileStoneObj.getString("duration"));
+                                            itemMileStone.setVideoUrl(mileStoneObj.getString("video_link"));
+                                            itemMileStone.setActivityType("milestone_player");
+                                            itemMileStone.setMilestoneType("suggested_milestone");
+
+                                            Log.e("suggested_chapter_id11", String.valueOf(suggested_chapter_id));
+                                            itemMileStone.setChapterId(Integer.parseInt(chap_id));
+                                            mileStoneArrayList.add(itemMileStone);
+                                        }
+                                        itemSuggestedMileStones.setMileStoneArrayList(mileStoneArrayList);
+                                        suggestedMileStones.add(itemSuggestedMileStones);
+                                        Log.e("epttyhai", "" + suggestedMileStones.isEmpty());
+                                    }
+
+
+                                    JSONArray questionsArray = dataObj.getJSONArray("question");
+                                    Log.e("QUESTION LIST", questionsArray.toString());
+
+                                    options.clear();
+                                    options.add("option1");
+                                    options.add("option2");
+                                    options.add("option3");
+                                    options.add("option4");
+                                    Collections.shuffle(options);
+
+                                    for (int i = 0; i < questionsArray.length(); i++) {
+                                        JSONObject questionObj = questionsArray.getJSONObject(i);
+                                        questionId = questionObj.getString("id");
+                                        question = questionObj.getString("question");
+                                        option1 = questionObj.getString(options.get(0));
+                                        option2 = questionObj.getString(options.get(1));
+                                        option3 = questionObj.getString(options.get(2));
+                                        option4 = questionObj.getString(options.get(3));
+                                        answer = questionObj.getString("answer");
+                                        questionTimeLimit = Long.parseLong(questionObj.getString("time_limit"));
+
+                                    }
+
+                                    break;
+                                case "maintenance":
+                                    //Undermaintance
+                                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ExoPlayer3Activity.this);
+                                    // ...Irrelevant code for customizing the buttons and title
+                                    LayoutInflater inflater = ExoPlayer3Activity.this.getLayoutInflater();
+                                    View dialogView = inflater.inflate(R.layout.under_maintanance_dialog, null);
+                                    dialogBuilder.setView(dialogView);
+                                    //Alert Dialog Layout work
+                                    TextView maintainanceContent = dialogView.findViewById(R.id.underMaintananceContent);
+                                    String msgContent = dataObj.getString("message");
+                                    maintainanceContent.setText(Html.fromHtml(msgContent));
+
+                                    TextView btnOK = dialogView.findViewById(R.id.btnOK);
+                                    btnOK.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            finishAndRemoveTask();
+                                        }
+                                    });
+                                    AlertDialog alertDialog = dialogBuilder.create();
+                                    alertDialog.show();
+                                    alertDialog.setCanceledOnTouchOutside(false);
+                                    break;
+                                case "failure":
+                                    Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                                    break;
+                                default:
+                                    Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+
+
+
+            //Response reached---------------value in 's' variable
+        }
+    }
+
+    class GetSearchedMileStones extends AsyncTask<String, Void, String> {
+
+
+        private long fromMileDuration;
+        private String currentPlayerMilestoneId;
+
+        @OptIn(markerClass = UnstableApi.class) @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Please wait!..");
+            dialog.show();
+            // Access the player on the UI thread to get the required information
+            fromMileDuration = player.getCurrentPosition() / 1000;
+            if (!mileUpdateType.equals("search_mile_click")) {
+                currentPlayerMilestoneId = mileStoneArrayList.get(player.getCurrentWindowIndex()).getId();
+            } else {
+                currentPlayerMilestoneId = to_milestone_id;
+            }
+        }
+
+        @OptIn(markerClass = UnstableApi.class) @Override
+        protected String doInBackground(String... params) {
+            JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
+
+            String param = "sid=" + studId + "&course_id=" + courseIdM + "&chapter_id=" + chapter_id + "&milestone_id=" + currentPlayerMilestoneId + "&search_keyword=" + searchKeyword + "&from_milestone_duration=" + fromMileDuration;
+
+            Log.e("param", param);
+
+            String url1 = getApplicationContext().getString(R.string.apiURL) + "getSearchData";
+            Log.e("url", url1);
+
+            JSONObject jsonObject = jsonParser.makeHttpRequest(url1, "POST", param);
+            if (jsonObject != null) {
+                return jsonObject.toString();
+            } else {
+                return "";
+            }
+        }
+
+        @OptIn(markerClass = UnstableApi.class) @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.i("json", s);
+
+            if (!s.equals("")) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    Log.e("Result : ", s);
+
+                    //Do work-----------------------------
+                    String status = jsonObject.getString("status");
+
+                    switch (status) {
+                        case "true":
+                            //Running Fine----
+                            final JSONObject dataObj = jsonObject.getJSONObject("data");
+                            searchId = dataObj.getString("search_id");
+                            searchKeyword = dataObj.getString("search_keyword");
+
+                            JSONArray milestonesArray = dataObj.getJSONArray("lists");
+                            ArrayList<ItemMileStone> mileStoneArrayList = new ArrayList<>();
+                            searchedMileStonesList.clear();
+                            if (milestonesArray.length() != 0) {
+
+                                for (int i = 0; i < milestonesArray.length(); i++) {
+                                    JSONObject mileStone = milestonesArray.getJSONObject(i);
+                                    ItemMileStone itemSearchQuery = new ItemMileStone();
+                                    itemSearchQuery.setSearchMileId(mileStone.getString("milestone_id"));
+                                    itemSearchQuery.setCourseId(mileStone.getString("course_id"));
+                                    itemSearchQuery.setChapterId(Integer.parseInt(mileStone.getString("chapter_id")));
+                                    itemSearchQuery.setChapterIdString(mileStone.getString("chapter_id"));
+                                    itemSearchQuery.setTitle(mileStone.getString("milestone_title"));
+                                    itemSearchQuery.setDuration(mileStone.getString("duration"));
+                                    itemSearchQuery.setVideoUrl(mileStone.getString("uploaded_url"));
+                                    itemSearchQuery.setActivityType("milestone_player");
+                                    itemSearchQuery.setMilestoneType("search_mile_click");
+                                    itemSearchQuery.setSearchId(searchId);
+                                    itemSearchQuery.setSearchKeyword(searchKeyword);
+                                    itemSearchQuery.setCourseLogo(courseLogoM);
+
+
+                                    searchedMileStonesList.add(itemSearchQuery);
+
+                                    Log.e("epttyhai", "" + suggestedMileStones.isEmpty());
+                                }
+
+
+                                // searched Query
+                                LinearLayoutManager layoutManagerTwo = new LinearLayoutManager(ExoPlayer3Activity.this, LinearLayoutManager.VERTICAL, false);
+                                searchMileStoneRecyclerView.setLayoutManager(layoutManagerTwo);
+                                Log.d(TAG, "onPostExecute: " + searchedMileStonesList);
+                                itemSearchQueryAdapter = new ItemSearchQueryAdapter(searchedMileStonesList);
+                                searchMileStoneRecyclerView.setAdapter(itemSearchQueryAdapter);
+                                itemSearchQueryAdapter.notifyDataSetChanged();
+                                innerMileStoneList.setVisibility(View.GONE);
+                                searchMileStoneRecyclerView.setVisibility(View.VISIBLE);
+                                closeSearchRecycler.setVisibility(View.VISIBLE);
+                                doubtSearch.setVisibility(View.GONE);
+                                mileStoneVideoView.hideController();
+                                searchEdt.setText("");
+                            } else {
+                                Toast.makeText(ExoPlayer3Activity.this, "We have saved your doubt and we will solved it soon!..", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            dialog.dismiss();
+                            break;
+                        case "maintenance":
+                            //Undermaintance
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ExoPlayer3Activity.this);
+                            // ...Irrelevant code for customizing the buttons and title
+                            LayoutInflater inflater = ExoPlayer3Activity.this.getLayoutInflater();
+                            View dialogView = inflater.inflate(R.layout.under_maintanance_dialog, null);
+                            dialogBuilder.setView(dialogView);
+                            //Alert Dialog Layout work
+                            TextView maintainanceContent = dialogView.findViewById(R.id.underMaintananceContent);
+//                            String msgContent = dataObj.getString("message");
+//                            maintainanceContent.setText(Html.fromHtml(msgContent));
+
+                            TextView btnOK = dialogView.findViewById(R.id.btnOK);
+                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    finishAndRemoveTask();
+                                }
+                            });
+                            AlertDialog alertDialog = dialogBuilder.create();
+                            alertDialog.show();
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            dialog.dismiss();
+                            break;
+                        case "failure":
+                            Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            break;
+                        default:
+                            Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            break;
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            //Response reached---------------value in 's' variable
+        }
+    }
+
+    class UpdateSearchedQueryData extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Please wait!..");
+            dialog.show();
+        }
+
+        @OptIn(markerClass = UnstableApi.class) @Override
+        protected String doInBackground(String... params) {
+            JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
+            String param;
+            if (mileUpdateType.equals("search_mile_click")) {
+                param = "sid=" + studId + "&from_course_id=" + from_course_id + "&from_chapter_id=" +
+                        from_chapter + "&from_milestone_id=" + milestone_id + "&search_keyword=" + from_search_keyword +
+                        "&search_id=" + from_search_id + "&to_course_id=" + to_course_id + "&to_chapter_id=" + to_chapter_id +
+                        "&to_milestone_id=" + to_milestone_id + "&doubt_solved=" + isDoubtSolved + "&spent_time=" + duration;
+            } else {
+                param = "sid=" + studId + "&from_course_id=" + from_course_id + "&from_chapter_id=" +
+                        from_chapter + "&from_milestone_id=" + milestone_id + "&search_keyword=" + from_search_keyword +
+                        "&search_id=" + from_search_id + "&to_course_id=" + to_course_id + "&to_chapter_id=" + to_chapter_id +
+                        "&to_milestone_id=" + to_milestone_id + "&doubt_solved=" + isDoubtSolved + "&spent_time=" + duration;
+
+            }
+
+//            player.setThrowsWhenUsingWrongThread(false);
+            runnableThreadIssue();
+
+            Log.e("param", param);
+
+            String url1 = getApplicationContext().getString(R.string.apiURL)+"saveUpdateQuestionMilestone";
+            Log.e("url", url1);
+
+            JSONObject jsonObject = jsonParser.makeHttpRequest(url1, "POST", param);
+            if (jsonObject != null) {
+                return jsonObject.toString();
+            } else {
+
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.i("json", s);
+
+            if (!s.equals("")) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    Log.e("Result : ", s);
+
+                    //Do work-----------------------------
+                    String status = jsonObject.getString("status");
+
+                    switch (status) {
+                        case "true":
+                            //Running Fine----
+//                            final JSONObject dataObj = jsonObject.getJSONObject("data");
+
+//                            Log.d(TAG, "UpdateSearch: " + dataObj.getString("message"));
+
+                            dialog.dismiss();
+                            break;
+                        case "maintenance":
+                            //Undermaintance
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ExoPlayer3Activity.this);
+                            // ...Irrelevant code for customizing the buttons and title
+                            LayoutInflater inflater = ExoPlayer3Activity.this.getLayoutInflater();
+                            View dialogView = inflater.inflate(R.layout.under_maintanance_dialog, null);
+                            dialogBuilder.setView(dialogView);
+                            //Alert Dialog Layout work
+                            TextView maintainanceContent = dialogView.findViewById(R.id.underMaintananceContent);
+//                            String msgContent = dataObj.getString("message");
+//                            maintainanceContent.setText(Html.fromHtml(msgContent));
+
+                            TextView btnOK = dialogView.findViewById(R.id.btnOK);
+                            btnOK.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    finishAndRemoveTask();
+                                }
+                            });
+                            AlertDialog alertDialog = dialogBuilder.create();
+                            alertDialog.show();
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            dialog.dismiss();
+                            break;
+                        case "failure":
+                            Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            break;
+                        default:
+                            Toast.makeText(ExoPlayer3Activity.this, "Something went wrong. Contact to support over website", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            break;
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            //Response reached---------------value in 's' variable
+        }
+    }
+    class SaveQuestionResponse extends AsyncTask<String, Void, String> {
+        // private ProgressDialog dialog = new ProgressDialog(NewResultActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+//            this.dialog.setMessage("Please wait");
+//            this.dialog.show();
+        }
+
+        @OptIn(markerClass = UnstableApi.class) @Override
+        protected String doInBackground(String... params) {
+
+            int currentWindowIndex = 0;
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                // Already on the main thread, can directly access the player
+                currentWindowIndex = player.getCurrentWindowIndex();
+            } else {
+                // Not on the main thread, need to post to the main thread
+                final int[] indexHolder = new int[1];
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    indexHolder[0] = player.getCurrentWindowIndex();
+                });
+                currentWindowIndex = indexHolder[0];
+            }
+
+            JSONParser jsonParser = new JSONParser(ExoPlayer3Activity.this);
+            String param = "student_id=" + studId + "&course_id=" + courseIdM + "&milestone_id=" + mileStoneArrayList.get(currentWindowIndex).getId() + "&question_id=" + questionId + "&answered_option=" + answer + "&answer=" + answerResult + "&chapter_id=" + chap_id;
+
+            Log.i(TAG, "Request params: " + param);
+            JSONObject jsonObject = jsonParser.makeHttpRequest(getApplicationContext().getString(R.string.apiURL) + "saveQuestionResponse", "POST", param);
+            if (jsonObject != null) {
+                Log.e(TAG, "Response: " + jsonObject.toString());
+                return jsonObject.toString();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.i("json", s);
+
+            if (!s.equals("")) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    Log.e("Result : ", s);
+
+                    //Do work-----------------------------
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
